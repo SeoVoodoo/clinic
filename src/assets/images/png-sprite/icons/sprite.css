@@ -1,0 +1,198 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-advantages1png {
+  background-image: url(sprite.png);
+  background-position: -497px -90px;
+  width: 90px;
+  height: 90px;
+}
+.icon-advantages2png {
+  background-image: url(sprite.png);
+  background-position: -497px -180px;
+  width: 90px;
+  height: 90px;
+}
+.icon-advantages3png {
+  background-image: url(sprite.png);
+  background-position: -497px -270px;
+  width: 90px;
+  height: 90px;
+}
+.icon-advantages4png {
+  background-image: url(sprite.png);
+  background-position: -497px 0px;
+  width: 99px;
+  height: 90px;
+}
+.icon-controlpng {
+  background-image: url(sprite.png);
+  background-position: 0px 0px;
+  width: 266px;
+  height: 94px;
+}
+.icon-logopng {
+  background-image: url(sprite.png);
+  background-position: 0px -94px;
+  width: 198px;
+  height: 124px;
+}
+.icon-partners1png {
+  background-image: url(sprite.png);
+  background-position: 0px -272px;
+  width: 234px;
+  height: 57px;
+}
+.icon-partners2png {
+  background-image: url(sprite.png);
+  background-position: -266px -155px;
+  width: 231px;
+  height: 53px;
+}
+.icon-partners3png {
+  background-image: url(sprite.png);
+  background-position: -251px -218px;
+  width: 200px;
+  height: 50px;
+}
+.icon-partners4png {
+  background-image: url(sprite.png);
+  background-position: -234px -272px;
+  width: 185px;
+  height: 53px;
+}
+.icon-partners5png {
+  background-image: url(sprite.png);
+  background-position: 0px -218px;
+  width: 251px;
+  height: 54px;
+}
+.icon-partners6png {
+  background-image: url(sprite.png);
+  background-position: -266px 0px;
+  width: 231px;
+  height: 80px;
+}
+.icon-partners7png {
+  background-image: url(sprite.png);
+  background-position: -266px -80px;
+  width: 212px;
+  height: 75px;
+}
+.icon-partners8png {
+  background-image: url(sprite.png);
+  background-position: 0px -329px;
+  width: 160px;
+  height: 81px;
+}
+.icon-services10png {
+  background-image: url(sprite.png);
+  background-position: -198px -94px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services11png {
+  background-image: url(sprite.png);
+  background-position: -198px -154px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services12png {
+  background-image: url(sprite.png);
+  background-position: -160px -329px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services13png {
+  background-image: url(sprite.png);
+  background-position: -220px -329px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services14png {
+  background-image: url(sprite.png);
+  background-position: -280px -329px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services15png {
+  background-image: url(sprite.png);
+  background-position: -340px -329px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services16png {
+  background-image: url(sprite.png);
+  background-position: -400px -329px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services1png {
+  background-image: url(sprite.png);
+  background-position: 0px -410px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services2png {
+  background-image: url(sprite.png);
+  background-position: -60px -410px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services3png {
+  background-image: url(sprite.png);
+  background-position: -120px -410px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services4png {
+  background-image: url(sprite.png);
+  background-position: -180px -410px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services5png {
+  background-image: url(sprite.png);
+  background-position: -240px -410px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services6png {
+  background-image: url(sprite.png);
+  background-position: -300px -410px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services7png {
+  background-image: url(sprite.png);
+  background-position: -360px -410px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services8png {
+  background-image: url(sprite.png);
+  background-position: -420px -410px;
+  width: 60px;
+  height: 60px;
+}
+.icon-services9png {
+  background-image: url(sprite.png);
+  background-position: -480px -410px;
+  width: 60px;
+  height: 60px;
+}
