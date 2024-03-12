@@ -1,25 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { GlobalStyles } from './styles/GlobalStyles';
+import { ThemeProvider } from 'styled-components';
+import { myTheme } from './styles/Theme.styled';
+import { Header } from './layout/header/Header';
+import { useEffect, useState } from 'react';
+
+
 
 function App() {
+
+  const [themeName, setThemeName] = useState("light");
+
+  function handleToggleTheme(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>){
+    e.preventDefault();
+    if(themeName === 'light'){
+      window.localStorage.setItem('themeName', 'dark');
+      setThemeName('dark');
+    }
+    else {
+      window.localStorage.setItem('themeName', 'light');
+      setThemeName('light');
+    }            
+  }
+
+  // useEffect(() => { // ВРЕМЕННО отключено
+  //   const localTheme = window.localStorage.getItem('themeName');
+  //   localTheme && setThemeName(localTheme);
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <ThemeProvider theme={themeName === 'light' ? myTheme.light : myTheme.dark}>
+    
+      <>
+        <Header />
+        <GlobalStyles />
+      </>
+    </ThemeProvider>
   );
 }
 
