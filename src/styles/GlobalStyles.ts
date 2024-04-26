@@ -1,10 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
+type GlobalStylesPropsType = {
+    fontSize:number 
+}
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle<GlobalStylesPropsType>`
 
     html {
-        font-size: 14px;
+        font-size: ${props => props.fontSize}px;
     }
 
     *,
@@ -20,11 +23,16 @@ export const GlobalStyles = createGlobalStyle`
         /* -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale; */
         min-width: 360px;
-        color: ${({theme}) => theme.color.defaultText}
+        color: ${({theme}) => theme.color.defaultText};
+        background-color: ${({theme}) => theme.bgCol.default};
     }
 
     button {
         cursor: pointer;
+    }
+
+    img {
+        filter: ${({theme}) => theme.filter};
     }
 
 `

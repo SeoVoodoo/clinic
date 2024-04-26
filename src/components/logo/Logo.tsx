@@ -24,5 +24,6 @@ const Logotype = styled.div`
     width: 198px;
     height: 124px;
     cursor: pointer;
+    filter: ${({theme}) => theme.filterLogo};
 `
 
