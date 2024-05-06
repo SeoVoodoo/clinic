@@ -1,9 +1,11 @@
 import React from 'react';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 type ButtonPropsType = {    
-    backgroundColor?: string,
+    backgroundColor?: string
     color?: string
+    bgBtnType?: string
+    themeName?: string
 }
 
 export const StyledBtn = styled.button<ButtonPropsType>`
@@ -25,8 +27,7 @@ export const StyledBtn = styled.button<ButtonPropsType>`
 
 export const StyledCallbackBtn = styled(StyledBtn)`
     background-color: ${({theme}) => theme.bgCol.btn.secondary};
-    color: ${({theme}) => theme.color.defaultBtn};
-    
+    color: ${({theme}) => theme.color.defaultBtn};    
 
     &:hover { 
         background: ${({theme}) => theme.bgCol.btn.secondaryHover};
@@ -34,9 +35,6 @@ export const StyledCallbackBtn = styled(StyledBtn)`
     }
 `
 
-// export const StyledVisuallyImpairedBtn = styled(StyledBtn)`
-    
-//     background-color: ${({theme}) => theme.bgCol.default};
-//     color: ${({theme}) => theme.color.defaultText};
-// `
+
+
 

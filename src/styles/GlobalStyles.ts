@@ -35,4 +35,12 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesPropsType>`
         filter: ${({theme}) => theme.filter};
     }
 
+    a {
+        text-decoration: none;
+    }
+
+    .swiper-pagination-bullet-active {    
+        background: ${({theme}) => theme.bgCol.swiperPaginationBulletActive};
+    }
+
 `

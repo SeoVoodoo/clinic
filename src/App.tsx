@@ -21,6 +21,7 @@ import { Reception } from './pages/main/Reception';
 import { Tour } from './pages/main/Tour';
 import { PaymentTerms } from './pages/main/PaymentTerms';
 import { InitialStoreType } from './redux/store';
+import { MainSlider } from './layout/section/homepage/MainSlider';
 
 const initialFontSize = 14;
 function App(props: {store: InitialStoreType}) {
@@ -65,8 +66,7 @@ function App(props: {store: InitialStoreType}) {
         setFontSize((prev) => prev + 1);
         
       }      
-    }  
-      
+    }      
   }
 
   useEffect(() => {
@@ -107,6 +107,7 @@ function App(props: {store: InitialStoreType}) {
           initialFontSize={initialFontSize}
           setFontSize={setFontSize}
         />
+        <MainSlider state={props.store.homePage.mainSlider} themeName={themeName}/>
         <div>
           <Routes>
             {/* <Route path="/" element = {<Home  />} /> */}

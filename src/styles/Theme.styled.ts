@@ -18,7 +18,8 @@ export const myTheme = {
             default: "white",
             defaultHover: "#1D1F24",
             firstLinkMenu: "rgba(91, 238, 208, 0.2)",
-            firstLinkMenuHover: "rgba(245, 130, 32, 1)" 
+            firstLinkMenuHover: "rgba(245, 130, 32, 1)",
+            swiperPaginationBulletActive: "rgba(245, 130, 32, 1)"
         },
 
         color: {
@@ -41,6 +42,12 @@ export const myTheme = {
             totalColor: "white",
             bgTotalColor: "rgba(245, 130, 32, 1)",
             borderColor: "transparent" 
+        },
+        homeSlider: {
+            orange: "rgba(245, 130, 32, 1)",
+            green: "rgba(0, 166, 81, 1)",
+            black: "rgba(29, 31, 36, 1)",
+            white: "rgba(255, 255, 255, 1)"
         },
 
         filterLogo: "none",
@@ -66,7 +73,8 @@ export const myTheme = {
             default: "white",
             defaultHover: "rgba(0, 0, 0, .4)",
             firstLinkMenu: "rgba(0, 0, 0, 1)",
-            firstLinkMenuHover: "#6b6b6b" 
+            firstLinkMenuHover: "#6b6b6b",
+            swiperPaginationBulletActive: "rgba(0, 0, 0, 1)"
         },
 
         color: {
@@ -89,6 +97,11 @@ export const myTheme = {
             totalColor: "black",
             bgTotalColor: "white",
             borderColor: "black" 
+        },
+
+        homeSlider: {            
+            color: "black",
+            transparent: "transparent"
         },
 
         filterLogo: "grayscale(100%)",
@@ -114,7 +127,8 @@ export const myTheme = {
             default: "black",
             defaultHover: "#6b6b6b",
             firstLinkMenu: "rgba(255, 255, 255, 1)",
-            firstLinkMenuHover: "rgba(255, 255, 255, .7)"
+            firstLinkMenuHover: "rgba(255, 255, 255, .7)",
+            swiperPaginationBulletActive: "rgba(0, 0, 0, 1)"
         },
 
         color: {
@@ -137,6 +151,10 @@ export const myTheme = {
             totalColor: "white",
             bgTotalColor: "black",
             borderColor: "white"
+        },
+        homeSlider: {            
+            color: "black",
+            transparent: "transparent"
         },
 
         filterLogo: "grayscale(100%)",
@@ -162,7 +180,8 @@ export const myTheme = {
             default: "rgba(157, 209, 255, 1)",
             defaultHover: "rgba(157, 209, 255, .5)",
             firstLinkMenu: "rgba(157, 209, 255, 1)",
-            firstLinkMenuHover: "rgba(157, 209, 255, .5)" 
+            firstLinkMenuHover: "rgba(157, 209, 255, .5)",
+            swiperPaginationBulletActive: "rgba(6, 52, 98, 1)" 
         },
 
         color: {
@@ -185,6 +204,11 @@ export const myTheme = {
             totalColor: "#063462",
             bgTotalColor: "white",
             borderColor: "#063462" 
+        },
+
+        homeSlider: {            
+            color: "#063462",
+            transparent: "transparent"
         },
 
         filterLogo: "hue-rotate(60deg)",
