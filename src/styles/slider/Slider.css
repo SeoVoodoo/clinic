@@ -11,6 +11,16 @@
     padding-bottom: 30px;
  }
 
+.bulletLocation .swiper-slide {
+   width: 305px;
+}
+
+@media screen and (max-width: 767px) {
+   .bulletLocation .swiper-slide {
+      width: 224px;
+   }
+}
+
 .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
    bottom: 2rem ; 
 }

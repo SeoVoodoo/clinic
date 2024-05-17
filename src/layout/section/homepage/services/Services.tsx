@@ -46,7 +46,7 @@ export const Services: React.FC<ServicesPropsType> = (props: ServicesPropsType) 
                             <SwiperSlide 
                                 key={index}
                                 style={{
-                                    width: `${width > tablet ? "305px" : "224px"}`,                                                                                                            
+                                    //width: `${width > tablet ? "305px" : "224px"}`,                                                                                                            
                                 }}                                      
                             >
                                 <ServicesSlide slide={arr} slideIndex={index} />
