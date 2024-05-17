@@ -21,7 +21,7 @@ export const SocialList: React.FC<SocialListPropsType> = (props: SocialListProps
                                 width="40"
                                 height="40"
                                 viewBox="0 0 40 40" 
-                                fill={props.themeName !== 'default' ? theme.color.outlineBtn 
+                                fill={props.themeName !== 'default' ? theme.color.outline 
                                 : social.id === "classmates" ? "#F96600"
                                 : social.id === "telegram" ? "#1C8ADB"
                                 : social.id === "viber" ? "#6F3FAA"

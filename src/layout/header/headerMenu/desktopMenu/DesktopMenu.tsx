@@ -171,7 +171,7 @@ const SabMenu = styled.ul`
     border-radius: 10px;
     top: 64.5px;
     left: -58px;
-    
+    z-index: 10;
 
     display: flex;
     flex-direction: column;
@@ -215,7 +215,7 @@ const SabMenuItem = styled.li`
         content: "";
         display: block;               
         /* height: 1.25px; */
-        background-color: black;
+        background-color: ${({theme}) => theme.color.defaultText};
         transform: scale(0);
         transition: transform 0.4s;
     }

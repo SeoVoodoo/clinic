@@ -81,6 +81,7 @@ export const MainSlider: React.FC<MainSliderPropsType> =  (props: MainSliderProp
 };
 
 const StyledMainSlider = styled.section`
+    margin-bottom: 30px;
     img {
         max-width: 1920px;
         width: 100%;
@@ -91,8 +92,7 @@ const StyledMainSlider = styled.section`
 const Info = styled.div`    
     position: absolute;
     max-width: 1320px;
-    width: 100%;
-    //height: 200px;
+    width: 100%;    
     left: calc((100vw - 1320px)/2 + 20px);    
     top: 50%;    
     transform: translateY(-50%);
@@ -182,7 +182,7 @@ const Button = styled.button<ButtonPropsType>`
         : ({theme}) => theme.homeSlider.color};
 
     outline: 1px solid ${props => props.themeName === "default" 
-        ? ({theme}) => theme.color.outlineBtn 
+        ? ({theme}) => theme.color.outline 
         : ({theme}) => theme.homeSlider.color}; 
     
     &:hover {

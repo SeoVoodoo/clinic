@@ -6,7 +6,7 @@ export const myTheme = {
                 bottom: "rgba(0, 166, 81, 1)",
                 menu: {
                     textDecorationLink: "white",
-                    submenu: "#1be7ee"
+                    submenu: "white"
                 }                 
             },
             btn: {
@@ -19,11 +19,21 @@ export const myTheme = {
             defaultHover: "#1D1F24",
             firstLinkMenu: "rgba(91, 238, 208, 0.2)",
             firstLinkMenuHover: "rgba(245, 130, 32, 1)",
-            swiperPaginationBulletActive: "rgba(245, 130, 32, 1)"
+            swiperPaginationBulletActive: "rgba(245, 130, 32, 1)",
+            homePage: {
+                advantages: {
+                    0: "rgba(213, 243, 238, 1)",
+                    1: "rgba(160, 228, 220, 1)",
+                    2:"rgba(245, 130, 32, 0.5)",
+                    3: "rgba(231, 236, 240, 1)"
+                }
+            }
         },
 
         color: {
-            outlineBtn: "transparent",
+            primary: "rgba(0, 166, 81, 1)",
+            secondary: "rgba(245, 130, 32, 1)",
+            outline: "transparent",
             defaultText: "rgb(29, 31, 36)", 
             defaultTextHover: "white",          
             defaultBtn: "white",
@@ -51,7 +61,12 @@ export const myTheme = {
         },
 
         filterLogo: "none",
-        filter: "none"
+        filter: "none",
+
+        media: {
+            tablet: "screen and (max-width: 767px)",
+            mobile: "screen and (max-width: 576px)"
+        }
     },
 
     light: {
@@ -61,7 +76,7 @@ export const myTheme = {
                 bottom: "rgba(255, 255, 255, 1)",
                 menu: {
                     textDecorationLink: "black",
-                    submenu: "rgba(0, 0, 0, 1)"
+                    submenu: "rgba(255, 255, 255, 1)"
                 }                    
             },
             btn: {
@@ -74,11 +89,21 @@ export const myTheme = {
             defaultHover: "rgba(0, 0, 0, .4)",
             firstLinkMenu: "rgba(0, 0, 0, 1)",
             firstLinkMenuHover: "#6b6b6b",
-            swiperPaginationBulletActive: "rgba(0, 0, 0, 1)"
+            swiperPaginationBulletActive: "rgba(0, 0, 0, 1)",
+            homePage: {
+                advantages: {
+                    0: "rgba(255, 255, 255, 1)",
+                    1: "rgba(255, 255, 255, 1)",
+                    2: "rgba(255, 255, 255, 1)",
+                    3: "rgba(255, 255, 255, 1)"
+                }
+            }
         },
 
         color: {
-            outlineBtn: "black",
+            primary: "rgba(0, 0, 0, 1)",
+            secondary: "rgba(0, 0, 0, 1)",
+            outline: "black",
             defaultText: "black", 
             defaultTextHover: "black",          
             defaultBtn: "black",
@@ -105,7 +130,12 @@ export const myTheme = {
         },
 
         filterLogo: "grayscale(100%)",
-        filter: "grayscale(100%)"        
+        filter: "grayscale(100%)",
+        
+        media: {
+            tablet: "screen and (max-width: 767px)",
+            mobile: "screen and (max-width: 576px)"
+        }
     },
 
     dark: {
@@ -115,7 +145,7 @@ export const myTheme = {
                 bottom: "rgba(0, 0, 0, 1)",
                 menu: {
                     textDecorationLink: "white",
-                    submenu: "rgba(255, 255, 255, 1)"
+                    submenu: "rgba(0, 0, 0, 1)"
                 }    
             },
             btn: {
@@ -128,11 +158,21 @@ export const myTheme = {
             defaultHover: "#6b6b6b",
             firstLinkMenu: "rgba(255, 255, 255, 1)",
             firstLinkMenuHover: "rgba(255, 255, 255, .7)",
-            swiperPaginationBulletActive: "rgba(0, 0, 0, 1)"
+            swiperPaginationBulletActive: "rgba(0, 0, 0, 1)",
+            homePage: {
+                advantages: {
+                    0: "rgba(0, 0, 0, 1)",
+                    1: "rgba(0, 0, 0, 1)",
+                    2: "rgba(0, 0, 0, 1)",
+                    3: "rgba(0, 0, 0, 1)"
+                }
+            }
         },
 
         color: {
-            outlineBtn: "white",
+            primary: "rgba(255, 255, 255, 1)",
+            secondary: "rgba(255, 255, 255, 1)",
+            outline: "white",
             defaultText: "white",
             defaultTextHover: "white",            
             defaultBtn: "white",
@@ -158,7 +198,12 @@ export const myTheme = {
         },
 
         filterLogo: "grayscale(100%)",
-        filter: "grayscale(100%)"
+        filter: "grayscale(100%)",
+
+        media: {
+            tablet: "screen and (max-width: 767px)",
+            mobile: "screen and (max-width: 576px)"
+        }
     },
 
     blue: {
@@ -181,11 +226,21 @@ export const myTheme = {
             defaultHover: "rgba(157, 209, 255, .5)",
             firstLinkMenu: "rgba(157, 209, 255, 1)",
             firstLinkMenuHover: "rgba(157, 209, 255, .5)",
-            swiperPaginationBulletActive: "rgba(6, 52, 98, 1)" 
+            swiperPaginationBulletActive: "rgba(6, 52, 98, 1)",
+            homePage: {
+                advantages: {
+                    0: "rgba(157, 209, 255, 1)",
+                    1: "rgba(157, 209, 255, 1)",
+                    2: "rgba(157, 209, 255, 1)",
+                    3: "rgba(157, 209, 255, 1)"
+                }
+            }
         },
 
         color: {
-            outlineBtn: "#063462",
+            primary: "#063462",
+            secondary: "#063462",
+            outline: "#063462",
             defaultText: "#063462", 
             defaultTextHover: "rgba(0, 0, 0, .5)",          
             defaultBtn: "#063462",
@@ -212,6 +267,11 @@ export const myTheme = {
         },
 
         filterLogo: "hue-rotate(60deg)",
-        filter: "grayscale(100%)"        
+        filter: "grayscale(100%)",
+        
+        media: {
+            tablet: "screen and (max-width: 767px)",
+            mobile: "screen and (max-width: 576px)"
+        }
     }
 }

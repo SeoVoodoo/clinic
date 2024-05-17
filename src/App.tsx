@@ -1,6 +1,6 @@
 import React from 'react';
 import { GlobalStyles } from './styles/GlobalStyles';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { myTheme } from './styles/Theme.styled';
 import { Header } from './layout/header/Header';
 import { useEffect, useState, useContext } from 'react';
@@ -21,17 +21,21 @@ import { Reception } from './pages/main/Reception';
 import { Tour } from './pages/main/Tour';
 import { PaymentTerms } from './pages/main/PaymentTerms';
 import { InitialStoreType } from './redux/store';
-import { MainSlider } from './layout/section/homepage/MainSlider';
+//import { MainSlider } from './layout/section/homepage/MainSlider';
+import { Home } from './pages/main/Home';
 
 const initialFontSize = 14;
+const initialState = {show: false, translateY: "-58px"}
+
 function App(props: {store: InitialStoreType}) {
 
   const [themeName, setThemeName] = useState<string>("default");
   const [fontSize, setFontSize] = useState<number>(initialFontSize);
+  const [visuallyImpairedPanel, setVisuallyImpairedPanel] = useState(initialState); 
 
+  //window.localStorage.clear();
   
-  function handleToggleTheme(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>){
-    
+  function handleToggleTheme(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>){    
     if(e.currentTarget.name === "light" && themeName !== 'light') {
       window.localStorage.setItem('themeName', 'light');
       setThemeName('light');
@@ -69,6 +73,44 @@ function App(props: {store: InitialStoreType}) {
     }      
   }
 
+  const handleVisuallyImpairedPanel = () => {        
+
+    if(!visuallyImpairedPanel.show){
+        window.localStorage.setItem("translateY", "0");
+        window.localStorage.setItem("show", "true");
+        setVisuallyImpairedPanel({
+            ...visuallyImpairedPanel,
+            show: true,
+            translateY: "0"
+        });
+    }
+
+    if(visuallyImpairedPanel.show) {
+
+        if(themeName === "default") {
+            window.localStorage.setItem("translateY", "-58px");
+            window.localStorage.setItem("show", "false");
+            window.localStorage.fontSize = initialFontSize;
+        }
+        else {
+            window.localStorage.clear();
+            setThemeName("default");
+        }
+        setFontSize(initialFontSize);
+        setVisuallyImpairedPanel({
+            ...visuallyImpairedPanel,
+            show: false,
+            translateY: "-58px"
+        });
+    }        
+}
+
+  useEffect(() => { 
+    const offset = window.localStorage.getItem('translateY');
+    const panel = window.localStorage.getItem('show') === "true" ? true : false;
+    offset && setVisuallyImpairedPanel({...visuallyImpairedPanel, translateY: offset, show: panel});
+  }, []);
+
   useEffect(() => {
     const localTheme = window.localStorage.getItem('themeName');
     localTheme && setThemeName(localTheme);
@@ -82,35 +124,44 @@ function App(props: {store: InitialStoreType}) {
 
   //console.log("fontSize", fontSize);
 
- 
+  const state = props.store.getState();
+
   return (
     
-    <ThemeProvider 
-      //fontSize={fontSize}
+    <ThemeProvider      
       theme={themeName === 'light' ? myTheme.light 
         : themeName === 'dark' ? myTheme.dark
         : themeName === 'blue' ? myTheme.blue
         : myTheme.default}          
     >
     
-      <>
+      <Wrap offset={visuallyImpairedPanel.translateY}>
         <Header 
-          mainMenu={props.store.headerMenu.mainMenu}
-          subMenu={props.store.headerMenu.subMenu}
-          contacts={props.store.contacts}
-          counter={props.store.counter}
-          socials={props.store.socials}
+          mainMenu={state.headerMenu.mainMenu}
+          subMenu={state.headerMenu.subMenu}
+          contacts={state.contacts}
+          counter={state.counter}
+          socials={state.socials}
           handleToggleTheme={handleToggleTheme}
           handleFontSize={handleFontSize}
           themeName={themeName}
           setThemeName={setThemeName}
           initialFontSize={initialFontSize}
           setFontSize={setFontSize}
+          handleVisuallyImpairedPanel={handleVisuallyImpairedPanel}
+          visuallyImpairedPanel={visuallyImpairedPanel}
         />
-        <MainSlider state={props.store.homePage.mainSlider} themeName={themeName}/>
+        {/* <MainSlider state={props.store.homePage.mainSlider} themeName={themeName}/> */}
         <div>
           <Routes>
-            {/* <Route path="/" element = {<Home  />} /> */}
+
+            <Route path="/" element = 
+              {<Home  
+                homePage={state.homePage}
+                themeName={themeName}
+              />} 
+            />
+
             <Route path="/prices" element = {<Prices />} />
             <Route path="/doctors" element = {<Doctors />} />
             <Route path="/timetable" element = {<Timetable />} />
@@ -128,9 +179,18 @@ function App(props: {store: InitialStoreType}) {
           </Routes>  
         </div>
         <GlobalStyles fontSize={fontSize}/>
-      </>
+      </Wrap>
     </ThemeProvider>
   );
 }
+
+type WrapPropsType = {    
+  offset:string
+}
+
+const Wrap = styled.div<WrapPropsType>`
+  transform: translateY(${props => props.offset}); 
+  transition: transform 0.5s ease-in-out;  
+`
 
 export default App;

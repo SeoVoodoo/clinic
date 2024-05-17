@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { styled } from "styled-components";
+import { styled, useTheme } from "styled-components";
 import { Icon } from '../../components/icon/Icon';
 
 type VisuallyImpairedBtnPropsType = {
@@ -11,7 +11,7 @@ type VisuallyImpairedBtnPropsType = {
 
 export const VisuallyImpairedBtn: React.FC<VisuallyImpairedBtnPropsType> = (props: VisuallyImpairedBtnPropsType) => {
     const [isHover, setIsHover] = useState(false);
-    
+    const theme = useTheme();
 
     
     const toggleHover = () => {
@@ -24,14 +24,30 @@ export const VisuallyImpairedBtn: React.FC<VisuallyImpairedBtnPropsType> = (prop
             onMouseLeave={toggleHover} 
             onClick={props.handleVisuallyImpairedPanel}            
         >
-            <Icon 
-                id="eye"
-                width="24"
-                height="16"
-                viewBox="0 0 24 16"
-                fill={isHover ? "white" : "#1D1F24"} 
-            />
-            {props.isShowVisuallyImpairedPanel ? "Обычная версия сайта" : "Версия для слабовидящих"}            
+            {props.isShowVisuallyImpairedPanel 
+                ?
+                <>
+                    <Icon 
+                        id="eye-off"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 48 48"
+                        fill={isHover ? theme.color.defaultTextHover : theme.color.defaultText}  
+                    />
+                    Обычная версия сайта
+                </>                
+                :
+                <>
+                    <Icon 
+                        id="eye"
+                        width="24"
+                        height="16"
+                        viewBox="0 0 24 16"
+                        fill={isHover ? "white" : "#1D1F24"}                        
+                    />
+                    Версия для слабовидящих
+                </>
+            }                        
         </StyledVisuallyImpairedBtn>
     );
 };
@@ -40,7 +56,7 @@ export const VisuallyImpairedBtn: React.FC<VisuallyImpairedBtnPropsType> = (prop
 
 const StyledVisuallyImpairedBtn = styled.button`
     border: none;
-    outline: 1px solid ${({theme}) => theme.color.outlineBtn};
+    outline: 1px solid ${({theme}) => theme.color.outline};
     border-radius: 10px;
     font-size: 1rem;
     line-height: 18px;

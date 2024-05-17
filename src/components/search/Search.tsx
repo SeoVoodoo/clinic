@@ -22,7 +22,10 @@ export const Search = () => {
                             width="24"
                             height="24"
                             viewBox="0 0 24 24"
-                            fill={isHover ? "white" : "#1D1F24"}
+                            //fill={isHover ? "white" : "#1D1F24"}
+                            fill={isHover ? "#1D1F24" : "#6b6b6b"}
+                            //fill={isHover ? "#6b6b6b" : "#1D1F24"}
+                            //fill={isHover ?  "#6b6b6b" : "white"}
                         />
                     </Btn>
                     <Field type="search" name="search-text" placeholder="Поиск по сайту" />
@@ -49,7 +52,8 @@ const Field = styled.input`
     height: 38px;
     line-height: 18px;
     padding: 0 20px 0 64px;
-    border: 1px solid rgb(29, 31, 36);    
+    //border: 1px solid rgb(29, 31, 36); 
+    border: 1.25px solid #6b6b6b;    
     border-radius: 10px; 
 
     
@@ -70,14 +74,16 @@ const Btn = styled.button`
     width: 64px;
     height: 38px;    
     border: none;
-    border-radius: 10px 0 0 10px; 
+    border-radius: 10px 0 0 10px;
+    padding-top: 2px; 
     background-color: transparent;
+    
 
     position: absolute; 
     transition: all 0.25s ease;   
 
-    &:hover {
+    /* &:hover {
         background-color: rgb(29, 31, 36);      
-    }
+    } */
    
 `

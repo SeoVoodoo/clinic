@@ -37,86 +37,61 @@ type HeaderPropsType = {
     themeName: string
     setThemeName: Function
     initialFontSize: number
-    setFontSize: Function  
+    setFontSize: Function
+    handleVisuallyImpairedPanel: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void 
+    visuallyImpairedPanel: {show:boolean, translateY:string} 
 }
 
-const initialState = {show: false, translateY: "-58px"}
+//const initialState = {show: false, translateY: "-58px"}
 
 export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
 
-    const [visuallyImpairedPanel, setVisuallyImpairedPanel] = useState(initialState); 
+    //const [visuallyImpairedPanel, setVisuallyImpairedPanel] = useState(initialState);   
     
-    //window.localStorage.clear();
+    // const handleVisuallyImpairedPanel = () => {        
 
-    const handleVisuallyImpairedPanel = () => {        
+    //     if(!visuallyImpairedPanel.show){
+    //         window.localStorage.setItem("translateY", "0");
+    //         window.localStorage.setItem("show", "true");
+    //         setVisuallyImpairedPanel({
+    //             ...visuallyImpairedPanel,
+    //             show: true,
+    //             translateY: "0"
+    //         });
+    //     }
 
-        if(!visuallyImpairedPanel.show){
-            window.localStorage.setItem("translateY", "0");
-            window.localStorage.setItem("show", "true");
-            setVisuallyImpairedPanel({
-                ...visuallyImpairedPanel,
-                show: true,
-                translateY: "0"
-            });
-        }
+    //     if(visuallyImpairedPanel.show) {
 
-        if(visuallyImpairedPanel.show) {
+    //         if(props.themeName === "default") {
+    //             window.localStorage.setItem("translateY", "-58px");
+    //             window.localStorage.setItem("show", "false");
+    //             window.localStorage.fontSize = props.initialFontSize;
+    //         }
+    //         else {
+    //             window.localStorage.clear();
+    //             props.setThemeName("default");
+    //         }
+    //         props.setFontSize(props.initialFontSize);
+    //         setVisuallyImpairedPanel({
+    //             ...visuallyImpairedPanel,
+    //             show: false,
+    //             translateY: "-58px"
+    //         });
+    //     }        
+    // }
 
-            if(props.themeName === "default") {
-                window.localStorage.setItem("translateY", "-58px");
-                window.localStorage.setItem("show", "false");
-                window.localStorage.fontSize = props.initialFontSize;
-            }
-            else {
-                window.localStorage.clear();
-                props.setThemeName("default");
-            }
-            props.setFontSize(props.initialFontSize);
-            setVisuallyImpairedPanel({
-                ...visuallyImpairedPanel,
-                show: false,
-                translateY: "-58px"
-            });
-        }
-
-        // if(props.themeName === "default" && visuallyImpairedPanel.show){
-        //     window.localStorage.setItem("translateY", "-58px");
-        //     window.localStorage.setItem("show", "false");
-        //     window.localStorage.fontSize = props.initialFontSize;
-
-        //     props.setFontSize(props.initialFontSize); 
-        //     setVisuallyImpairedPanel({
-        //         ...visuallyImpairedPanel,
-        //         show: false,
-        //         translateY: "-58px"
-        //     });           
-        // }
-
-        // if(props.themeName !== "default" && visuallyImpairedPanel.show) {             
-        //     window.localStorage.clear();
-        //     props.setThemeName("default");
-
-        //     props.setFontSize(props.initialFontSize);
-        //     setVisuallyImpairedPanel({
-        //         ...visuallyImpairedPanel,
-        //         show: false,
-        //         translateY: "-58px"
-        //     });
-        // }        
-    }
-
-    useEffect(() => { 
-        const offset = window.localStorage.getItem('translateY');
-        const panel = window.localStorage.getItem('show') === "true" ? true : false;
-        offset && setVisuallyImpairedPanel({...visuallyImpairedPanel, translateY: offset, show: panel});
-      }, []);
+    // useEffect(() => { 
+    //     const offset = window.localStorage.getItem('translateY');
+    //     const panel = window.localStorage.getItem('show') === "true" ? true : false;
+    //     offset && setVisuallyImpairedPanel({...visuallyImpairedPanel, translateY: offset, show: panel});
+    //   }, []);
       
-    console.log("localStorage", localStorage);
+    //console.log("localStorage", localStorage);
     //console.log("offset", offset);
     
 
     return (
-        <StyledHeader offset={visuallyImpairedPanel.translateY}>
+        <StyledHeader>
             <VisuallyImpairedPanel 
                 handleToggleTheme={props.handleToggleTheme} 
                 handleFontSize={props.handleFontSize}
@@ -125,9 +100,8 @@ export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
             <Top>
                 <Container>
                         <VisuallyImpairedBtn 
-                            handleVisuallyImpairedPanel={handleVisuallyImpairedPanel}
-                            isShowVisuallyImpairedPanel={visuallyImpairedPanel.show}
-                            
+                            handleVisuallyImpairedPanel={props.handleVisuallyImpairedPanel}
+                            isShowVisuallyImpairedPanel={props.visuallyImpairedPanel.show}                            
                         />
                         <WrapBtn>
                             <StyledBtn>Возврат 13%</StyledBtn>
@@ -154,13 +128,12 @@ export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
     );
 };
 
-type StyledHeaderPropsType = {    
-    offset:string
-}
+// type StyledHeaderPropsType = {    
+//     offset:string
+// }
 
-const StyledHeader = styled.div<StyledHeaderPropsType>` 
-    transform: translateY(${props => props.offset}); 
-    transition: transform 0.5s ease-in-out;
+const StyledHeader = styled.div` 
+    
 `
 
 const Top = styled.div`

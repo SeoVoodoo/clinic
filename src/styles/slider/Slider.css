@@ -2,6 +2,16 @@
     width: 10px;
     height: 10px;    
 }
+.bulletLocation .swiper-horizontal > .swiper-pagination-bullets, 
+.bulletLocation .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 0; 
+ }
+
+ /* .bulletLocation .swiper {
+    overflow:
+ } */
+
 .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-   bottom: 2rem; 
+   bottom: 2rem ; 
 }
+
