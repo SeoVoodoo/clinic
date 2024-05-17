@@ -13,6 +13,7 @@ type ServicesPropsType = {
 export const Services: React.FC<ServicesPropsType> = (props: ServicesPropsType) => {
 
     const [width, setWidth] = useState(window.innerWidth);
+    //console.log("width", width);
     const tablet = 767;    
 
     const handleWindowResize = () => setWidth(window.innerWidth);
@@ -34,7 +35,7 @@ export const Services: React.FC<ServicesPropsType> = (props: ServicesPropsType) 
                 pagination={true} 
                 modules={[Pagination]}                                
                 slidesPerView={'auto'}
-                spaceBetween={0}
+                spaceBetween={15}
                 //loop={true} 
                 initialSlide={0}
                 className="mySwiper"
@@ -45,9 +46,7 @@ export const Services: React.FC<ServicesPropsType> = (props: ServicesPropsType) 
                             <SwiperSlide 
                                 key={index}
                                 style={{
-                                    width: `${width > tablet ? "318px" : "239px"}`,
-                                    height: `${width > tablet ? "409px" : "320px"}`,  
-                                    //overflow: "hidden"                                                                        
+                                    width: `${width > tablet ? "305px" : "224px"}`,                                                                                                            
                                 }}                                      
                             >
                                 <ServicesSlide slide={arr} slideIndex={index} />
@@ -61,5 +60,6 @@ export const Services: React.FC<ServicesPropsType> = (props: ServicesPropsType) 
 };
 
 const StyledServices = styled.section`
-    margin-bottom: 80px;       
+    margin-bottom: 80px;  
+    
 `

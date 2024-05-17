@@ -45,17 +45,11 @@ const StyledService = styled.li<{slideIndex: number}>`
             height: 60px;
             padding: 0 15px;       
     }
-
-
-
+    
     &:hover{        
-            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
-            //box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.25);
-        }
-
-    
-    
-    
+            //box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+            box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
+        }   
 
     ${props => props.slideIndex === 0 && css<{slideIndex: number}>`
         background-color: ${({theme}) => theme.bgCol.homePage.advantages[0]};

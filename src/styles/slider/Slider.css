@@ -7,9 +7,9 @@
     bottom: 0; 
  }
 
- /* .bulletLocation .swiper {
-    overflow:
- } */
+ .bulletLocation .swiper {
+    padding-bottom: 30px;
+ }
 
 .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
    bottom: 2rem ; 

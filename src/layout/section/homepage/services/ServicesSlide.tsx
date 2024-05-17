@@ -28,15 +28,10 @@ export const ServicesSlide: React.FC<ServicesSlidePropsType> = (props: ServicesS
     );
 };
 
-const StyledServicesSlide= styled.ul<{slideIndex: number}>`
-    padding: 15px 7.5px 0;
-    //padding-left: 15px;    
-    //margin: 1px 0 0 1px;
+const StyledServicesSlide= styled.ul<{slideIndex: number}>`     
+    margin: 1px 0 0 1px;
     display: flex;
     flex-direction: column;
     gap: 12px;
 
-    /* ${props => props.slideIndex === 0 && css<{slideIndex: number}>`        
-        margin-left: 15px;   
-    `} */
 `
