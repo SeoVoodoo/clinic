@@ -12,5 +12,9 @@ export const StyledH2 = styled.h2`
     span {
         color: ${({theme}) => theme.color.primary}; 
     }
+
+    @media ${({theme}) => theme.media.tablet} {
+        margin-bottom: 15px;
+    }
     
 `

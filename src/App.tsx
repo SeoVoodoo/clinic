@@ -7,7 +7,7 @@ import { useEffect, useState, useContext } from 'react';
 //import { FontSizeContext } from './context/FontSizeContext';
 import { Route, Routes } from 'react-router-dom';
 import { Prices } from './pages/main/Prices';
-import { Doctors } from './pages/main/Doctors';
+import { AllDoctors } from './pages/main/AllDoctors';
 import { Timetable } from './pages/main/Timetable';
 import { Eco } from './pages/main/Eco';
 import { Faq } from './pages/main/Faq';
@@ -21,7 +21,6 @@ import { Reception } from './pages/main/Reception';
 import { Tour } from './pages/main/Tour';
 import { PaymentTerms } from './pages/main/PaymentTerms';
 import { InitialStoreType } from './redux/store';
-//import { MainSlider } from './layout/section/homepage/MainSlider';
 import { Home } from './pages/main/Home';
 
 const initialFontSize = 14;
@@ -155,15 +154,16 @@ function App(props: {store: InitialStoreType}) {
         <div>
           <Routes>
 
-            <Route path="/" element = 
+            <Route path="/clinic" element = 
               {<Home  
                 homePage={state.homePage}
                 themeName={themeName}
+                fontSize={fontSize}
               />} 
             />
 
             <Route path="/prices" element = {<Prices />} />
-            <Route path="/doctors" element = {<Doctors />} />
+            <Route path="/doctors" element = {<AllDoctors />} />
             <Route path="/timetable" element = {<Timetable />} />
             <Route path="/eco" element = {<Eco />} />
             <Route path="/faq" element = {<Faq />} />

@@ -80,8 +80,8 @@ export const MainSlider: React.FC<MainSliderPropsType> =  (props: MainSliderProp
     );
 };
 
-const StyledMainSlider = styled.section`
-    margin-bottom: 30px;
+const StyledMainSlider = styled.section` 
+    margin-bottom: 0;   
     img {
         max-width: 1920px;
         width: 100%;
@@ -201,7 +201,5 @@ const Button = styled.button<ButtonPropsType>`
         background: ${props => props.themeName === "default" 
             ? ({theme}) => theme.homeSlider.green 
             : ({theme}) => theme.homeSlider.transparent}
-    `}    
-
-   
+    `}
 `

@@ -10,7 +10,11 @@ import Img6 from "../assets/images/home_slider/dnk-analiz.webp";
 import Img7 from "../assets/images/home_slider/eko.webp";
 import Img8 from "../assets/images/home_slider/kriokonservaciya-materiala.webp";
 import Img9 from "../assets/images/home_slider/onlajn-konsultaciya.webp";
-import path from "path";
+import Gordeeva from "../assets/images/single-img/homePage/doctors/preview/doctor_1.webp";
+import Simanskaya from "../assets/images/single-img/homePage/doctors/preview/doctor_2.webp";
+import Volkova from "../assets/images/single-img/homePage/doctors/preview/doctor_3.webp";
+import Ladyagina from "../assets/images/single-img/homePage/doctors/preview/doctor_4.webp";
+
 
 
 
@@ -340,6 +344,36 @@ export const store = {
                         bgPosition: "-400px -329px"
                     }
                 ]
+            ],
+            doctors: [
+                {
+                    fullName: "Гордеева Ирина Викторовна",
+                    post: "Главный врач клиники репродуктивного здоровья с лабораторией ЭКО ООО «Альянс Клиник»",
+                    workExperience: "с 2003 года",
+                    foto: Gordeeva,
+                    path: "#"
+                },
+                {
+                    fullName: "Симанская Светлана Юрьевна",
+                    post: "Заместитель главного врача по медицинской части, врач-терапевт",
+                    workExperience: "с 2005 года",
+                    foto: Simanskaya,
+                    path: "#"
+                },
+                {
+                    fullName: "Волкова Татьяна Евгеньевна",
+                    post: "Заведующий отделением ВРТ, врач-акушер-гинеколог, репродуктолог",
+                    workExperience: "с 2003 года",
+                    foto: Volkova,
+                    path: "#"
+                },
+                {
+                    fullName: "Ладягина Елена Викторовна",
+                    post: "Заведующий консультативно-диагностическим отделением, врач-акушер-гинеколог, репродуктолог",
+                    workExperience: "с 2004 года",
+                    foto: Ladyagina,
+                    path: "#"
+                }
             ]
         },
 

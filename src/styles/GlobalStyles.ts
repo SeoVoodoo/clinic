@@ -27,6 +27,19 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesPropsType>`
         background-color: ${({theme}) => theme.bgCol.default};
     }
 
+    section {
+        margin-bottom: 80px;
+        @media ${({theme}) => theme.media.laptop} {
+            margin-bottom: 60px;
+        }
+        @media ${({theme}) => theme.media.tablet} {
+            margin-bottom: 50px;
+        }
+        @media ${({theme}) => theme.media.mobile} {
+            margin-bottom: 40px;
+        }
+    }
+
     button {
         cursor: pointer;
     }

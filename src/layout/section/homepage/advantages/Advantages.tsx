@@ -33,7 +33,7 @@ export const Advantages: React.FC<AdvantagesPropsType> = (props: AdvantagesProps
 };
 
 const StyledAdvantages = styled.section`
-    margin-bottom: 80px;    
+    //margin-bottom: 80px;    
 `
 const AdvantagesList = styled.ul`
     display: grid;

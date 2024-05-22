@@ -64,6 +64,7 @@ export const myTheme = {
         filter: "none",
 
         media: {
+            laptop: "screen and (max-width: 1200px)",
             tablet: "screen and (max-width: 767px)",
             mobile: "screen and (max-width: 576px)"
         }
@@ -133,6 +134,7 @@ export const myTheme = {
         filter: "grayscale(100%)",
         
         media: {
+            laptop: "screen and (max-width: 1200px)",
             tablet: "screen and (max-width: 767px)",
             mobile: "screen and (max-width: 576px)"
         }
@@ -201,6 +203,7 @@ export const myTheme = {
         filter: "grayscale(100%)",
 
         media: {
+            laptop: "screen and (max-width: 1200px)",
             tablet: "screen and (max-width: 767px)",
             mobile: "screen and (max-width: 576px)"
         }
@@ -270,6 +273,7 @@ export const myTheme = {
         filter: "grayscale(100%)",
         
         media: {
+            laptop: "screen and (max-width: 1200px)",
             tablet: "screen and (max-width: 767px)",
             mobile: "screen and (max-width: 576px)"
         }
