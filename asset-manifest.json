@@ -1,27 +1,36 @@
 {
   "files": {
-    "main.css": "/clinic/static/css/main.9f430eb5.css",
-    "main.js": "/clinic/static/js/main.f1ad8cb8.js",
+    "main.css": "/clinic/static/css/main.1c6e8f15.css",
+    "main.js": "/clinic/static/js/main.b378a613.js",
     "static/js/453.050d0ddf.chunk.js": "/clinic/static/js/453.050d0ddf.chunk.js",
     "static/media/icons-sprite.svg": "/clinic/static/media/icons-sprite.7d3724129563ac6374a4efe17fe21fda.svg",
     "static/media/sprite-min.png": "/clinic/static/media/sprite-min.11d0246da689c5cacf92.png",
     "static/media/prp-terapiya.webp": "/clinic/static/media/prp-terapiya.332ee99a983176bf71ab.webp",
+    "static/media/bg_360_advantages.svg": "/clinic/static/media/bg_360_advantages.d50a9cb1e1cf63683d5edc39cbd48a05.svg",
+    "static/media/bg_tablet_advantages.svg": "/clinic/static/media/bg_tablet_advantages.a4be80b41f2d6f98686fbd98a9f4af29.svg",
+    "static/media/bg_doctors.svg": "/clinic/static/media/bg_doctors.721b0ba9f959261a0e7ba1b6accf0eb7.svg",
     "static/media/besplatnye-pervichnye-konsultacii.webp": "/clinic/static/media/besplatnye-pervichnye-konsultacii.0bce2f25b7ec2fc39581.webp",
     "static/media/onlajn-konsultaciya.webp": "/clinic/static/media/onlajn-konsultaciya.b338ce64862d6029432f.webp",
     "static/media/unikalnaya-specializirovannaya-sreda.webp": "/clinic/static/media/unikalnaya-specializirovannaya-sreda.4b547e00d94ebdb485f2.webp",
     "static/media/pgt.webp": "/clinic/static/media/pgt.d468c02b0aaa1e8f040f.webp",
     "static/media/dnk-analiz.webp": "/clinic/static/media/dnk-analiz.b33399aa1f0815e59d34.webp",
+    "static/media/bg_left_advantages.svg": "/clinic/static/media/bg_left_advantages.d7496a87a9248020669482daca7d215f.svg",
+    "static/media/bg_right_advantages.svg": "/clinic/static/media/bg_right_advantages.4049283e70e2e60a550ec5c10d7cbbf4.svg",
     "static/media/artroskopiya-kolennogo-sustava.webp": "/clinic/static/media/artroskopiya-kolennogo-sustava.c494162f5c18bee5a75d.webp",
     "static/media/kriokonservaciya-materiala.webp": "/clinic/static/media/kriokonservaciya-materiala.ddc7e91284509bfc3309.webp",
     "static/media/eko.webp": "/clinic/static/media/eko.7b1f2f07bcb3b1125176.webp",
     "static/media/sprite_counter-min.png": "/clinic/static/media/sprite_counter-min.83ac58efeed9e5f12b4f.png",
+    "static/media/doctor_2.webp": "/clinic/static/media/doctor_2.6b22cd735b7e7859c694.webp",
+    "static/media/doctor_1.webp": "/clinic/static/media/doctor_1.05467c734b79fa61ebfa.webp",
+    "static/media/doctor_3.webp": "/clinic/static/media/doctor_3.e7fbdd33db64c9be4b6e.webp",
+    "static/media/doctor_4.webp": "/clinic/static/media/doctor_4.318ce544517f86a5b328.webp",
     "index.html": "/clinic/index.html",
-    "main.9f430eb5.css.map": "/clinic/static/css/main.9f430eb5.css.map",
-    "main.f1ad8cb8.js.map": "/clinic/static/js/main.f1ad8cb8.js.map",
+    "main.1c6e8f15.css.map": "/clinic/static/css/main.1c6e8f15.css.map",
+    "main.b378a613.js.map": "/clinic/static/js/main.b378a613.js.map",
     "453.050d0ddf.chunk.js.map": "/clinic/static/js/453.050d0ddf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f430eb5.css",
-    "static/js/main.f1ad8cb8.js"
+    "static/css/main.1c6e8f15.css",
+    "static/js/main.b378a613.js"
   ]
 }
