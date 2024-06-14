@@ -27,9 +27,10 @@ type HeaderPropsType = {
         girls: number         
     }    
     contacts: {
-        phone1: string,
-        phone2: string,
+        phone1: string
+        phone2: string
         email: string
+        callback:boolean
     }
     socials: Array<{id:string, link:string}>
     handleToggleTheme: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void

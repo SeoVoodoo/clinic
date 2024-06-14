@@ -12,20 +12,6 @@ type ServicesPropsType = {
 
 export const Services: React.FC<ServicesPropsType> = (props: ServicesPropsType) => {
 
-    // const [width, setWidth] = useState(window.innerWidth);
-    
-    // const tablet = 767;    
-
-    // const handleWindowResize = () => setWidth(window.innerWidth);
-
-    // useEffect(() => {        
-    //     window.addEventListener('resize', handleWindowResize );
-
-    //     return () => {
-    //         window.removeEventListener('resize', handleWindowResize)
-    //     }
-    // }, []);
-
     return (
         <StyledServices className="bulletLocation_services">
             <StyledH2>
@@ -57,5 +43,5 @@ export const Services: React.FC<ServicesPropsType> = (props: ServicesPropsType) 
 };
 
 const StyledServices = styled.section`
-    //margin-bottom: 80px;    
+        
 `

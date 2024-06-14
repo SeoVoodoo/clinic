@@ -3,11 +3,12 @@ import { styled } from 'styled-components';
 import { StyledH2 } from '../../../../components/StyledH2';
 import { StyledOrangeLink } from '../../../../components/StyledBtn';
 import { Doctor } from './Doctor';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCube, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCube, Pagination } from 'swiper/modules';
 
 type TabletDoctorsPropsType = {
     doctors: Array<{

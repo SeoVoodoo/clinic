@@ -20,13 +20,16 @@ import { Vacancy } from './pages/main/Vacancy';
 import { Reception } from './pages/main/Reception';
 import { Tour } from './pages/main/Tour';
 import { PaymentTerms } from './pages/main/PaymentTerms';
-import { InitialStoreType } from './redux/store';
+import { StoreType } from './redux/redux-store';
 import { Home } from './pages/main/Home';
+import UsefulInformation from './pages/main/UsefulInformation';
+import { Footer } from './layout/footer/Footer';
+
 
 const initialFontSize = 14;
 const initialState = {show: false, translateY: "-58px"}
 
-function App(props: {store: InitialStoreType}) {
+function App(props: {store: StoreType}) {
 
   const [themeName, setThemeName] = useState<string>("default");
   const [fontSize, setFontSize] = useState<number>(initialFontSize);
@@ -136,11 +139,11 @@ function App(props: {store: InitialStoreType}) {
     
       <Wrap offset={visuallyImpairedPanel.translateY}>
         <Header 
-          mainMenu={state.headerMenu.mainMenu}
-          subMenu={state.headerMenu.subMenu}
-          contacts={state.contacts}
-          counter={state.counter}
-          socials={state.socials}
+          mainMenu={state.header.headerMenu.mainMenu}
+          subMenu={state.header.headerMenu.subMenu}
+          contacts={state.header.contacts}
+          counter={state.header.counter}
+          socials={state.header.socials}
           handleToggleTheme={handleToggleTheme}
           handleFontSize={handleFontSize}
           themeName={themeName}
@@ -150,18 +153,14 @@ function App(props: {store: InitialStoreType}) {
           handleVisuallyImpairedPanel={handleVisuallyImpairedPanel}
           visuallyImpairedPanel={visuallyImpairedPanel}
         />
-        {/* <MainSlider state={props.store.homePage.mainSlider} themeName={themeName}/> */}
-        <div>
+        
+        <>        
           <Routes>
-
-            <Route path="/clinic" element = 
-              {<Home  
-                homePage={state.homePage}
-                themeName={themeName}
-                fontSize={fontSize}
-              />} 
+            <Route path="/clinic" element = {<Home 
+              homePage={state.homePage} 
+              themeName={themeName} 
+              fontSize={fontSize} />} 
             />
-
             <Route path="/prices" element = {<Prices />} />
             <Route path="/doctors" element = {<AllDoctors />} />
             <Route path="/timetable" element = {<Timetable />} />
@@ -170,17 +169,30 @@ function App(props: {store: InitialStoreType}) {
             <Route path="/contacts" element = {<Contacts />} />
             <Route path="/about" element = {<About />} />
             <Route path="/news" element = {<News />} />
+            <Route path="/usefulInfo" element = {<UsefulInformation />} />
             <Route path="/questionnaire" element = {<Questionnaire />} />
             <Route path="/documents" element = {<Documents />} />
             <Route path="/vacancy" element = {<Vacancy />} />
             <Route path="/reception-of-citizens" element = {<Reception />} />
             <Route path="/3d-tour" element = {<Tour />} />
             <Route path="/payment-terms" element = {<PaymentTerms />} />
-          </Routes>  
-        </div>
+          </Routes>           
+        </>
+
+        <Footer 
+          contacts={state.header.contacts}
+          socials={state.header.socials}
+          duplicateLinks={state.footer.footerMenu.duplicateLinks}
+          addresses={state.footer.addresses}
+          banner={state.footer.banner}
+          themeName={themeName}
+          fontSize={fontSize}
+        />
+
         <GlobalStyles fontSize={fontSize}/>
       </Wrap>
     </ThemeProvider>
+   
   );
 }
 

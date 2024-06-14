@@ -2,33 +2,36 @@
     width: 10px;
     height: 10px;    
 }
-.bulletLocation_services .swiper-horizontal > .swiper-pagination-bullets, 
-.bulletLocation_services .swiper-pagination-bullets.swiper-pagination-horizontal {
-    bottom: 0; 
- }
-
- .bulletLocation_services .swiper {
-    padding-bottom: 30px;
- }
-
-.bulletLocation_services .swiper-slide {
-   width: 305px;
-}
-
-@media screen and (max-width: 767px) {
-   .bulletLocation_services .swiper-slide {
-      width: 224px;
-   }
-}
-
-.bulletLocation_doctors .swiper-horizontal > .swiper-pagination-bullets, 
-.bulletLocation_doctors .swiper-pagination-bullets.swiper-pagination-horizontal {
-    bottom: -50px; 
- }
 
 .swiper-horizontal > .swiper-pagination-bullets, 
 .swiper-pagination-bullets.swiper-pagination-horizontal {
    bottom: 2rem ; 
 }
 
+/*Услуги_начало*/
+.bulletLocation_services .swiper-horizontal > .swiper-pagination-bullets, 
+.bulletLocation_services .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 0; 
+ }
+ .bulletLocation_services .swiper {
+    padding-bottom: 30px;
+ }
+/*Услуги_конец*/
+
+
+/*Врачи*/
+.bulletLocation_doctors .swiper-horizontal > .swiper-pagination-bullets, 
+.bulletLocation_doctors .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: -50px; 
+}
+
+/*Новости_начало*/
+.bulletLocation_news .swiper {
+   padding-bottom: 30px;
+}
+.bulletLocation_news .swiper-horizontal > .swiper-pagination-bullets, 
+.bulletLocation_news .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 0; 
+}
+/*Новости_конец*/
 

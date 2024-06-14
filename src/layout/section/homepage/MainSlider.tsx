@@ -106,24 +106,24 @@ const Info = styled.div`
     } 
 `
 type TitlePropsType = {    
-    colorTitleType: string
-    themeName: string    
+    colorTitleType:string
+    themeName:string    
 }
 
 type SubTitlePropsType = {
     colorSubTitleType:string | undefined
-    themeName: string
+    themeName:string
 }
 
 type DescriptionPropsType = {
     colorDescriptionType:string | undefined
-    descriptionWeight: number | undefined
-    themeName: string
+    descriptionWeight:number | undefined
+    themeName:string
 }
 
 type ButtonPropsType = {
     bgBtnType:string
-    themeName: string
+    themeName:string
 }
 
 const Title = styled.h2<TitlePropsType>`

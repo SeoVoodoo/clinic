@@ -20,10 +20,23 @@ const StyledLogo = styled.div`
 
 const Logotype = styled.div`
     background-image: url(${sprite}); 
-    background-position: 0px -94px;
-    width: 198px;
+    //width: 198px;
     height: 124px;
+    max-width: 198px; 
+    min-width: 164px;   
+    width: 100%;
+    //max-height: 124px;
+    //height: 100%;
+    //background-position: 0px -94px;
+    background-position: 0% 27.168%;
+    background-size: 301.01% 379.032%;
+    display: inline-block;
+    
     cursor: pointer;
     filter: ${({theme}) => theme.filterLogo};
+
+    @media ${({theme}) => theme.media.tablet} {
+        min-width: 198px;
+    }
 `
 

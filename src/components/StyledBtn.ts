@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { css, styled } from 'styled-components';
 
 type ButtonPropsType = {    
@@ -68,7 +68,7 @@ export const StyledOrangeLink = styled(NavLink)`
     }
 `
 
-export const StyledGreenLink = styled(NavLink)`
+export const StyledGreenLink = styled(Link)`
     display: block;
     max-width: 264px;
     width: 100%;

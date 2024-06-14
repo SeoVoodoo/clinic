@@ -3,10 +3,11 @@ import { styled, useTheme } from 'styled-components';
 import { Icon } from '../icon/Icon';
 
 type ContactBoxPropsType = {    
-        contacts: {
+    contacts: {
         phone1:string,
         phone2:string,
-        email:string 
+        email:string,
+        callback:boolean
     }
     themeName:string  
 }
@@ -46,6 +47,9 @@ export const ContactBox: React.FC<ContactBoxPropsType> = (props: ContactBoxProps
                 />
                 {props.contacts.email}
             </Email>
+            {
+                props.contacts.callback && (<Callback>Заказать звонок</Callback>)
+            }
         </StyledContactBox>
     );
 };
@@ -73,9 +77,20 @@ const Description = styled.span`
 `
 const Email = styled.a`
     display: flex;
+    align-items: center;
     column-gap: 10px;
     font-weight: 700;
     text-decoration: none;
     color: ${({theme}) => theme.color.defaultText};
     margin-top: 10px;
+`
+const Callback = styled.a`
+    font-size: calc((100vw - 26rem)/(137 - 26) * (0.86 - 1) + 1rem); 
+    color: ${({theme}) => theme.color.primary};
+    font-weight: 700;
+    margin-top: 10px;
+
+    &:hover {
+        color: ${({theme}) => theme.color.secondary};  
+    }
 `

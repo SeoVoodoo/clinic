@@ -9,6 +9,7 @@ export const myTheme = {
                     submenu: "white"
                 }                 
             },
+            footer: "rgba(213, 243, 238, 0.3)",
             btn: {
                 primary: "rgba(0, 166, 81, 1)",
                 secondary: "rgba(245, 130, 32, 1)",
@@ -26,7 +27,23 @@ export const myTheme = {
                     1: "rgba(160, 228, 220, 1)",
                     2:"rgba(245, 130, 32, 0.5)",
                     3: "rgba(231, 236, 240, 1)"
-                }
+                },
+                promotions: {
+                    1: {
+                            bg: "rgba(213, 243, 238, 1)",
+                            bgSale: "rgba(245, 130, 32, 1)"                             
+                        },
+                    2: {
+                            bg: "rgba(246, 191, 142, 1)",
+                            bgSale: "white"                            
+                        },
+                    3: {
+                            bg: "rgba(231, 236, 240, 1)"
+                        }
+                },
+                doctors: "rgba(231, 236, 240, 0.3)",
+                news: "rgba(246, 191, 142, 0.1)",
+                info: "rgba(231, 236, 240, 0.6)" 
             }
         },
 
@@ -43,7 +60,25 @@ export const myTheme = {
             firstLinkMenu: "white",
             borderVisuallyImpairedPanelBtn: "black",
             fillContactIcon: "#1D1F24",
-            placeholder: "#6b6b6b"
+            placeholder: "#6b6b6b",
+            homePage: {
+                promotions: {
+                    1: {
+                        title: "rgba(245, 130, 32, 1)",
+                        subTitle: "rgba(0, 166, 81, 1)",
+                        sale: "white"
+                    },
+                    2: {
+                        title: "rgba(29, 31, 36, 1)",
+                        subTitle: "rgba(0, 166, 81, 1)",
+                        sale: "rgba(245, 130, 32, 1)"
+                    },
+                    3: {
+                        title: "rgba(245, 130, 32, 1)",
+                        subTitle: "rgba(0, 166, 81, 1)"                        
+                    } 
+                }
+            }
         },
 
         childrenCount: {
@@ -80,6 +115,7 @@ export const myTheme = {
                     submenu: "rgba(255, 255, 255, 1)"
                 }                    
             },
+            footer: "white",
             btn: {
                 primary: "rgba(255, 255, 255, 1)",
                 secondary: "rgba(255, 255, 255, 1)",
@@ -97,7 +133,23 @@ export const myTheme = {
                     1: "rgba(255, 255, 255, 1)",
                     2: "rgba(255, 255, 255, 1)",
                     3: "rgba(255, 255, 255, 1)"
-                }
+                },
+                promotions: {
+                    1: {
+                            bg: "rgba(255, 255, 255, 1)",
+                            bgSale: "rgba(255, 255, 255, 1)"                             
+                        },
+                    2: {
+                            bg: "rgba(255, 255, 255, 1)",
+                            bgSale: "rgba(255, 255, 255, 1)"                            
+                        },
+                    3: {
+                            bg: "rgba(255, 255, 255, 1)"
+                        }
+                },
+                doctors: "rgba(255, 255, 255, 1)",
+                news: "rgba(255, 255, 255, 1)",
+                info: "rgba(255, 255, 255, 1)"
             }
         },
 
@@ -114,7 +166,25 @@ export const myTheme = {
             firstLinkMenu: "white",
             borderVisuallyImpairedPanelBtn: "black",
             fillContactIcon: "black",
-            placeholder: "rgb(29, 31, 36)"
+            placeholder: "rgb(29, 31, 36)",
+            homePage: {
+                promotions: {
+                    1: {
+                        title: "black",
+                        subTitle: "black",
+                        sale: "black"
+                    },
+                    2: {
+                        title: "black",
+                        subTitle: "black",
+                        sale: "black"
+                    },
+                    3: {
+                        title: "black",
+                        subTitle: "black"                        
+                    } 
+                }
+            }
         },
 
         childrenCount: {
@@ -150,6 +220,7 @@ export const myTheme = {
                     submenu: "rgba(0, 0, 0, 1)"
                 }    
             },
+            footer: "black",
             btn: {
                 primary: "rgba(0, 0, 0, 1)",
                 secondary: "rgba(0, 0, 0, 1)",
@@ -167,8 +238,25 @@ export const myTheme = {
                     1: "rgba(0, 0, 0, 1)",
                     2: "rgba(0, 0, 0, 1)",
                     3: "rgba(0, 0, 0, 1)"
-                }
+                },
+                promotions: {
+                    1: {
+                            bg: "rgba(0, 0, 0, 1)",
+                            bgSale: "rgba(0, 0, 0, 1)"                         
+                        },
+                    2: {
+                            bg: "rgba(0, 0, 0, 1)",
+                            bgSale: "rgba(0, 0, 0, 1)"                        
+                        },
+                    3: {
+                            bg: "rgba(0, 0, 0, 1)"
+                        }
+                },
+                doctors: "rgba(0, 0, 0, 1)",
+                news: "rgba(0, 0, 0, 1)",
+                info: "rgba(0, 0, 0, 1)"
             }
+            
         },
 
         color: {
@@ -184,7 +272,25 @@ export const myTheme = {
             firstLinkMenu: "black",
             borderVisuallyImpairedPanelBtn: "white",
             fillContactIcon: "white",
-            placeholder: "#6b6b6b"
+            placeholder: "#6b6b6b",
+            homePage: {
+                promotions: {
+                    1: {
+                        title: "white",
+                        subTitle: "white",
+                        sale: "white"
+                    },
+                    2: {
+                        title: "white",
+                        subTitle: "white",
+                        sale: "white"
+                    },
+                    3: {
+                        title: "white",
+                        subTitle: "white"                        
+                    } 
+                }
+            }
         },
         
         childrenCount: {
@@ -219,6 +325,7 @@ export const myTheme = {
                     submenu: "rgba(157, 209, 255, .8)"
                 }                    
             },
+            footer: "rgba(157, 209, 255, 1)",
             btn: {
                 primary: "rgba(157, 209, 255, 1)",
                 secondary: "rgba(157, 209, 255, 1)",
@@ -236,8 +343,25 @@ export const myTheme = {
                     1: "rgba(157, 209, 255, 1)",
                     2: "rgba(157, 209, 255, 1)",
                     3: "rgba(157, 209, 255, 1)"
-                }
+                },
+                promotions: {
+                    1: {
+                            bg: "rgba(157, 209, 255, 1)",
+                            bgSale: "rgba(157, 209, 255, 1)"                             
+                        },
+                    2: {
+                            bg: "rgba(157, 209, 255, 1)",
+                            bgSale: "rgba(157, 209, 255, 1)"                            
+                        },
+                    3: {
+                            bg: "rgba(157, 209, 255, 1)"
+                        }
+                },
+                doctors: "rgba(157, 209, 255, 1)",
+                news: "rgba(157, 209, 255, 1)",
+                info: "rgba(157, 209, 255, 1)"
             }
+            
         },
 
         color: {
@@ -253,7 +377,25 @@ export const myTheme = {
             firstLinkMenu: "#063462",
             borderVisuallyImpairedPanelBtn: "#063462",
             fillContactIcon: "#063462",
-            placeholder: "rgb(29, 31, 36)"
+            placeholder: "rgb(29, 31, 36)",
+            homePage: {
+                promotions: {
+                    1: {
+                        title: "#063462",
+                        subTitle: "#063462",
+                        sale: "#063462"
+                    },
+                    2: {
+                        title: "#063462",
+                        subTitle: "#063462",
+                        sale: "#063462"
+                    },
+                    3: {
+                        title: "#063462",
+                        subTitle: "#063462"                        
+                    } 
+                }
+            }
         },
 
         childrenCount: {

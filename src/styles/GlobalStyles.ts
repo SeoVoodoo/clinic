@@ -40,6 +40,10 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesPropsType>`
         }
     }
 
+    ul {
+        list-style: none;
+    }
+
     button {
         cursor: pointer;
     }
@@ -50,10 +54,27 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesPropsType>`
 
     a {
         text-decoration: none;
+        cursor: pointer;
     }
 
     .swiper-pagination-bullet-active {    
         background: ${({theme}) => theme.bgCol.swiperPaginationBulletActive};
+    }
+
+    .bulletLocation_services .swiper-slide {
+        width: ${props => props.fontSize > 14 ? "355px" : "305px"};        
+    }
+
+    
+    @media ${({theme}) => theme.media.tablet} {
+
+        .bulletLocation_services .swiper-slide {
+            width: ${props => props.fontSize > 14 ? "355px" : "224px"};  
+        }
+
+        .bulletLocation_news .swiper-slide {
+            width: ${props => props.fontSize > 14 ? "304px" : "224px"};  
+        }
     }
 
 `
