@@ -96,6 +96,32 @@ export const StyledGreenLink = styled(Link)`
     }
 `
 
+export const StyledCloseBtn = styled.button`
+
+    width: 34px;
+    height: 34px;
+    border: none;
+    background-color: ${({theme}) => theme.bgCol.default};
+
+    &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: ${({theme}) => theme.bgCol.btn.close};                
+        transform: translateY(1px) rotate(-45deg);
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;        
+        background-color: ${({theme}) => theme.bgCol.btn.close};
+        transform: translateY(-1px) rotate(45deg);       
+    }
+`
+
 
 
 

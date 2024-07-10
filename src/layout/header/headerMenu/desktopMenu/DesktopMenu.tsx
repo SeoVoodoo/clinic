@@ -9,6 +9,7 @@ import { Icon } from '../../../../components/icon/Icon';
 type MenuPropsType = {
     mainMenu: Array<{ancor:string, path:string}>
     subMenu: Array<{ancor:string, path:string}>
+    handleToggleSidebar:(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
 }
 export const DesktopMenu: React.FC<MenuPropsType> = (props: MenuPropsType) => { 
     
@@ -37,7 +38,8 @@ export const DesktopMenu: React.FC<MenuPropsType> = (props: MenuPropsType) => {
             return (
                 <DesktopMenuItem key={index}>
                     <NavLink 
-                        to={`/${obj.path}`}
+                        to={`${obj.path}`}
+                        onClick={props.handleToggleSidebar}
                     >
                         <Icon 
                             id="burgermenu"

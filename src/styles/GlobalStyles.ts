@@ -55,6 +55,7 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesPropsType>`
     a {
         text-decoration: none;
         cursor: pointer;
+        color: ${({theme}) => theme.color.defaultText};
     }
 
     .swiper-pagination-bullet-active {    

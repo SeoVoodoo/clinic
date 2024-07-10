@@ -24,6 +24,7 @@ import { StoreType } from './redux/redux-store';
 import { Home } from './pages/main/Home';
 import UsefulInformation from './pages/main/UsefulInformation';
 import { Footer } from './layout/footer/Footer';
+import { Sidebar } from './components/pop-up/Sidebar';
 
 
 const initialFontSize = 14;
@@ -126,6 +127,9 @@ function App(props: {store: StoreType}) {
 
   //console.log("fontSize", fontSize);
 
+  const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+  const handleToggleSidebar = () => setIsOpenSidebar(prev => !prev);
+
   const state = props.store.getState();
 
   return (
@@ -136,8 +140,12 @@ function App(props: {store: StoreType}) {
         : themeName === 'blue' ? myTheme.blue
         : myTheme.default}          
     >
-    
+      <Sidebar 
+        isOpenSidebar={isOpenSidebar}
+        handleToggleSidebar={handleToggleSidebar}
+      />
       <Wrap offset={visuallyImpairedPanel.translateY}>
+        
         <Header 
           mainMenu={state.header.headerMenu.mainMenu}
           subMenu={state.header.headerMenu.subMenu}
@@ -152,6 +160,7 @@ function App(props: {store: StoreType}) {
           setFontSize={setFontSize}
           handleVisuallyImpairedPanel={handleVisuallyImpairedPanel}
           visuallyImpairedPanel={visuallyImpairedPanel}
+          handleToggleSidebar={handleToggleSidebar}          
         />
         
         <>        
@@ -183,6 +192,7 @@ function App(props: {store: StoreType}) {
           contacts={state.header.contacts}
           socials={state.header.socials}
           duplicateLinks={state.footer.footerMenu.duplicateLinks}
+          servicesLinks={state.footer.footerMenu.servicesLinks}
           addresses={state.footer.addresses}
           banner={state.footer.banner}
           themeName={themeName}

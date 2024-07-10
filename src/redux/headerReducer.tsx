@@ -5,7 +5,7 @@ const initialState = {
             mainMenu: [
                 {
                     ancor: "Услуги",
-                    path: "services"
+                    path: "#"
                 },
                 {
                     ancor: "Цены",

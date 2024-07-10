@@ -10,11 +10,14 @@ export const myTheme = {
                 }                 
             },
             footer: "rgba(213, 243, 238, 0.3)",
+            gradientFooter: "linear-gradient(to bottom, rgba(243, 252, 250, 0.25), #F3FCFA)",
             btn: {
                 primary: "rgba(0, 166, 81, 1)",
                 secondary: "rgba(245, 130, 32, 1)",
                 primaryHover: "linear-gradient(225.00deg, rgb(0, 176, 101) 46.498%, rgb(28, 255, 158) 100%)",
-                secondaryHover: "linear-gradient(225.00deg, rgb(245, 130, 32) 49.939%,rgb(255, 216, 183) 100%)" 
+                secondaryHover: "linear-gradient(225.00deg, rgb(245, 130, 32) 49.939%,rgb(255, 216, 183) 100%)",
+                footerSpoiler: "rgba(243, 252, 250, 1)",
+                close: "rgba(151, 151, 151, 1)"
             },            
             default: "white",
             defaultHover: "#1D1F24",
@@ -116,11 +119,14 @@ export const myTheme = {
                 }                    
             },
             footer: "white",
+            gradientFooter: "linear-gradient(to bottom, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.9))",
             btn: {
                 primary: "rgba(255, 255, 255, 1)",
                 secondary: "rgba(255, 255, 255, 1)",
                 primaryHover: "rgba(0, 0, 0, .4)",
-                secondaryHover: "rgba(0, 0, 0, .4)"
+                secondaryHover: "rgba(0, 0, 0, .4)",
+                footerSpoiler: "rgba(255, 255, 255, 1)",
+                close: "rgba(0, 0, 0, 1)"
             },            
             default: "white",
             defaultHover: "rgba(0, 0, 0, .4)",
@@ -221,11 +227,14 @@ export const myTheme = {
                 }    
             },
             footer: "black",
+            gradientFooter: "linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.9))",
             btn: {
                 primary: "rgba(0, 0, 0, 1)",
                 secondary: "rgba(0, 0, 0, 1)",
                 primaryHover: "rgba(255, 255, 255, .2)",
-                secondaryHover: "rgba(255, 255, 255, .2)"
+                secondaryHover: "rgba(255, 255, 255, .2)",
+                footerSpoiler: "rgba(0, 0, 0, 1)",
+                close: "rgba(255, 255, 255, 1)"
             },            
             default: "black",
             defaultHover: "#6b6b6b",
@@ -326,11 +335,14 @@ export const myTheme = {
                 }                    
             },
             footer: "rgba(157, 209, 255, 1)",
+            gradientFooter: "linear-gradient(to bottom, rgba(157, 209, 255, 0.25), rgba(157, 209, 255, 0.9))",
             btn: {
                 primary: "rgba(157, 209, 255, 1)",
                 secondary: "rgba(157, 209, 255, 1)",
                 primaryHover: "rgba(255, 255, 255, .2)",
-                secondaryHover: "rgba(255, 255, 255, .2)"
+                secondaryHover: "rgba(255, 255, 255, .2)",
+                footerSpoiler: "rgba(157, 209, 255, 1)",
+                close: "#063462"
             },            
             default: "rgba(157, 209, 255, 1)",
             defaultHover: "rgba(157, 209, 255, .5)",

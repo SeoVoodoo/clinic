@@ -39,8 +39,9 @@ type HeaderPropsType = {
     setThemeName: Function
     initialFontSize: number
     setFontSize: Function
-    handleVisuallyImpairedPanel: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void 
-    visuallyImpairedPanel: {show:boolean, translateY:string} 
+    visuallyImpairedPanel: {show:boolean, translateY:string}
+    handleVisuallyImpairedPanel: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void    
+    handleToggleSidebar: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void    
 }
 
 //const initialState = {show: false, translateY: "-58px"}
@@ -122,7 +123,11 @@ export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
             </Middle>
             <Bottom>
                 <Container>
-                    <DesktopMenu mainMenu={props.mainMenu} subMenu={props.subMenu}/>           
+                    <DesktopMenu 
+                        mainMenu={props.mainMenu} 
+                        subMenu={props.subMenu}
+                        handleToggleSidebar={props.handleToggleSidebar}
+                    />           
                 </Container>
             </Bottom>
         </StyledHeader> 
