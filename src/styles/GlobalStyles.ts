@@ -26,7 +26,7 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesPropsType>`
         color: ${({theme}) => theme.color.defaultText};
         background-color: ${({theme}) => theme.bgCol.default};
     }
-
+    
     section {
         margin-bottom: 80px;
         @media ${({theme}) => theme.media.laptop} {

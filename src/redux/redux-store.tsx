@@ -2,12 +2,14 @@ import { combineReducers, legacy_createStore as createStore } from "redux";
 import { homeReducer } from "./homeReducer";
 import { headerReducer } from "./headerReducer";
 import { footerReducer } from "./footerReducer";
+import { sidebarReducer } from "./sidebarReducer";
 
 
 const rootReducer = combineReducers({
     homePage: homeReducer,
     header: headerReducer,
-    footer: footerReducer
+    footer: footerReducer,
+    sidebar: sidebarReducer
 })
 
 type rootReducerType = typeof rootReducer;

@@ -24,6 +24,10 @@ export const StyledBtn = styled.button<ButtonPropsType>`
         background: ${({theme}) => theme.bgCol.btn.primaryHover};
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
+    &:focus-visible {
+        outline: 2px solid rgb(0, 96, 223);
+        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+    }
 `
 
 export const StyledCallbackBtn = styled(StyledBtn)`
@@ -96,31 +100,31 @@ export const StyledGreenLink = styled(Link)`
     }
 `
 
-export const StyledCloseBtn = styled.button`
+// export const StyledCloseBtn = styled.button`
 
-    width: 34px;
-    height: 34px;
-    border: none;
-    background-color: ${({theme}) => theme.bgCol.default};
+//     width: 34px;
+//     height: 34px;
+//     border: none;
+//     background-color: ${({theme}) => theme.bgCol.default};
 
-    &::before {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 2px;
-        background-color: ${({theme}) => theme.bgCol.btn.close};                
-        transform: translateY(1px) rotate(-45deg);
-    }
+//     &::before {
+//         content: "";
+//         display: block;
+//         width: 100%;
+//         height: 2px;
+//         background-color: ${({theme}) => theme.bgCol.btn.close};                
+//         transform: translateY(1px) rotate(-45deg);
+//     }
 
-    &::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 2px;        
-        background-color: ${({theme}) => theme.bgCol.btn.close};
-        transform: translateY(-1px) rotate(45deg);       
-    }
-`
+//     &::after {
+//         content: "";
+//         display: block;
+//         width: 100%;
+//         height: 2px;        
+//         background-color: ${({theme}) => theme.bgCol.btn.close};
+//         transform: translateY(-1px) rotate(45deg);       
+//     }
+// `
 
 
 

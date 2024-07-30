@@ -102,7 +102,12 @@ const initialState = {
                 id: "vk",        
                 link: "https://vk.com/aliansklinikeko73"
             }
-        ]    
+        ],
+        forms: {
+            ndfl: {                
+                values: ["2024", "2023", "2022"]
+            }
+        }   
 }
 
 export type initialStateType = typeof initialState;

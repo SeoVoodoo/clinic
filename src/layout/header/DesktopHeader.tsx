@@ -19,7 +19,7 @@ import { VisuallyImpairedPanel } from './VisuallyImpairedPanel';
 // import { Contacts } from '../../pages/main/Contacts';
 
 
-type HeaderPropsType = {
+type DesktopHeaderPropsType = {
     mainMenu: Array<{ancor:string, path:string}>
     subMenu: Array<{ancor:string, path:string}>
     counter: {
@@ -50,7 +50,7 @@ type HeaderPropsType = {
 
 //const initialState = {show: false, translateY: "-58px"}
 
-export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
+export const DesktopHeader: React.FC<DesktopHeaderPropsType> = (props: DesktopHeaderPropsType) => {
 
     //const [visuallyImpairedPanel, setVisuallyImpairedPanel] = useState(initialState);   
     
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
     // }
 
     return (
-        <StyledHeader>
+        <StyledDesktopHeader>
             <VisuallyImpairedPanel 
                 handleToggleTheme={props.handleToggleTheme} 
                 handleFontSize={props.handleFontSize}
@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
                     />           
                 </Container>
             </Bottom>
-        </StyledHeader> 
+        </StyledDesktopHeader> 
     );
 };
 
@@ -151,7 +151,7 @@ export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
 //     offset:string
 // }
 
-const StyledHeader = styled.div` 
+const StyledDesktopHeader = styled.div` 
     
 `
 

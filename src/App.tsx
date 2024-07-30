@@ -3,6 +3,7 @@ import { GlobalStyles } from './styles/GlobalStyles';
 import styled, { ThemeProvider } from 'styled-components';
 import { myTheme } from './styles/Theme.styled';
 import { Header } from './layout/header/Header';
+import { HeaderNew } from './layout/header/HeaderNew';
 import { useEffect, useState, useContext } from 'react';
 //import { FontSizeContext } from './context/FontSizeContext';
 import { Route, Routes } from 'react-router-dom';
@@ -24,7 +25,11 @@ import { StoreType } from './redux/redux-store';
 import { Home } from './pages/main/Home';
 import UsefulInformation from './pages/main/UsefulInformation';
 import { Footer } from './layout/footer/Footer';
-import { Sidebar } from './components/pop-up/Sidebar';
+import { Sidebar } from './layout/sidebar/Sidebar';
+import { Overlay } from './components/Overlay';
+import { ModalWindow3ndfl } from './components/pop-up/ModalWindow3ndfl';
+import { ModalWindowRecord } from './components/pop-up/ModalWindowRecord';
+import { ModalWindowCallback } from './components/pop-up/ModalWindowCallback';
 
 
 const initialFontSize = 14;
@@ -127,8 +132,30 @@ function App(props: {store: StoreType}) {
 
   //console.log("fontSize", fontSize);
 
+  // Логика левого бокового меню
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
   const handleToggleSidebar = () => setIsOpenSidebar(prev => !prev);
+
+  //Логика появления модальных окон
+  const [isOpenModalWindow3ndfl, setIsOpenModalWindow3ndfl] = useState(false);
+  const [isOpenModalWindowRecord, setIsOpenModalWindowRecord] = useState(false);
+  const [isOpenModalWindowCallback, setIsOpenModalWindowCallback] = useState(false);
+
+  const handleToggleModalWindow = (windowName?: string) => {    
+    switch(windowName){
+      case "3ndfl": 
+        setIsOpenModalWindow3ndfl(prev => !prev);
+        break;
+      case "record": 
+        setIsOpenModalWindowRecord(prev => !prev);
+        break;
+      case "callback":
+        setIsOpenModalWindowCallback(prev => !prev);
+        break; 
+      default:
+        setIsOpenSidebar(prev => !prev);
+    }
+  }
 
   const state = props.store.getState();
 
@@ -143,15 +170,30 @@ function App(props: {store: StoreType}) {
       <Sidebar 
         isOpenSidebar={isOpenSidebar}
         handleToggleSidebar={handleToggleSidebar}
+        //handleToggleModalWindow={handleToggleModalWindow}
+        sidebar={state.sidebar}
       />
+      {isOpenSidebar && <Overlay />}
+      {isOpenModalWindow3ndfl && 
+        <ModalWindow3ndfl 
+          handleToggleModalWindow={handleToggleModalWindow} 
+          values={state.header.forms.ndfl.values} 
+        />}
+      {isOpenModalWindowRecord && 
+        <ModalWindowRecord handleToggleModalWindow={handleToggleModalWindow} />
+      }
+      {isOpenModalWindowCallback && 
+        <ModalWindowCallback handleToggleModalWindow={handleToggleModalWindow} />
+      }
+      
       <Wrap offset={visuallyImpairedPanel.translateY}>
         
-        <Header 
+        <HeaderNew 
           mainMenu={state.header.headerMenu.mainMenu}
           subMenu={state.header.headerMenu.subMenu}
           contacts={state.header.contacts}
           counter={state.header.counter}
-          socials={state.header.socials}
+          socials={state.header.socials}          
           handleToggleTheme={handleToggleTheme}
           handleFontSize={handleFontSize}
           themeName={themeName}
@@ -160,7 +202,8 @@ function App(props: {store: StoreType}) {
           setFontSize={setFontSize}
           handleVisuallyImpairedPanel={handleVisuallyImpairedPanel}
           visuallyImpairedPanel={visuallyImpairedPanel}
-          handleToggleSidebar={handleToggleSidebar}          
+          handleToggleSidebar={handleToggleSidebar} 
+          handleToggleModalWindow={handleToggleModalWindow}         
         />
         
         <>        

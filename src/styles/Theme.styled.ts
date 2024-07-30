@@ -64,6 +64,7 @@ export const myTheme = {
             borderVisuallyImpairedPanelBtn: "black",
             fillContactIcon: "#1D1F24",
             placeholder: "#6b6b6b",
+            borderFieldSet: "rgba(151, 151, 151, 0.4)",
             homePage: {
                 promotions: {
                     1: {
@@ -173,6 +174,7 @@ export const myTheme = {
             borderVisuallyImpairedPanelBtn: "black",
             fillContactIcon: "black",
             placeholder: "rgb(29, 31, 36)",
+            borderFieldSet: "rgba(151, 151, 151, 0.4)",
             homePage: {
                 promotions: {
                     1: {
@@ -282,6 +284,7 @@ export const myTheme = {
             borderVisuallyImpairedPanelBtn: "white",
             fillContactIcon: "white",
             placeholder: "#6b6b6b",
+            borderFieldSet: "rgba(255, 255, 255, 0.4)",
             homePage: {
                 promotions: {
                     1: {
@@ -390,6 +393,7 @@ export const myTheme = {
             borderVisuallyImpairedPanelBtn: "#063462",
             fillContactIcon: "#063462",
             placeholder: "rgb(29, 31, 36)",
+            borderFieldSet: "rgba(6, 52, 98, 0.4)",
             homePage: {
                 promotions: {
                     1: {

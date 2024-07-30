@@ -97,3 +97,14 @@ export const showSubMenu = keyframes`
 		/* opacity: 1; */
 	}
 `
+
+export const fadeIn = keyframes`
+    from {
+      /* visibility: hidden; */
+      opacity: 0;
+    }  
+    to {
+      /* visibility: visible; */
+      opacity: 1;
+    }
+`
