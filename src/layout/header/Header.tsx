@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { css, styled } from 'styled-components';
-import { Container } from '../../components/Container';
-import { StyledBtn, StyledCallbackBtn } from '../../components/StyledBtn';
-import { Logo } from '../../components/logo/Logo';
-import { Counter } from '../../components/counter/Counter';
-import { Search } from '../../components/search/Search';
-import { ContactBox } from '../../components/contact_box/ContactBox';
-import { SocialList } from '../../components/social/SocialList';
-import { VisuallyImpairedBtn } from './VisuallyImpairedBtn';
-import { DesktopMenu } from './headerMenu/desktopMenu/DesktopMenu';
-import { VisuallyImpairedPanel } from './VisuallyImpairedPanel';
-// import { Route, Routes } from 'react-router-dom';
-// import { Prices } from '../../pages/main/Prices';
-// import { Doctors } from '../../pages/main/Doctors';
-// import { Timetable } from '../../pages/main/Timetable';
-// import { Eco } from '../../pages/main/Eco';
-// import { Faq } from '../../pages/main/Faq';
-// import { Contacts } from '../../pages/main/Contacts';
+import React, { useState } from 'react';
+import { styled } from 'styled-components';
+
+import { MobileHeader } from './mobileHeader/MobileHeader';
+//import { WindowSize } from '../../hooks/WindowSize';
+import { DesktopHeader } from './desktopHeader/DesktopHeader';
+import { initialStateSidebarType } from '../../redux/sidebarReducer';
+
 
 
 type HeaderPropsType = {
@@ -33,173 +22,91 @@ type HeaderPropsType = {
         callback:boolean
     }
     socials: Array<{id:string, link:string}>
-    // forms: {
-    //     ndfl: {values:string[]}
-    // }
+    
     handleToggleTheme: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
     handleFontSize: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
     themeName: string
     setThemeName: Function
-    initialFontSize: number
-    setFontSize: Function
+    //initialFontSize: number
+    fontSize: number
+    //setFontSize: Function
     visuallyImpairedPanel: {show:boolean, translateY:string}
     handleVisuallyImpairedPanel: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void    
     handleToggleSidebar: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
     handleToggleModalWindow: (windowName:string) => void    
+    sidebar: initialStateSidebarType
+    windowWidth:number
 }
 
-//const initialState = {show: false, translateY: "-58px"}
 
 export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
 
-    //const [visuallyImpairedPanel, setVisuallyImpairedPanel] = useState(initialState);   
-    
-    // const handleVisuallyImpairedPanel = () => {        
-
-    //     if(!visuallyImpairedPanel.show){
-    //         window.localStorage.setItem("translateY", "0");
-    //         window.localStorage.setItem("show", "true");
-    //         setVisuallyImpairedPanel({
-    //             ...visuallyImpairedPanel,
-    //             show: true,
-    //             translateY: "0"
-    //         });
-    //     }
-
-    //     if(visuallyImpairedPanel.show) {
-
-    //         if(props.themeName === "default") {
-    //             window.localStorage.setItem("translateY", "-58px");
-    //             window.localStorage.setItem("show", "false");
-    //             window.localStorage.fontSize = props.initialFontSize;
-    //         }
-    //         else {
-    //             window.localStorage.clear();
-    //             props.setThemeName("default");
-    //         }
-    //         props.setFontSize(props.initialFontSize);
-    //         setVisuallyImpairedPanel({
-    //             ...visuallyImpairedPanel,
-    //             show: false,
-    //             translateY: "-58px"
-    //         });
-    //     }        
-    // }
-
-    // useEffect(() => { 
-    //     const offset = window.localStorage.getItem('translateY');
-    //     const panel = window.localStorage.getItem('show') === "true" ? true : false;
-    //     offset && setVisuallyImpairedPanel({...visuallyImpairedPanel, translateY: offset, show: panel});
-    //   }, []);
-      
-    //console.log("localStorage", localStorage);
-    //console.log("offset", offset);
-    
-    // const on3ndfl = () => {
-    //     props.handleToggleModalWindow(e); 
-    // }
+    const breakpoint = 767;
+    //const windowWidth = WindowSize();
+    const [isActiveId, setIsActiveId] = useState(null);
+    const [isOpenMenu, setIsOpenNenu] = useState(false);    
+    const handleCloseModalWindowMenu = () => {
+        setIsOpenNenu(prev => !prev);        
+    };
+    const handleBurgerBtnClick = () => {
+        setIsOpenNenu(prev => !prev);
+    } 
 
     return (
-        <StyledHeader>
-            <VisuallyImpairedPanel 
-                handleToggleTheme={props.handleToggleTheme} 
+        <StyledHeader>            
+            {props.windowWidth > breakpoint 
+            ? <DesktopHeader 
+                mainMenu={props.mainMenu}
+                subMenu={props.subMenu}
+                contacts={props.contacts}
+                counter={props.counter}
+                socials={props.socials}          
+                handleToggleTheme={props.handleToggleTheme}
                 handleFontSize={props.handleFontSize}
-            />
-            
-            <Top>
-                <Container>
-                        <VisuallyImpairedBtn 
-                            handleVisuallyImpairedPanel={props.handleVisuallyImpairedPanel}
-                            isShowVisuallyImpairedPanel={props.visuallyImpairedPanel.show}                            
-                        />
-                        <WrapBtn>
-                            <StyledBtn onClick={() => props.handleToggleModalWindow("3ndfl")}>
-                                Возврат 13%
-                            </StyledBtn>                            
-                            <StyledBtn onClick={() => props.handleToggleModalWindow("record")}>
-                                Запись на прием
-                            </StyledBtn>
-                            <StyledCallbackBtn onClick={() => props.handleToggleModalWindow("callback")}>
-                                Заказать обратный звонок
-                            </StyledCallbackBtn>
-                        </WrapBtn>
-                </Container>
-            </Top>
-            <Middle>
-                <Container>
-                    <Logo /> 
-                    <Counter counter={props.counter} />
-                    <Search />
-                    <SocialList themeName={props.themeName} socials={props.socials}/>
-                    <ContactBox themeName={props.themeName} contacts={props.contacts} />
-                </Container>
-            </Middle>
-            <Bottom>
-                <Container>
-                    <DesktopMenu 
-                        mainMenu={props.mainMenu} 
-                        subMenu={props.subMenu}
-                        handleToggleSidebar={props.handleToggleSidebar}
-                    />           
-                </Container>
-            </Bottom>
+                themeName={props.themeName}
+                setThemeName={props.setThemeName}
+                //initialFontSize={props.initialFontSize}
+                fontSize={props.fontSize}
+                //setFontSize={props.setFontSize}
+                handleVisuallyImpairedPanel={props.handleVisuallyImpairedPanel}
+                visuallyImpairedPanel={props.visuallyImpairedPanel}
+                handleToggleSidebar={props.handleToggleSidebar} 
+                handleToggleModalWindow={props.handleToggleModalWindow}
+                breakpoint={breakpoint}   
+                windowWidth={props.windowWidth}
+                sidebar={props.sidebar} 
+                isActiveId={isActiveId}
+                setIsActiveId={setIsActiveId}
+                isOpenMenu={isOpenMenu}
+                setIsOpenNenu={setIsOpenNenu}
+                handleCloseModalWindowMenu={handleCloseModalWindowMenu} 
+                handleBurgerBtnClick={handleBurgerBtnClick}            
+            /> 
+            : <MobileHeader 
+                counter={props.counter}
+                socials={props.socials} 
+                contacts={props.contacts}         
+                handleToggleTheme={props.handleToggleTheme}
+                handleFontSize={props.handleFontSize}
+                themeName={props.themeName}                
+                handleVisuallyImpairedPanel={props.handleVisuallyImpairedPanel}
+                visuallyImpairedPanel={props.visuallyImpairedPanel}                 
+                handleToggleModalWindow={props.handleToggleModalWindow}  
+                breakpoint={breakpoint}   
+                windowWidth={props.windowWidth}  
+                sidebar={props.sidebar}
+                isActiveId={isActiveId}
+                setIsActiveId={setIsActiveId}  
+                isOpenMenu={isOpenMenu}
+                setIsOpenNenu={setIsOpenNenu}
+                handleCloseModalWindowMenu={handleCloseModalWindowMenu} 
+                handleBurgerBtnClick={handleBurgerBtnClick}  
+            />}
         </StyledHeader> 
     );
 };
-
-// type StyledHeaderPropsType = {    
-//     offset:string
-// }
 
 const StyledHeader = styled.div` 
     
 `
 
-const Top = styled.div`
-    background-color: ${({theme}) => theme.bgCol.header.top};
-    height: 70px; 
-    
-    ${Container} {
-        display: flex;        
-        align-items: center;        
-    }     
-    
-`
-
-const WrapBtn = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;    
-    gap: 10px;    
-
-    ${StyledBtn} {
-        padding: 16px 20px;        
-    } 
-
-    ${StyledCallbackBtn} {
-        max-width: 312px;
-        width: 100%;
-        padding: 16px 20px;        
-    }    
-`
-const Middle = styled.div`
-    background-color: ${({theme}) => theme.bgCol.header.default};
-    height: 182px;
-    
-    ${Container} {
-        display: grid; 
-        grid-template-columns: 198px 1fr auto;
-        grid-template-rows: repeat(4, minmax(20px, auto));
-        grid-template-areas:    
-            "logo counter_children social" 
-            "logo counter_children contact"  
-            "logo search contact"
-            "logo search contact";
-        align-items: center;
-    }
-    
-    
-`
-const Bottom = styled.div`
-    background-color: ${({theme}) => theme.bgCol.header.bottom};    
-`

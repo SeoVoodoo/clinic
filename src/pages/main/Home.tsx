@@ -18,7 +18,9 @@ import { Partners } from '../../layout/section/homepage/partners/Partners';
 type HomePropsType = {
   homePage: { 
     mainSlider:  Array<{
-                  imageSrc:string
+                  srcDesktop:string
+                  srcTablet:string
+                  srcMobile:string
                   imageAlt:string
                   title:string
                   subTitle:string
@@ -74,10 +76,17 @@ export const Home: React.FC<HomePropsType> = (props: HomePropsType) => {
     
     return (
         <>
-          <MainSlider state={props.homePage.mainSlider} themeName={props.themeName}/>
+          <MainSlider 
+            data={props.homePage.mainSlider} 
+            themeName={props.themeName}
+            fontSize={props.fontSize}
+          />
           <WrapAdvantages>
             <Container>
-              <Advantages advantages={props.homePage.advantages} />
+              <Advantages 
+                advantages={props.homePage.advantages} 
+                fontSize={props.fontSize}
+              />
               <Promotions promotions={props.homePage.promotions} fontSize={props.fontSize} />              
             </Container>
           </WrapAdvantages>

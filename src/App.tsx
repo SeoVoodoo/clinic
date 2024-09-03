@@ -3,11 +3,11 @@ import { GlobalStyles } from './styles/GlobalStyles';
 import styled, { ThemeProvider } from 'styled-components';
 import { myTheme } from './styles/Theme.styled';
 import { Header } from './layout/header/Header';
-import { HeaderNew } from './layout/header/HeaderNew';
+//import { HeaderNew } from './layout/header/Header';
 import { useEffect, useState, useContext } from 'react';
 //import { FontSizeContext } from './context/FontSizeContext';
 import { Route, Routes } from 'react-router-dom';
-import { Prices } from './pages/main/Prices';
+import { Prices } from './pages/main/prices/Prices';
 import { AllDoctors } from './pages/main/AllDoctors';
 import { Timetable } from './pages/main/Timetable';
 import { Eco } from './pages/main/Eco';
@@ -30,6 +30,9 @@ import { Overlay } from './components/Overlay';
 import { ModalWindow3ndfl } from './components/pop-up/ModalWindow3ndfl';
 import { ModalWindowRecord } from './components/pop-up/ModalWindowRecord';
 import { ModalWindowCallback } from './components/pop-up/ModalWindowCallback';
+import { Reviews } from './pages/main/Reviews';
+import { WindowSize } from './hooks/WindowSize';
+
 
 
 const initialFontSize = 14;
@@ -157,6 +160,20 @@ function App(props: {store: StoreType}) {
     }
   }
 
+  useEffect(() => {
+    if(isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback) {
+        document.body.style.overflowY = "scroll";
+        document.body.style.position = "fixed";
+        document.body.style.width= "100%";
+    }
+    return () => {
+        document.body.style.overflowY = "unset";
+        document.body.style.position = "unset";
+        document.body.style.width= "unset";
+    }        
+ }, [isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback]);
+
+  const windowWidth = WindowSize();
   const state = props.store.getState();
 
   return (
@@ -183,12 +200,15 @@ function App(props: {store: StoreType}) {
         <ModalWindowRecord handleToggleModalWindow={handleToggleModalWindow} />
       }
       {isOpenModalWindowCallback && 
-        <ModalWindowCallback handleToggleModalWindow={handleToggleModalWindow} />
+        <ModalWindowCallback 
+          isOpenModalWindowCallback={isOpenModalWindowCallback}
+          handleToggleModalWindow={handleToggleModalWindow} 
+        />
       }
       
       <Wrap offset={visuallyImpairedPanel.translateY}>
         
-        <HeaderNew 
+        <Header
           mainMenu={state.header.headerMenu.mainMenu}
           subMenu={state.header.headerMenu.subMenu}
           contacts={state.header.contacts}
@@ -198,12 +218,15 @@ function App(props: {store: StoreType}) {
           handleFontSize={handleFontSize}
           themeName={themeName}
           setThemeName={setThemeName}
-          initialFontSize={initialFontSize}
-          setFontSize={setFontSize}
+          //initialFontSize={initialFontSize}
+          fontSize={fontSize}
+          //setFontSize={setFontSize}
           handleVisuallyImpairedPanel={handleVisuallyImpairedPanel}
           visuallyImpairedPanel={visuallyImpairedPanel}
           handleToggleSidebar={handleToggleSidebar} 
-          handleToggleModalWindow={handleToggleModalWindow}         
+          handleToggleModalWindow={handleToggleModalWindow} 
+          sidebar={state.sidebar}
+          windowWidth={windowWidth}        
         />
         
         <>        
@@ -213,13 +236,18 @@ function App(props: {store: StoreType}) {
               themeName={themeName} 
               fontSize={fontSize} />} 
             />
-            <Route path="/prices" element = {<Prices />} />
+            <Route path="/prices" element = {<Prices 
+              pricesPage={state.pricesPage}
+              windowWidth={windowWidth} 
+              />} 
+            />
             <Route path="/doctors" element = {<AllDoctors />} />
             <Route path="/timetable" element = {<Timetable />} />
             <Route path="/eco" element = {<Eco />} />
             <Route path="/faq" element = {<Faq />} />
             <Route path="/contacts" element = {<Contacts />} />
             <Route path="/about" element = {<About />} />
+            <Route path="/reviews" element = {<Reviews />} />
             <Route path="/news" element = {<News />} />
             <Route path="/usefulInfo" element = {<UsefulInformation />} />
             <Route path="/questionnaire" element = {<Questionnaire />} />
@@ -240,6 +268,7 @@ function App(props: {store: StoreType}) {
           banner={state.footer.banner}
           themeName={themeName}
           fontSize={fontSize}
+          handleToggleModalWindow={handleToggleModalWindow} 
         />
 
         <GlobalStyles fontSize={fontSize}/>
@@ -256,6 +285,10 @@ type WrapPropsType = {
 const Wrap = styled.div<WrapPropsType>`
   transform: translateY(${props => props.offset}); 
   transition: transform 0.5s ease-in-out;  
+  
+  /* @media ${({theme}) => theme.media.mobile} {
+    overflow-x: hidden;
+  } */
 `
 
 export default App;

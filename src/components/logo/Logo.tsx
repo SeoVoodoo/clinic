@@ -2,11 +2,15 @@ import React from 'react';
 import { styled } from 'styled-components';
 import sprite from "../../assets/images/png-sprite/icons/sprite-min.png";
 
-export const Logo = () => {
+type LogoPropsType = {
+    head?: boolean
+}
+
+export const Logo: React.FC<LogoPropsType> = (props: LogoPropsType) => {
     return (
-        <StyledLogo>
+        <StyledLogo head={props.head}>
             <a onClick={() => {}}>
-                <Logotype>
+                <Logotype head={props.head}>
 
                 </Logotype>
             </a>            
@@ -14,19 +18,21 @@ export const Logo = () => {
     );
 };
 
-const StyledLogo = styled.div`
-   grid-area: logo; 
+const StyledLogo = styled.div<{head?:boolean}>`
+    grid-area: logo;
+    
+    @media ${({theme}) => theme.media.lg992} {
+        width: min-content;
+    }
+             
 `
 
-const Logotype = styled.div`
-    background-image: url(${sprite}); 
-    //width: 198px;
+const Logotype = styled.div<{head?:boolean}>`
+    background-image: url(${sprite});    
     height: 124px;
     max-width: 198px; 
     min-width: 164px;   
-    width: 100%;
-    //max-height: 124px;
-    //height: 100%;
+    width: 100%;    
     //background-position: 0px -94px;
     background-position: 0% 27.168%;
     background-size: 301.01% 379.032%;
@@ -35,8 +41,16 @@ const Logotype = styled.div`
     cursor: pointer;
     filter: ${({theme}) => theme.filterLogo};
 
-    @media ${({theme}) => theme.media.tablet} {
-        min-width: 198px;
+    @media ${({theme}) => theme.media.lg992} {
+        max-width: ${props => props.head ? "164px": "198px"};
+        min-width: ${props => props.head ? "164px": "198px"};
+        height: ${props => props.head ? "104px": "124px"};
+    }
+    
+    @media ${({theme}) => theme.media.mobile} {
+        max-width: ${props => props.head ? "150px": "198px"};
+        min-width: ${props => props.head ? "150px": "198px"};
+        height: ${props => props.head ? "94px": "124px"};
     }
 `
 

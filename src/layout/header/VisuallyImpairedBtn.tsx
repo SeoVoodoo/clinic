@@ -6,13 +6,15 @@ type VisuallyImpairedBtnPropsType = {
     handleVisuallyImpairedPanel: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
     isShowVisuallyImpairedPanel: boolean
     //handleToggleTheme: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
+    breakpoint: number
+    windowWidth: number
 }
 
 
 export const VisuallyImpairedBtn: React.FC<VisuallyImpairedBtnPropsType> = (props: VisuallyImpairedBtnPropsType) => {
     const [isHover, setIsHover] = useState(false);
     const theme = useTheme();
-
+    const localBreakpoint = 992;
     
     const toggleHover = () => {
         setIsHover(prev => !prev);
@@ -22,7 +24,9 @@ export const VisuallyImpairedBtn: React.FC<VisuallyImpairedBtnPropsType> = (prop
         <StyledVisuallyImpairedBtn 
             onMouseEnter={toggleHover} 
             onMouseLeave={toggleHover} 
-            onClick={props.handleVisuallyImpairedPanel}            
+            onClick={props.handleVisuallyImpairedPanel}  
+            // localBreakpoint={localBreakpoint} 
+            // windowWidth={props.windowWidth}         
         >
             {props.isShowVisuallyImpairedPanel 
                 ?
@@ -32,9 +36,14 @@ export const VisuallyImpairedBtn: React.FC<VisuallyImpairedBtnPropsType> = (prop
                         width="24"
                         height="24"
                         viewBox="0 0 48 48"
-                        fill={isHover ? theme.color.defaultTextHover : theme.color.defaultText}  
+                        fill={isHover ? theme.color.defaultTextHover : theme.color.defaultText}
+                         
+                        // fill={ props.windowWidth > props.breakpoint
+                        //         ? isHover ? theme.color.defaultTextHover : theme.color.defaultText 
+                        //         : theme.color.defaultText 
+                        //     }
                     />
-                    Обычная версия сайта
+                    {props.windowWidth > localBreakpoint ? "Обычная версия сайта" : ""}
                 </>                
                 :
                 <>
@@ -43,9 +52,14 @@ export const VisuallyImpairedBtn: React.FC<VisuallyImpairedBtnPropsType> = (prop
                         width="24"
                         height="16"
                         viewBox="0 0 24 16"
-                        fill={isHover ? "white" : "#1D1F24"}                        
+                        
+                        fill={isHover ? theme.color.defaultTextHover : theme.color.defaultText}
+                        // fill={ props.windowWidth > props.breakpoint
+                        //     ? isHover ? theme.color.defaultTextHover : theme.color.defaultText 
+                        //     : theme.color.defaultText 
+                        // }                        
                     />
-                    Версия для слабовидящих
+                    {props.windowWidth > localBreakpoint ? "Версия для слабовидящих" : ""}                    
                 </>
             }                        
         </StyledVisuallyImpairedBtn>
@@ -73,6 +87,22 @@ const StyledVisuallyImpairedBtn = styled.button`
     gap: 12px;
 
     transition: all 0.25s ease;
+
+    & > svg {
+       flex-shrink: 0; 
+    }
+
+    @media ${({theme}) => theme.media.lg992} {
+        width: 40px;
+        height: 40px;
+        padding: 5px 8px;
+        border-radius: 8px;        
+    }
+    
+
+    @media ${({theme}) => theme.media.mobile} {        
+        height: 26px;                
+    }
 
     &:hover {        
         background-color: ${({theme}) => theme.bgCol.defaultHover};

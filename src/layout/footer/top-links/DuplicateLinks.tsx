@@ -86,7 +86,7 @@ const Item = styled.li`
     }
 
     a {        
-        font-size: calc((100vw - 26rem)/(137 - 26) * (1 - 0.86) + 0.86rem); 
+        font-size: calc((100vw - 26rem)/(137 - 26) * (1.14 - 0.86) + 0.86rem); 
         font-weight: 700;
         text-decoration: none;
         color: ${({theme}) => theme.color.defaultText};

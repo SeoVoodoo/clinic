@@ -25,6 +25,7 @@ type FooterPropsType = {
     banner:{src:string, path:string}
     themeName:string
     fontSize:number
+    handleToggleModalWindow: (windowName:string) => void 
 }
 
 export const Footer: React.FC<FooterPropsType> = (props: FooterPropsType) => {
@@ -42,8 +43,13 @@ export const Footer: React.FC<FooterPropsType> = (props: FooterPropsType) => {
                     <Top fontSize={props.fontSize}>
                         <Logo /> 
                         <DuplicateLinks duplicateLinks={props.duplicateLinks} fontSize={props.fontSize}/>
-                        <ContactBox themeName={props.themeName} contacts={{...props.contacts, callback: true}} />
-                        <SocialList themeName={props.themeName} socials={props.socials}/>
+                        <ContactBox 
+                            themeName={props.themeName} 
+                            contacts={{...props.contacts, callback: true}} 
+                            windowWidth={windowWidth}
+                            handleToggleModalWindow={props.handleToggleModalWindow}
+                        />
+                        <SocialList themeName={props.themeName} socials={props.socials} width='40' height='40'/>
                         <License fontSize={props.fontSize}>
                             Лицензия ЛО-73-01-002159 от 03.12.2019 г. выдана Министерством здравоохранения Ульяновской области.                        
                         </License>

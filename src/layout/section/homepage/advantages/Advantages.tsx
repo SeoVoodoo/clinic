@@ -5,6 +5,7 @@ import { Advantage } from './Advantage';
 
 type AdvantagesPropsType = {
     advantages:  Array<{bgPosition:string, startWord:string, endWord:string}> 
+    fontSize:number
 }
 
 export const Advantages: React.FC<AdvantagesPropsType> = (props: AdvantagesPropsType) => {
@@ -13,7 +14,7 @@ export const Advantages: React.FC<AdvantagesPropsType> = (props: AdvantagesProps
             <StyledH2>
                 Альянс <span>Клиник</span><br/> в гармонии с собой, в альянсе со здоровьем!
             </StyledH2>
-            <AdvantagesList>
+            <AdvantagesList fontSize={props.fontSize}>
                 {
                     props.advantages.map((el, i) => {
                         return (
@@ -23,6 +24,7 @@ export const Advantages: React.FC<AdvantagesPropsType> = (props: AdvantagesProps
                                 startWord={el.startWord}
                                 endWord={el.endWord}
                                 num={i}
+                                fontSize={props.fontSize}
                             /> 
                         )
                     })
@@ -33,12 +35,12 @@ export const Advantages: React.FC<AdvantagesPropsType> = (props: AdvantagesProps
 };
 
 const StyledAdvantages = styled.section`
-    //margin-bottom: 80px;    
+        
 `
-const AdvantagesList = styled.ul`
+const AdvantagesList = styled.ul<{fontSize:number}>`
     display: grid;
-    grid-template-columns: repeat(auto-fit, 304px);
-    grid-auto-rows: 208px;
+    grid-template-columns: repeat(auto-fit, 304px);    
+    grid-auto-rows: ${props => props.fontSize > 14 ? "238px" : "208px"};
     justify-content: center;
     gap: 20px;
 
@@ -46,8 +48,8 @@ const AdvantagesList = styled.ul`
         grid-template-columns: repeat(2, minmax(200px, 250px));        
     }
 
-    @media ${({theme}) => theme.media.mobile} {
-        grid-template-columns: repeat(2, 150px);
-        grid-template-rows: repeat(2, 150px);
+    @media ${({theme}) => theme.media.mobile} {        
+        grid-template-columns: ${props => props.fontSize > 14 ? "280px" : "repeat(2, 150px)"};
+        grid-template-rows: ${props => props.fontSize > 14 ? "repeat(4, 280px)" : "repeat(2, 150px)"};
     }
 `

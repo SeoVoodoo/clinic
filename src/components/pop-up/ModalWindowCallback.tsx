@@ -3,18 +3,19 @@ import { styled } from 'styled-components';
 import { StyledH2 } from '../StyledH2';
 import { StyledCallbackBtn } from '../StyledBtn';
 import { CloseButton } from './CloseButton';
-import { fadeIn } from '../../styles/Animations';
+import { fadeIn, modalIn, modalOut } from '../../styles/Animations';
 import { Checkbox } from './Checkbox';
 import bgForm_3ndfl from '../../assets/images/single-img/desctop/bg_form_3ndfl.svg'
 
 type ModalWindowCallbackPropsType = {
-    handleToggleModalWindow: (windowName:string) => void    
+    handleToggleModalWindow: (windowName:string) => void   
+    isOpenModalWindowCallback:boolean 
 }
 
 export const ModalWindowCallback: React.FC<ModalWindowCallbackPropsType> = (props: ModalWindowCallbackPropsType) => {
     return (
-        <StyledModalWindowCallback>
-            <ModalWindow>
+        <StyledModalWindowCallback isOpenModalWindowCallback={props.isOpenModalWindowCallback}>
+            <ModalWindow isOpenModalWindowCallback={props.isOpenModalWindowCallback}>
                 <CloseButton handleToggleModalWindow={() => props.handleToggleModalWindow("callback")} /> 
                 <StyledH2>
                     <span>Заказать обратный звонок</span>
@@ -33,7 +34,7 @@ export const ModalWindowCallback: React.FC<ModalWindowCallbackPropsType> = (prop
     );
 };
 
-const StyledModalWindowCallback = styled.div`
+const StyledModalWindowCallback = styled.div<{isOpenModalWindowCallback:boolean}>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,9 +51,11 @@ const StyledModalWindowCallback = styled.div`
     animation-duration: 0.8s;
     animation-delay: 0s;
     animation-fill-mode: both;
+    /* opacity: ${props => props.isOpenModalWindowCallback ? "1" : "0"};
+    transition: opacity 5s ease 2s;     */
 `
 
-const ModalWindow = styled.div`
+const ModalWindow = styled.div<{isOpenModalWindowCallback:boolean}>`
     width: 782px;    
     padding: 34px 30px 24px;
     border-radius: 10px;
@@ -60,7 +63,10 @@ const ModalWindow = styled.div`
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
     text-align: center;
     background-image: url(${bgForm_3ndfl});
-
+    /* animation-name: ${props => props.isOpenModalWindowCallback ? modalIn : modalOut};
+    animation-duration: 0.5s;
+    animation-timing-function: ${props => props.isOpenModalWindowCallback ? "ease-out" : "ease-in"};
+    animation-delay: 1s; */
     //position: relative;
 
     @media ${({theme}) => theme.media.laptop} {

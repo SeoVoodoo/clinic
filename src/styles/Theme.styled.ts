@@ -4,6 +4,7 @@ export const myTheme = {
             header: {
                 top: "rgba(244, 244, 245, 1)",
                 bottom: "rgba(0, 166, 81, 1)",
+                mobileTop: "rgba(244, 244, 245, 1)",
                 menu: {
                     textDecorationLink: "white",
                     submenu: "white"
@@ -17,7 +18,8 @@ export const myTheme = {
                 primaryHover: "linear-gradient(225.00deg, rgb(0, 176, 101) 46.498%, rgb(28, 255, 158) 100%)",
                 secondaryHover: "linear-gradient(225.00deg, rgb(245, 130, 32) 49.939%,rgb(255, 216, 183) 100%)",
                 footerSpoiler: "rgba(243, 252, 250, 1)",
-                close: "rgba(151, 151, 151, 1)"
+                close: "rgba(151, 151, 151, 1)",
+                mobileFhone: "rgba(245, 130, 32, 1)"
             },            
             default: "white",
             defaultHover: "#1D1F24",
@@ -63,7 +65,10 @@ export const myTheme = {
             firstLinkMenu: "white",
             borderVisuallyImpairedPanelBtn: "black",
             fillContactIcon: "#1D1F24",
+            mobileFillPhoneBtn: "white",
             placeholder: "#6b6b6b",
+            searchIcon: "#6b6b6b",
+            searchBoxShadow: "rgba(0, 0, 0, 0.5)",
             borderFieldSet: "rgba(151, 151, 151, 0.4)",
             homePage: {
                 promotions: {
@@ -104,6 +109,7 @@ export const myTheme = {
 
         media: {
             laptop: "screen and (max-width: 1200px)",
+            lg992: "screen and (max-width: 992px)",
             tablet: "screen and (max-width: 767px)",
             mobile: "screen and (max-width: 576px)"
         }
@@ -114,6 +120,7 @@ export const myTheme = {
             header: {
                 top: "rgba(255, 255, 255, 1)",
                 bottom: "rgba(255, 255, 255, 1)",
+                mobileTop: "rgba(255, 255, 255, 1)",
                 menu: {
                     textDecorationLink: "black",
                     submenu: "rgba(255, 255, 255, 1)"
@@ -127,7 +134,8 @@ export const myTheme = {
                 primaryHover: "rgba(0, 0, 0, .4)",
                 secondaryHover: "rgba(0, 0, 0, .4)",
                 footerSpoiler: "rgba(255, 255, 255, 1)",
-                close: "rgba(0, 0, 0, 1)"
+                close: "rgba(0, 0, 0, 1)",
+                mobileFhone: "rgba(0, 0, 0, 1)"
             },            
             default: "white",
             defaultHover: "rgba(0, 0, 0, .4)",
@@ -173,6 +181,9 @@ export const myTheme = {
             firstLinkMenu: "white",
             borderVisuallyImpairedPanelBtn: "black",
             fillContactIcon: "black",
+            mobileFillPhoneBtn: "white",
+            searchIcon: "black",
+            searchBoxShadow: "rgba(0, 0, 0, 0.5)",
             placeholder: "rgb(29, 31, 36)",
             borderFieldSet: "rgba(151, 151, 151, 0.4)",
             homePage: {
@@ -213,6 +224,7 @@ export const myTheme = {
         
         media: {
             laptop: "screen and (max-width: 1200px)",
+            lg992: "screen and (max-width: 992px)",
             tablet: "screen and (max-width: 767px)",
             mobile: "screen and (max-width: 576px)"
         }
@@ -223,6 +235,7 @@ export const myTheme = {
             header: {
                 top: "rgba(0, 0, 0, 1)",
                 bottom: "rgba(0, 0, 0, 1)",
+                mobileTop: "rgba(0, 0, 0, 1)",
                 menu: {
                     textDecorationLink: "white",
                     submenu: "rgba(0, 0, 0, 1)"
@@ -236,7 +249,8 @@ export const myTheme = {
                 primaryHover: "rgba(255, 255, 255, .2)",
                 secondaryHover: "rgba(255, 255, 255, .2)",
                 footerSpoiler: "rgba(0, 0, 0, 1)",
-                close: "rgba(255, 255, 255, 1)"
+                close: "rgba(255, 255, 255, 1)",
+                mobileFhone: "rgba(255, 255, 255, 1)"
             },            
             default: "black",
             defaultHover: "#6b6b6b",
@@ -283,6 +297,9 @@ export const myTheme = {
             firstLinkMenu: "black",
             borderVisuallyImpairedPanelBtn: "white",
             fillContactIcon: "white",
+            mobileFillPhoneBtn: "black",
+            searchIcon: "white",
+            searchBoxShadow: "rgba(255, 255, 255, 0.75)",
             placeholder: "#6b6b6b",
             borderFieldSet: "rgba(255, 255, 255, 0.4)",
             homePage: {
@@ -322,6 +339,7 @@ export const myTheme = {
 
         media: {
             laptop: "screen and (max-width: 1200px)",
+            lg992: "screen and (max-width: 992px)",
             tablet: "screen and (max-width: 767px)",
             mobile: "screen and (max-width: 576px)"
         }
@@ -332,6 +350,7 @@ export const myTheme = {
             header: {
                 top: "rgba(157, 209, 255, 1)",
                 bottom: "rgba(157, 209, 255, 1)",
+                mobileTop: "rgba(157, 209, 255, 1)",
                 menu: {
                     textDecorationLink: "#063462",
                     submenu: "rgba(157, 209, 255, .8)"
@@ -345,7 +364,8 @@ export const myTheme = {
                 primaryHover: "rgba(255, 255, 255, .2)",
                 secondaryHover: "rgba(255, 255, 255, .2)",
                 footerSpoiler: "rgba(157, 209, 255, 1)",
-                close: "#063462"
+                close: "#063462",
+                mobileFhone: "#063462"
             },            
             default: "rgba(157, 209, 255, 1)",
             defaultHover: "rgba(157, 209, 255, .5)",
@@ -392,6 +412,9 @@ export const myTheme = {
             firstLinkMenu: "#063462",
             borderVisuallyImpairedPanelBtn: "#063462",
             fillContactIcon: "#063462",
+            mobileFillPhoneBtn: "white",
+            searchIcon: "#063462",
+            searchBoxShadow: "rgba(6, 52, 98, 0.5)",
             placeholder: "rgb(29, 31, 36)",
             borderFieldSet: "rgba(6, 52, 98, 0.4)",
             homePage: {
@@ -432,6 +455,7 @@ export const myTheme = {
         
         media: {
             laptop: "screen and (max-width: 1200px)",
+            lg992: "screen and (max-width: 992px)",
             tablet: "screen and (max-width: 767px)",
             mobile: "screen and (max-width: 576px)"
         }

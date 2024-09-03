@@ -56,7 +56,7 @@ const initialState = {
             },
             {   
                 id: 11,
-                ancor: "Полезная информация",
+                ancor: "Полезно знать",
                 path: "usefulInfo"  
             },
             {   

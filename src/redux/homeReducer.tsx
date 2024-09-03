@@ -9,6 +9,27 @@ import Img6 from "../assets/images/home_slider/dnk-analiz.webp";
 import Img7 from "../assets/images/home_slider/eko.webp";
 import Img8 from "../assets/images/home_slider/kriokonservaciya-materiala.webp";
 import Img9 from "../assets/images/home_slider/onlajn-konsultaciya.webp";
+
+import Img1_tablet from "../assets/images/home_slider/tablet/pgt.webp";
+import Img2_tablet from "../assets/images/home_slider/tablet/unikalnaya-specializirovannaya-sreda.webp";
+import Img3_tablet from "../assets/images/home_slider/tablet/artroskopiya-kolennogo-sustava.webp";
+import Img4_tablet from "../assets/images/home_slider/tablet/besplatnye-pervichnye-konsultacii.webp";
+import Img5_tablet from "../assets/images/home_slider/tablet/prp-terapiya.webp";
+import Img6_tablet from "../assets/images/home_slider/tablet/dnk-analiz.webp";
+import Img7_tablet from "../assets/images/home_slider/tablet/eko.webp";
+import Img8_tablet from "../assets/images/home_slider/tablet/kriokonservaciya-materiala.webp";
+import Img9_tablet from "../assets/images/home_slider/tablet/onlajn-konsultaciya.webp";
+
+import Img1_mobile from "../assets/images/home_slider/mobile/pgt.webp";
+import Img2_mobile from "../assets/images/home_slider/mobile/unikalnaya-specializirovannaya-sreda.webp";
+import Img3_mobile from "../assets/images/home_slider/mobile/artroskopiya-kolennogo-sustava.webp";
+import Img4_mobile from "../assets/images/home_slider/mobile/besplatnye-pervichnye-konsultacii.webp";
+import Img5_mobile from "../assets/images/home_slider/mobile/prp-terapiya.webp";
+import Img6_mobile from "../assets/images/home_slider/mobile/dnk-analiz.webp";
+import Img7_mobile from "../assets/images/home_slider/mobile/eko.webp";
+import Img8_mobile from "../assets/images/home_slider/mobile/kriokonservaciya-materiala.webp";
+import Img9_mobile from "../assets/images/home_slider/mobile/onlajn-konsultaciya.webp";
+
 import Gordeeva from "../assets/images/single-img/homePage/doctors/preview/doctor_1.webp";
 import Simanskaya from "../assets/images/single-img/homePage/doctors/preview/doctor_2.webp";
 import Volkova from "../assets/images/single-img/homePage/doctors/preview/doctor_3.webp";
@@ -72,18 +93,21 @@ import Img_patner_8 from "../assets/images/single-img/homePage/partners/partners
 const initialState = {    
     mainSlider: [
         {
-            imageSrc: Img1,
+            srcDesktop: Img1,
+            srcTablet: Img1_tablet,
+            srcMobile: Img1_mobile,
             imageAlt: "ПГТ",
             title: "ПГТ",
             subTitle: "Преимплантанционный генетический тест",                
             path: "#",
             colorTitleType: "orange",
             colorSubTitleType: "green",
-            bgBtnType: "orange"  
-                            
+            bgBtnType: "orange"
         },
         {
-            imageSrc: Img2,
+            srcDesktop: Img2,
+            srcTablet: Img2_tablet,
+            srcMobile: Img2_mobile,
             imageAlt: "Уникальная, специализированная среда",
             title: "Уникальная, специализированная среда",
             subTitle: "EmbryoGlue для переноса эмбриона",
@@ -96,7 +120,9 @@ const initialState = {
             bgBtnType: "green"
         },
         {
-            imageSrc: Img3,
+            srcDesktop: Img3,
+            srcTablet: Img3_tablet,
+            srcMobile: Img3_mobile,
             imageAlt: "Артроскопия коленного сустава",
             title: "Артроскопия коленного сустава",
             subTitle: "Бесплатно по полису ОМС",
@@ -109,7 +135,9 @@ const initialState = {
             bgBtnType: "orange"
         },
         {
-            imageSrc: Img4,
+            srcDesktop: Img4,
+            srcTablet: Img4_tablet,
+            srcMobile: Img4_mobile,
             imageAlt: "Бесплатные первичные консультации",
             title: "Бесплатные первичные консультации",
             subTitle: "",
@@ -121,7 +149,9 @@ const initialState = {
             bgBtnType: "orange"
         },
         {
-            imageSrc: Img5,
+            srcDesktop: Img5,
+            srcTablet: Img5_tablet,
+            srcMobile: Img5_mobile,
             imageAlt: "PRP-терапия",
             title: "PRP-терапия",
             subTitle: "",
@@ -133,7 +163,9 @@ const initialState = {
             bgBtnType: "green"                                                
         },
         {
-            imageSrc: Img6,
+            srcDesktop: Img6,
+            srcTablet: Img6_tablet,
+            srcMobile: Img6_mobile,
             imageAlt: "ДНК-анализ",
             title: "ДНК-анализ",
             subTitle: "",
@@ -145,7 +177,9 @@ const initialState = {
             bgBtnType: "orange"                                                
         },
         {
-            imageSrc: Img7,
+            srcDesktop: Img7,
+            srcTablet: Img7_tablet,
+            srcMobile: Img7_mobile,
             imageAlt: "ЭКО",
             title: "ЭКО",
             subTitle: "",
@@ -157,7 +191,9 @@ const initialState = {
             bgBtnType: "green"                               
         },
         {
-            imageSrc: Img8,
+            srcDesktop: Img8,
+            srcTablet: Img8_tablet,
+            srcMobile: Img8_mobile,
             imageAlt: "Криоконсервация материала",
             title: "Криоконсервация материала",
             subTitle: "",
@@ -169,7 +205,9 @@ const initialState = {
             bgBtnType: "green"                                
         },
         {
-            imageSrc: Img9,
+            srcDesktop: Img9,
+            srcTablet: Img9_tablet,
+            srcMobile: Img9_mobile,
             imageAlt: "Онлайн консультация",
             title: "Онлайн консультация",
             subTitle: "",

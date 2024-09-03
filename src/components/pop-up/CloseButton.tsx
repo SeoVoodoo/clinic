@@ -9,6 +9,8 @@ type CloseButtonPropsType = {
     left?:string    
     handleToggleModalWindow?: () => void
     handleToggleSidebar?: () => void 
+    handleCloseMobileModalWindowMenu?: () => void
+    handleCloseMobileModalWindowContact?: () => void
 }
 
 export const CloseButton: React.FC<CloseButtonPropsType> = (props: CloseButtonPropsType) => {
@@ -18,7 +20,12 @@ export const CloseButton: React.FC<CloseButtonPropsType> = (props: CloseButtonPr
                 top={props.top} 
                 right={props.right}
                 left={props.left}
-                onClick={props.handleToggleModalWindow || props.handleToggleSidebar} 
+                onClick={
+                    props.handleToggleModalWindow || 
+                    props.handleToggleSidebar || 
+                    props.handleCloseMobileModalWindowMenu ||
+                    props.handleCloseMobileModalWindowContact
+                } 
             >
             </Btn>            
         </StyledCloseButton>
@@ -27,7 +34,7 @@ export const CloseButton: React.FC<CloseButtonPropsType> = (props: CloseButtonPr
 
 const StyledCloseButton = styled.div`    
     width: 100%;
-    position: relative;
+    position: relative;    
 `
 
 const Btn = styled.button<{top?:string, right?:string, left?:string}>`

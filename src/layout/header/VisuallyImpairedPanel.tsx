@@ -4,32 +4,55 @@ import { styled } from 'styled-components';
 type VisuallyImpairedPanelPropsType = {
     handleToggleTheme: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
     handleFontSize: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
+    windowWidth:number
+    breakpoint:number
 } 
 
 export const VisuallyImpairedPanel: React.FC<VisuallyImpairedPanelPropsType > = (props: VisuallyImpairedPanelPropsType ) => {     
 
     return (
         <StyledVisuallyImpairedPanel>
-            <span>Размер шрифта:</span>
-            <Button 
-                type="button"
-                name="decrease"
-                onClick={props.handleFontSize}
-            >
-                А-
-            </Button>
-            <Button 
-                type="button"
-                name="add"
-                onClick={props.handleFontSize}
-            >
-                А+
-            </Button>
-
-            <span>Цвет сайта:</span>
-            <Button onClick={props.handleToggleTheme} name="light" type="button">А</Button>
-            <Button onClick={props.handleToggleTheme} name="dark" type="button">А</Button>
-            <Button onClick={props.handleToggleTheme} name="blue" type="button">А</Button>            
+            <WrapGroupBtn>
+                {props.windowWidth > props.breakpoint ? <span>Размер шрифта:</span> : <span>Размер<br />шрифта:</span>}
+                <Button 
+                    type="button"
+                    name="decrease"
+                    onClick={props.handleFontSize}                    
+                >
+                    А-
+                </Button>
+                <Button 
+                    type="button"
+                    name="add"
+                    onClick={props.handleFontSize}                    
+                >
+                    А+
+                </Button>
+            </WrapGroupBtn>
+            <WrapGroupBtn>
+                {props.windowWidth > props.breakpoint ? <span>Цвет сайта:</span> : <span>Цвет<br />сайта:</span>}                
+                <Button 
+                    onClick={props.handleToggleTheme} 
+                    name="light" 
+                    type="button"                    
+                >
+                    А
+                </Button>
+                <Button 
+                    onClick={props.handleToggleTheme} 
+                    name="dark" 
+                    type="button"                    
+                >
+                    А
+                </Button>
+                <Button 
+                    onClick={props.handleToggleTheme} 
+                    name="blue" 
+                    type="button"                   
+                >
+                    А
+                </Button>  
+            </WrapGroupBtn>          
         </StyledVisuallyImpairedPanel>
     );
 };
@@ -43,41 +66,48 @@ const StyledVisuallyImpairedPanel = styled.div`
     font-weight: 700;
     font-size: 1rem;
 
-    button:first-of-type { 
+    display: flex;
+
+    & > div:first-of-type > button:first-of-type { 
         background-color: ${({theme}) => theme.bgCol.default};
         color: ${({theme}) => theme.color.borderVisuallyImpairedPanelBtn}; 
     }
 
-    button:nth-of-type(2) {
+    & > div:first-of-type > button:nth-of-type(2) {
         background-color: ${({theme}) => theme.bgCol.default}; 
         color: ${({theme}) => theme.color.borderVisuallyImpairedPanelBtn};       
         margin-left: -1px;
         margin-right: 40px;
     }
 
-    button:nth-of-type(3) {
+    & > div:last-of-type > button:first-of-type {
         background-color: white;
-        color: black;        
-        
+        color: black;
     }
 
-    button:nth-of-type(4) {
+    & > div:last-of-type > button:nth-of-type(2) {
         background-color: black;
         color: white; 
         margin-left: 1px;
     }
 
-    button:last-of-type {
+    & > div:last-of-type > button:last-of-type {
         background-color: rgba(157, 209, 255, 1);
         color: black; 
         margin-left: 1px;
     }
 
-    span {
-        display: inline-block;
-        margin-right: 15px;
+    @media ${({theme}) => theme.media.mobile} {
+        font-size: 0.86rem;
     }
-        
+`
+const WrapGroupBtn = styled.div`
+    display: flex;
+    align-items: center;
+
+    span {        
+        margin-right: 15px;
+    }    
 `
 
 const Button = styled.button`
@@ -87,6 +117,11 @@ const Button = styled.button`
     font-size: 1rem;
     font-weight: 700;
     line-height: 36px;
-    text-align: center;
+    text-align: center;  
     
+    @media ${({theme}) => theme.media.mobile} {
+        width: 30px;
+        height: 31px;
+        line-height: 12px;
+    }
 `

@@ -3,13 +3,15 @@ import { homeReducer } from "./homeReducer";
 import { headerReducer } from "./headerReducer";
 import { footerReducer } from "./footerReducer";
 import { sidebarReducer } from "./sidebarReducer";
+import { pricesReducer } from "./pricesReducer";
 
 
 const rootReducer = combineReducers({
     homePage: homeReducer,
     header: headerReducer,
     footer: footerReducer,
-    sidebar: sidebarReducer
+    sidebar: sidebarReducer,
+    pricesPage: pricesReducer,
 })
 
 type rootReducerType = typeof rootReducer;

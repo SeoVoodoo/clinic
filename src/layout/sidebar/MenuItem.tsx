@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
-import { styled } from 'styled-components';
-import { initialStateSidebarType } from '../../redux/sidebarReducer';
+import { css, styled } from 'styled-components';
+import { initialStateSidebarType, topLevelIdsType } from '../../redux/sidebarReducer';
 import { Link } from 'react-router-dom';
-import { FlexWrapper } from '../../components/FlexWrapper';
 import { TopLevel } from './TopLevel';
 
 type MenuItemPropsType = {
-    id:string
+    sidebar:initialStateSidebarType 
+    id: topLevelIdsType
     isActiveId:string | null  
-    setIsActiveId:Function    
-    sidebar:initialStateSidebarType          
-}
-
-type CurrentPointPropsType = {  
-    id:string  
-    title:string
-    path:string
-    level:number
-    pages?:string[]
-    parentId?:string
+    setIsActiveId:Function
+    descktop?:boolean 
+    mobile?:boolean             
 }
 
 export const MenuItem: React.FC<MenuItemPropsType> = (props: MenuItemPropsType) => {
@@ -34,13 +26,19 @@ export const MenuItem: React.FC<MenuItemPropsType> = (props: MenuItemPropsType) 
         setIsOpen(prev => !prev);
     }
         
-    const {title, path, level, pages}:CurrentPointPropsType = props.sidebar.sidebarMenu.entities.pages[props.id];
-
-    //console.log("title", title)    
+    const pageData = props.sidebar.sidebarMenu.entities.pages[props.id];
+    const {title, path, level} = pageData;
+    const pages = 'pages' in pageData ? pageData.pages as topLevelIdsType[] : null;     
 
     return (
-        <StyleMenuItem isOpen={isOpen} level={level} pages={pages}>
-            <FlexWrapper justify="space-between" align="center">
+        <StyledMenuItem 
+            isOpen={isOpen} 
+            level={level} 
+            pages={pages}
+            descktop={props.descktop} 
+            mobile={props.mobile}
+        >
+            <Wrap>
                 <Link 
                     to={`/${path}`}
                     onClick={(e) => handleLinkClick(e, props.id)}
@@ -52,7 +50,7 @@ export const MenuItem: React.FC<MenuItemPropsType> = (props: MenuItemPropsType) 
                         Свернуть/развернуть
                     </Btn>
                 )}
-            </FlexWrapper>
+            </Wrap>
 
             {isOpen && pages && (
                 <TopLevel
@@ -62,46 +60,105 @@ export const MenuItem: React.FC<MenuItemPropsType> = (props: MenuItemPropsType) 
                     setIsActiveId={props.setIsActiveId}
                 />      
             )}            
-        </StyleMenuItem>
+        </StyledMenuItem>
     );
 };
 
-const StyleMenuItem = styled.li<{isOpen:boolean, level:number, pages?:string[]}>`
-    width: 306px;     
+const StyledMenuItem = styled.li<{isOpen:boolean, level:number, pages:string[] | null, descktop?:boolean, mobile?:boolean}>`
+   
+      
+    width: "100%";      
     padding: ${props => props.level === 1 ? "3px 0" : "8px 0"};
     
     font-weight: ${props => props.level === 1 ? "500" : "700"};
-    border-bottom: 1px solid ${props => props.level === 1 ? "transparent" : ({theme}) => theme.color.primary};
+    
     text-align: left;
-    /* max-height: ${props => props.isOpen ? "600px" : "40px"};
-    transition: max-height 1s ease; */
+
+    /* border-bottom: 1px solid ${props => props.level === 1 ? "transparent" : ({theme}) => theme.color.primary}; */
+
+    ${props => props.descktop && css<{level:number}>`
+        border-bottom: 1px solid ${props => props.level === 1 ? "transparent" : ({theme}) => theme.color.primary};
+    `}
+
+    ${props => props.mobile && css<{level:number}>`
+        border-bottom: 1px solid ${props => props.level === -1 ? ({theme}) => theme.color.primary : "red"};
+    `}
+
+    
+    
 
     &:first-of-type {
-        border-top: 1px solid ${props => props.level === 0 ? ({theme}) => theme.color.primary : "transparent"};
-    }
-    a {
-        color: ${props => props.isOpen && props.level === 0 && props.pages 
-            ? ({theme}) => theme.color.primary 
-            : ({theme}) => theme.color.defaultText};
+        border-top: 1px solid ${props => props.level === 0 || props.level === -1 ? ({theme}) => theme.color.primary : "transparent"};
+    }  
 
-        margin-bottom: ${props => props.isOpen && props.level === 0 && props.pages
-            ? "10px"
-            : "0"
-        };
+    a {       
         text-align: left;
         max-width: 260px;
         padding: 3px 0;
-        font-size: calc((100vw - 26rem)/(137 - 26) * (1.14 - 1) + 1rem);        
+        font-size: calc((100vw - 26rem)/(137 - 26) * (1.14 - 1) + 1rem);
+
+        color: ${props => props.isOpen && props.level === 0 && props.pages 
+        ? ({theme}) => theme.color.primary 
+        : ({theme}) => theme.color.defaultText}; 
+
+        margin-bottom: ${props => props.isOpen && (props.level === 0 || props.level === -1) && props.pages
+            ? "10px"
+            : "0"
+        };        
     }
 
     a:hover {
         text-decoration: ${props => props.level === 1 ? "underline" : "none"};
     }
+
+    @media ${({theme}) => theme.media.lg992}{ 
+        
+        a {
+            text-align: center;
+            max-width: 100%;  
+        }
+    }
+
+    @media ${({theme}) => theme.media.mobile}{ 
+        a {
+            text-align: left;             
+        }
+    }
+`
+
+const Wrap = styled.div`
+    
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 20px;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+        grid-column: 1/2;
+    }
+
+    @media ${({theme}) => theme.media.lg992}{ 
+        width: auto;
+        
+        a {
+            margin-left: calc(50vw - 20px);
+            transform: translateX(-50%);  
+        }
+    }
+
+    @media ${({theme}) => theme.media.mobile}{ 
+        width: 100%;       
+        a {
+            margin-left: 0;
+            transform: translateX(0);
+        }
+    }
 `
 
 const Btn = styled.button<{isOpen:boolean}>`
-    position: relative;    
-    flex-shrink: 0; 
+    grid-column: 2/3;
+    position: relative;
     font-size: 0;    
     //background-color: aqua;    
     background-color: transparent;    
@@ -124,5 +181,9 @@ const Btn = styled.button<{isOpen:boolean}>`
         border-right: 2px solid ${({theme}) => theme.color.defaultText};
         border-bottom: 2px solid ${({theme}) => theme.color.defaultText};   
         transform: rotate(45deg);        
+    }
+
+    @media ${({theme}) => theme.media.lg992}{ 
+        justify-self: end;
     }
 `

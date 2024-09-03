@@ -5,7 +5,11 @@
 
 .swiper-horizontal > .swiper-pagination-bullets, 
 .swiper-pagination-bullets.swiper-pagination-horizontal {
-   bottom: 2rem ; 
+   bottom: 28px; 
+
+   @media screen and (max-width: 767px) {
+        bottom: 16px; 
+   }
 }
 
 /*Услуги_начало*/

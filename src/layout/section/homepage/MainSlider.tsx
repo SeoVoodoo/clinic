@@ -8,8 +8,10 @@ import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
 
 
 type MainSliderPropsType = {
-    state: Array<{
-        imageSrc:string
+    data: Array<{
+        srcDesktop:string
+        srcTablet:string
+        srcMobile:string
         imageAlt:string
         title:string
         subTitle:string
@@ -22,6 +24,7 @@ type MainSliderPropsType = {
         bgBtnType:string       
     }>
     themeName:string
+    fontSize:number
 } 
 
 export const MainSlider: React.FC<MainSliderPropsType> =  (props: MainSliderPropsType) => {
@@ -33,18 +36,25 @@ export const MainSlider: React.FC<MainSliderPropsType> =  (props: MainSliderProp
                 pagination={true} 
                 modules={[EffectFade, Pagination, Autoplay]}                                
                 className="mySwiper"
-                // autoplay={{
-                //     delay: 2500,
-                //     disableOnInteraction: false
-                // }}                                
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false
+                }}                                
             >
-                {props.state.map((slide, index) =>
-                    <SwiperSlide key={index}>                        
-                        <img src={slide.imageSrc} alt={slide.imageAlt} />
+                {props.data.map((slide, index) =>
+                    <SwiperSlide key={index}> 
+                    <Wrap>
+                    <picture>  
+                        <source media="(max-width: 360px)" srcSet={slide.srcMobile} />
+                        <source media="(min-width: 768px)" srcSet={slide.srcDesktop} />                    
+                        <img src={slide.srcTablet} alt={slide.imageAlt} />
+                    </picture> 
+                    </Wrap>
                         <Info>
                             <Title 
                                 colorTitleType={slide.colorTitleType} 
                                 themeName={props.themeName}
+                                fontSize={props.fontSize}
                             >
                                 {slide.title}
                             </Title>
@@ -60,6 +70,7 @@ export const MainSlider: React.FC<MainSliderPropsType> =  (props: MainSliderProp
                                 colorDescriptionType={slide.colorDescriptionType}
                                 descriptionWeight={slide.descriptionWeight}
                                 themeName={props.themeName}
+                                fontSize={props.fontSize}
                             >
                                 {slide.description}
                             </Description>
@@ -82,10 +93,49 @@ export const MainSlider: React.FC<MainSliderPropsType> =  (props: MainSliderProp
 
 const StyledMainSlider = styled.section` 
     margin-bottom: 0;   
-    img {
+    /* img {
         max-width: 1920px;
-        width: 100%;
+        width: 100%;        
         object-fit: cover;
+    }
+    @media ${({theme}) => theme.media.tablet}{
+        img {
+            max-width: 100%;
+            width: 100%; 
+            height: 100%;
+            object-position: center;
+        }
+    } */
+`
+const Wrap = styled.div`
+    max-width: 1920px;
+    height: auto;
+    width: 100%;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        
+    }
+
+    @media ${({theme}) => theme.media.lg992}{
+        max-width: 992px;
+        height: 460px;
+
+        img {
+            object-position: right;
+        }
+    }
+
+    @media ${({theme}) => theme.media.tablet}{
+        max-width: 767px;
+        height: 350px;
+    }
+
+    @media screen and (max-width: 360px) {
+        max-width: 360px;
+        height: 274px;
     }
 `
 
@@ -107,7 +157,8 @@ const Info = styled.div`
 `
 type TitlePropsType = {    
     colorTitleType:string
-    themeName:string    
+    themeName:string
+    fontSize:number    
 }
 
 type SubTitlePropsType = {
@@ -119,6 +170,7 @@ type DescriptionPropsType = {
     colorDescriptionType:string | undefined
     descriptionWeight:number | undefined
     themeName:string
+    fontSize:number
 }
 
 type ButtonPropsType = {
@@ -129,8 +181,19 @@ type ButtonPropsType = {
 const Title = styled.h2<TitlePropsType>`
 
     font-size: calc((100vw - 26rem)/(137 - 26) * (5 - 2) + 2rem);    
-    margin-bottom: 1.7rem;
-    max-width: 625px;
+    /* margin-bottom: 1.7rem; */
+    margin-bottom: 24px;
+    max-width: ${props => props.fontSize > 14 ? "100%" : "625px"};
+    line-height: ${props => props.fontSize > 14 ? "100%" : "120%"};  
+    //line-height: 120%;
+    
+    @media ${({theme}) => theme.media.tablet}{
+        margin-bottom: 0;    
+    }
+
+    @media ${({theme}) => theme.media.mobile}{
+        line-height: ${props => props.fontSize > 14 ? "100%" : "2.2rem"};     
+    }
 
     ${props => props.colorTitleType === "orange" && css<TitlePropsType>`     
         color: ${props => props.themeName === "default" ? ({theme}) => theme.homeSlider.orange : ({theme}) => theme.homeSlider.color}  
@@ -150,6 +213,16 @@ const SubTitle = styled.h3<SubTitlePropsType>`
     max-width: 700px;
     margin-bottom: 1.2rem;
 
+    @media ${({theme}) => theme.media.tablet}{        
+        margin-top: 20px;  
+        margin-bottom: 0;  
+    }
+
+    @media ${({theme}) => theme.media.mobile}{
+        max-width: 320px;
+        margin-top: 15px;          
+    }
+
     ${props => props.colorSubTitleType === "green" && css<SubTitlePropsType>`     
         color: ${props => props.themeName === "default" ? ({theme}) => theme.homeSlider.green : ({theme}) => theme.homeSlider.color}  
     `}    
@@ -158,6 +231,14 @@ const SubTitle = styled.h3<SubTitlePropsType>`
 const Description = styled.span<DescriptionPropsType>` 
     font-size: calc((100vw - 26rem)/(137 - 26) * (1.86 - 1) + 1rem); 
     font-weight: ${props => props.descriptionWeight};
+
+    @media ${({theme}) => theme.media.tablet}{
+        margin-top: 16px;
+    }
+
+    @media ${({theme}) => theme.media.mobile}{
+        max-width: ${props => props.fontSize > 14 ? "100%" : "300px"};        
+    }
     
     ${props => props.colorDescriptionType === "green" && css<DescriptionPropsType>`     
         color: ${props => props.themeName === "default" ? ({theme}) => theme.homeSlider.green : ({theme}) => theme.homeSlider.color}
@@ -191,6 +272,15 @@ const Button = styled.button<ButtonPropsType>`
             : ({theme}) => theme.bgCol.btn.secondaryHover};      
     }
 
+    @media ${({theme}) => theme.media.tablet}{
+        padding: 16px 22px;
+        margin-top: 20px;
+    }
+
+    @media ${({theme}) => theme.media.mobile}{
+        margin-top: 15px;     
+    }
+
     ${props => props.bgBtnType === "orange" && css<ButtonPropsType>`    
         background: ${props => props.themeName === "default" 
             ? ({theme}) => theme.homeSlider.orange 
@@ -202,4 +292,6 @@ const Button = styled.button<ButtonPropsType>`
             ? ({theme}) => theme.homeSlider.green 
             : ({theme}) => theme.homeSlider.transparent}
     `}
+
+    
 `

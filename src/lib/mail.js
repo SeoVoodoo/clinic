@@ -6,17 +6,15 @@ import nodemailer from 'nodemailer';
 // 	port: 465,
 // 	secure: true,
 // 	auth: {
-// 		//user: 'ellada73porte@yandex.ru',
-// 		user: 'seovoodoo.guru@gmail.com',
-// 		//pass: '53435453'
-// 		pass: '5435435'
+// 		user: 'ellada73porte@yandex.ru', 		
+// 		pass: 'Ellada$x2ZaF$j09m'
 // 	},
 // 	tls: {rejectUnauthorized: true},
 // })
 
 // export const mailOptions = {
-// 	from: 'seovoodoo.guru@gmail.com',
-// 	to: 'seovoodoo.guru@gmail.com'
+// 	from: 'ellada73porte@yandex.ru',
+// 	to: 'ellada73porte@yandex.ru'
 // }
 
 export const sendEmail = (message) => {

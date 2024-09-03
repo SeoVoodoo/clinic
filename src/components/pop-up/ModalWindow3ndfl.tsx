@@ -21,22 +21,44 @@ export const ModalWindow3ndfl: React.FC<ModalWindow3ndflPropsType> = (props: Mod
     const [patientFullName, setPatientFullName] = useState('');
     const [phone, setPhone] = useState('');
 
-    async function sendForm() {
-	
-		try {
-		    await axios.post('http://localhost:3000/api/send3ndfl', {
-				taxpayerFullName, inn, patientFullName, phone
-			});
+    // async function sendForm() {
+        
+	// 	try {            
+	// 	    await axios.post('http://localhost:3000/clinic/server/app', {
+	// 			taxpayerFullName, inn, patientFullName, phone
+	// 		});
             
-			setTaxpayerFullName('');			
-			setInn('');
-			setPatientFullName('');
-			setPhone('');
-		} 
-        catch (error) {
-			console.log('Произошла ошибка', error);
-		}
-	}
+	// 		setTaxpayerFullName('');			
+	// 		setInn('');
+	// 		setPatientFullName('');
+	// 		setPhone('');
+    //         alert("Email sent!");
+	// 	} 
+    //     catch (error) {
+	// 		console.log('Произошла ошибка', error);
+	// 	}
+	// }
+
+    async function sendForm(e: { preventDefault: () => void; }) {
+        e.preventDefault();
+        console.log("Зашли в sendForm");
+        await axios
+          .post("/server/app", {
+            params: {
+                taxpayerFullName,
+                inn,
+                patientFullName,
+                phone
+            },
+          })
+          .then(() => {
+            //success
+            console.log("Успех");
+          })
+          .catch(() => {
+            console.log("Неудача");
+          });
+      };
 
     
 
@@ -77,8 +99,8 @@ export const ModalWindow3ndfl: React.FC<ModalWindow3ndflPropsType> = (props: Mod
                 <StyledH2>
                     <span>Заказать справку об<br />оплате медицинских услуг</span>
                 </StyledH2>
-
-                <Form onSubmit={sendForm} >   
+                   
+                <Form onSubmit={sendForm}>   
                     
                     <Field 
                         type="text" 
@@ -143,7 +165,7 @@ export const ModalWindow3ndfl: React.FC<ModalWindow3ndflPropsType> = (props: Mod
                     </Select>  
 
                     <Checkbox agreement />
-                    <StyledCallbackBtn type='submit'>Отправить</StyledCallbackBtn>
+                    <StyledCallbackBtn type="submit">Отправить</StyledCallbackBtn>
                     <span>* - поля обязательные для заполнения</span>
                 </Form>  
             </ModalWindow>          
@@ -188,6 +210,10 @@ const ModalWindow = styled.div`
     @media ${({theme}) => theme.media.tablet} {
         width: 514px;
     }
+
+    /* @media ${({theme}) => theme.media.mobile} {
+        height: 100vh;
+    } */
 `
 
 const Form = styled.form`

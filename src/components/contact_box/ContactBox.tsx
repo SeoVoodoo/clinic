@@ -9,11 +9,19 @@ type ContactBoxPropsType = {
         email:string,
         callback:boolean
     }
-    themeName:string  
+    themeName:string
+    windowWidth:number 
+    handleToggleModalWindow?: (windowName:string) => void
 }
 
 export const ContactBox: React.FC<ContactBoxPropsType> = (props: ContactBoxPropsType) => {
-    const theme = useTheme();
+    const theme = useTheme();    
+    const breakpoint = 767;
+    // const handlePhoneClick = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+    //     e.preventDefault();
+    // }    
+    const phone = (phone:string) => phone.replace(/\D/g, "");    
+
     return (
         <StyledContactBox>
             <Phone>
@@ -24,7 +32,11 @@ export const ContactBox: React.FC<ContactBoxPropsType> = (props: ContactBoxProps
                     viewBox="0 0 20 20" 
                     fill={theme.color.fillContactIcon}               
                 />
-                {props.contacts.phone1}
+                {props.windowWidth > breakpoint
+                    ? props.contacts.phone1
+                    : <a href={`tel:${phone(props.contacts.phone1)}`}>{props.contacts.phone1}</a>
+                }
+                
             </Phone>
             <Description>(многоканальный)</Description>
             <Phone>
@@ -35,7 +47,10 @@ export const ContactBox: React.FC<ContactBoxPropsType> = (props: ContactBoxProps
                     viewBox="0 0 20 20"
                     fill={theme.color.fillContactIcon}                
                 />
-                {props.contacts.phone2}
+                {props.windowWidth > breakpoint
+                    ? props.contacts.phone2
+                    : <a href={`tel:${phone(props.contacts.phone2)}`}>{props.contacts.phone2}</a>
+                }
             </Phone>
             <Email href={`mailto:${props.contacts.email}`} >
                 <Icon 
@@ -46,40 +61,48 @@ export const ContactBox: React.FC<ContactBoxPropsType> = (props: ContactBoxProps
                     fill={theme.color.fillContactIcon}                
                 />
                 {props.contacts.email}
-            </Email>
+            </Email>            
             {
-                props.contacts.callback && (<Callback>Заказать звонок</Callback>)
+                props.contacts.callback &&  props.handleToggleModalWindow &&  
+                (<Callback onClick={() => props.handleToggleModalWindow?.("callback")}>Заказать звонок</Callback>)
             }
         </StyledContactBox>
     );
 };
 
 const StyledContactBox = styled.div`
-    grid-area: contact;  
-    
+    grid-area: contact;    
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    
+
+    @media ${({theme}) => theme.media.tablet} {
+        align-items: flex-start;
+    }    
 `
 const Phone = styled.span`
     display: flex;
     column-gap: 10px;
-
+    font-size: calc((100vw - 26rem)/(137 - 26) * (1.14 - 1) + 1rem); 
     font-weight: 700;
     line-height: 20px;
     color: ${({theme}) => theme.color.defaultText};
 `
 const Description = styled.span`
-    font-size: 0.875rem;
+    font-size: calc((100vw - 26rem)/(137 - 26) * (1 - 0.86) + 0.86rem); 
     color: ${({theme}) => theme.color.multiСhannel};
     margin-bottom: 10px;
+
+    @media ${({theme}) => theme.media.tablet} {
+        align-self: center;
+    }
 `
 const Email = styled.a`
     display: flex;
     align-items: center;
     column-gap: 10px;
     font-weight: 700;
+    font-size: calc((100vw - 26rem)/(137 - 26) * (1.14 - 1) + 1rem); 
     text-decoration: none;
     color: ${({theme}) => theme.color.defaultText};
     margin-top: 10px;
@@ -92,5 +115,9 @@ const Callback = styled.a`
 
     &:hover {
         color: ${({theme}) => theme.color.secondary};  
+    }
+
+    @media ${({theme}) => theme.media.tablet} {
+        align-self: center;
     }
 `

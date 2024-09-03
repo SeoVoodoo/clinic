@@ -7,6 +7,7 @@ type AdvantagePropsType = {
     startWord:string
     endWord:string
     num:number
+    fontSize:number
 }
 
 // type StyledAdvantagePropsType = {
@@ -16,7 +17,7 @@ type AdvantagePropsType = {
 export const Advantage: React.FC<AdvantagePropsType> = (props: AdvantagePropsType) => {
     //console.log("num", typeof props.num);
     return (
-        <StyledAdvantage num={props.num}>
+        <StyledAdvantage num={props.num} fontSize={props.fontSize}>
             <StyledBgImage pos={props.pos} />
             <Text>{props.startWord}<br />{props.endWord}</Text>          
         </StyledAdvantage>
@@ -24,7 +25,7 @@ export const Advantage: React.FC<AdvantagePropsType> = (props: AdvantagePropsTyp
 };
 
 
-const StyledAdvantage = styled.li<{num:number}>`
+const StyledAdvantage = styled.li<{num:number, fontSize:number}>`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,15 +34,16 @@ const StyledAdvantage = styled.li<{num:number}>`
     outline: 1px solid ${({theme}) => theme.color.outline};
 
     @media ${({theme}) => theme.media.mobile} {  
-            gap: 0;
-        }    
+        gap: 0;
+    }    
     
     ${StyledBgImage} {
         width: 99px; 
-        height: 90px;
+        height: 90px;        
 
         @media ${({theme}) => theme.media.mobile} {  
-            transform: scale(0.5);             
+            //transform: scale(0.5);  
+            transform: ${props => props.fontSize > 14 ? "scale(1)" : "scale(0.5)"}           
         }
     }
 

@@ -108,3 +108,25 @@ export const fadeIn = keyframes`
       opacity: 1;
     }
 `
+
+export const modalIn = keyframes`
+	from {
+		transform: translateY(-150%);
+		opacity: 0;
+  	}
+	to {
+		transform: translateY(0%);
+		opacity: 1;
+	}
+`
+
+export const modalOut = keyframes`
+	from {
+		transform: translateY(0%);
+		opacity: 1;
+  	}
+	to {
+		transform: translateY(150%);
+		opacity: 0;
+	}
+`

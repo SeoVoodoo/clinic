@@ -3,7 +3,7 @@ import { sendEmail } from "../lib/mail";
 export default async function handler(req, res) {
 	console.log("req", req);
 	const message = {
-		to: 'seovoodoo.guru@gmail.com',
+		to: '',
 		subject: `Запрос для справки 3НДФЛ от ${req.body.patientFullName}`,
 		text: `
 			ФИО налогоплательщика: ${req.body.taxpayerFullName},

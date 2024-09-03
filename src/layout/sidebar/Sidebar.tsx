@@ -22,9 +22,10 @@ export const Sidebar: React.FC<SidebarPropsType> = (props: SidebarPropsType) => 
             <Nav> 
                 <TopLevel
                     sidebar={props.sidebar}   
-                    ids= {props.sidebar.sidebarMenu.entities.topLevelIds}
+                    ids= {props.sidebar.sidebarMenu.entities.topLevelIds.descktop}
                     isActiveId={isActiveId}
                     setIsActiveId={setIsActiveId}
+                    descktop
                 />            
             </Nav>                        
         </StyledSidebar>
