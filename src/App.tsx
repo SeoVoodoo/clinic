@@ -27,12 +27,12 @@ import UsefulInformation from './pages/main/UsefulInformation';
 import { Footer } from './layout/footer/Footer';
 import { Sidebar } from './layout/sidebar/Sidebar';
 import { Overlay } from './components/Overlay';
-import { ModalWindow3ndfl } from './components/pop-up/ModalWindow3ndfl';
 import { ModalWindowRecord } from './components/pop-up/ModalWindowRecord';
 import { ModalWindowCallback } from './components/pop-up/ModalWindowCallback';
 import { Reviews } from './pages/main/Reviews';
 import { WindowSize } from './hooks/WindowSize';
-
+import { ModalWindowThanks } from './components/pop-up/ModalWindowThanks';
+import { ModalWindow3ndfl } from './components/pop-up/ModalWindow3ndfl';
 
 
 const initialFontSize = 14;
@@ -143,6 +143,8 @@ function App(props: {store: StoreType}) {
   const [isOpenModalWindow3ndfl, setIsOpenModalWindow3ndfl] = useState(false);
   const [isOpenModalWindowRecord, setIsOpenModalWindowRecord] = useState(false);
   const [isOpenModalWindowCallback, setIsOpenModalWindowCallback] = useState(false);
+  const [isOpenModalWindowThanks, setIsOpenModalWindowThanks] = useState(false);
+  
 
   const handleToggleModalWindow = (windowName?: string) => {    
     switch(windowName){
@@ -154,10 +156,24 @@ function App(props: {store: StoreType}) {
         break;
       case "callback":
         setIsOpenModalWindowCallback(prev => !prev);
+        break;
+      case "thanks":
+        setIsOpenModalWindowThanks(prev => !prev);
         break; 
       default:
         setIsOpenSidebar(prev => !prev);
     }
+  }
+
+  const handleSuccess = () => {
+    setIsOpenModalWindow3ndfl(false);
+    setIsOpenModalWindowRecord(false);
+    setIsOpenModalWindowCallback(false);
+    setIsOpenModalWindowThanks(true);
+  }
+
+  const handleError = () => {
+    alert("Упс, что-то пошло не так..");  
   }
 
   useEffect(() => {
@@ -194,17 +210,29 @@ function App(props: {store: StoreType}) {
       {isOpenModalWindow3ndfl && 
         <ModalWindow3ndfl 
           handleToggleModalWindow={handleToggleModalWindow} 
-          values={state.header.forms.ndfl.values} 
+          values={state.header.forms.ndfl.values}          
+          onSuccess={handleSuccess}
+          onError={handleError}
         />}
       {isOpenModalWindowRecord && 
-        <ModalWindowRecord handleToggleModalWindow={handleToggleModalWindow} />
+        <ModalWindowRecord 
+          handleToggleModalWindow={handleToggleModalWindow}
+          onSuccess={handleSuccess}
+          onError={handleError} 
+        />
       }
       {isOpenModalWindowCallback && 
         <ModalWindowCallback 
           isOpenModalWindowCallback={isOpenModalWindowCallback}
           handleToggleModalWindow={handleToggleModalWindow} 
+          onSuccess={handleSuccess}
+          onError={handleError}
         />
       }
+      <ModalWindowThanks 
+        isOpenModalWindowThanks={isOpenModalWindowThanks}
+        handleToggleModalWindow={handleToggleModalWindow}
+      />
       
       <Wrap offset={visuallyImpairedPanel.translateY}>
         
@@ -231,23 +259,34 @@ function App(props: {store: StoreType}) {
         
         <>        
           <Routes>
-            <Route path="/clinic" element = {<Home 
+            <Route path="/" element = {<Home 
               homePage={state.homePage} 
               themeName={themeName} 
-              fontSize={fontSize} />} 
+              fontSize={fontSize} 
+              dispatch={props.store.dispatch}
+              windowWidth={windowWidth} />} 
             />
             <Route path="/prices" element = {<Prices 
               pricesPage={state.pricesPage}
               windowWidth={windowWidth} 
               />} 
             />
-            <Route path="/doctors" element = {<AllDoctors />} />
-            <Route path="/timetable" element = {<Timetable />} />
+            <Route path="/reviews" element = {<Reviews 
+                reviewsPage={state.reviewsPage}
+                windowWidth={windowWidth}
+                dispatch={props.store.dispatch}
+              />} 
+            />
+
+            <Route path="/timetable" element = {<Timetable 
+              timeTablePage={state.timeTablePage}/>} 
+            />
+
+            <Route path="/doctors" element = {<AllDoctors />} />            
             <Route path="/eco" element = {<Eco />} />
             <Route path="/faq" element = {<Faq />} />
             <Route path="/contacts" element = {<Contacts />} />
-            <Route path="/about" element = {<About />} />
-            <Route path="/reviews" element = {<Reviews />} />
+            <Route path="/about" element = {<About />} />            
             <Route path="/news" element = {<News />} />
             <Route path="/usefulInfo" element = {<UsefulInformation />} />
             <Route path="/questionnaire" element = {<Questionnaire />} />

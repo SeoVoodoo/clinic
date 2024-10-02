@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import sprite from "../../assets/images/png-sprite/icons/sprite-min.png";
+import { Link } from 'react-router-dom';
 
 type LogoPropsType = {
     head?: boolean
@@ -9,11 +10,11 @@ type LogoPropsType = {
 export const Logo: React.FC<LogoPropsType> = (props: LogoPropsType) => {
     return (
         <StyledLogo head={props.head}>
-            <a onClick={() => {}}>
+            <Link to={"/"}>
                 <Logotype head={props.head}>
 
                 </Logotype>
-            </a>            
+            </Link>            
         </StyledLogo>
     );
 };

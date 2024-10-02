@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Img1 from "../assets/images/home_slider/pgt.webp";
 import Img2 from "../assets/images/home_slider/unikalnaya-specializirovannaya-sreda.webp";
 import Img3 from "../assets/images/home_slider/artroskopiya-kolennogo-sustava.webp";
@@ -59,36 +58,7 @@ import Img_patner_7 from "../assets/images/single-img/homePage/partners/partners
 import Img_patner_8 from "../assets/images/single-img/homePage/partners/partners_8.webp";
 
 
-// type mainSliderType = {
-//     imageSrc:string
-//     imageAlt:string
-//     title:string
-//     subTitle:string               
-//     path:string
-//     colorTitleType:string
-//     colorSubTitleType:string
-//     bgBtnType:string
-// }
-
-// type advantagesType = {
-//     bgPosition:string
-//     startWord:string
-//     endWord:string
-// }
-
-// type servicesType = {
-//     serviceName:string
-//     path:string
-//     bgPosition:string
-// }
-
-// type doctorsType = {
-//     fullName:string
-//     post:string
-//     workExperience:string
-//     foto:string
-//     path:string
-// }
+const UPDATE_LAST_REVIEW = "UPDATE_LAST_REVIEW";
 
 const initialState = {    
     mainSlider: [
@@ -431,6 +401,14 @@ const initialState = {
             path: 'news_4'
         }
     ],
+    lastReview: {
+        date: '11.09.2024 13:40',
+        patient: '7 960 37XXXXX',
+        history: 'Я обратилась в "Альянс клиник" с проблемой бесплодия. Даже и не знала, что творится в моём организме. Думала, что у меня всё в порядке со здоровьем. Пройдя многочисленные обследования, я поняла, что есть проблемы (и не одна). Здесь мне назначали лечение лекарствами, делали уколы, ставили систему и сделали уже четыре операции.',
+        liked: 'Вежливое обслуживание. Девушки в приёмной очень доброжелательные. Когда надо - всё подскажут и помогут при необходимости. Мне нравится ходить на сдачу анализов к лаборанту Наталье. Она очень приветливая. Безболезненно берёт кровь и делает уколы. С ней приятно общаться. Может дать полезный совет. На операции я хожу почти без страха. Знаю, что работают отличные специалисты. После операции появляется желание пойти и заняться своими делами, забывая о том, что надо отдохнуть. Болезненных ощущений особо не чувствуешь.',
+        notLiked: 'Всё понравилось.',
+        сlinicAdministrator: 'Добрый день, уважаемый пациент. Признательны за ваш выбор и оказанное доверие. Рады, что вы внимательно относитесь к своему здоровью. Желаем, чтобы дальше всё складывалось замечательно!'
+    },
     usefulInfo: [
         {
             id: 1,
@@ -520,5 +498,45 @@ const initialState = {
 export type initialStateType = typeof initialState;
 
 export const homeReducer = (state = initialState, action:any):initialStateType => {
-    return state;
+
+    switch(action.type) {
+        case UPDATE_LAST_REVIEW:
+            return {
+                ...state,
+                lastReview: {
+                    ...state.lastReview,
+                    date: action.newDate,
+                    patient: action.newPatient,
+                    history: action.newHistory,
+                    liked: action.newLiked,
+                    notLiked: action.newNotLiked,
+                    сlinicAdministrator: action.newAnswer
+                }
+            }
+        default:
+            return state;
+    }
+    
 };
+
+// interface DataLastReview [
+//     date:string,
+//     patient:string,
+//     history?:string 
+//     plus?:string
+//     minus?:string
+//     answer?:string
+// ]
+
+export const updateLastReviewActionCreater = (...data:string[]) => {
+    const [date, patient, history, plus, minus, answer] = data;
+    return ({
+        type: UPDATE_LAST_REVIEW, 
+        newDate: date,
+        newPatient: patient,
+        newHistory: history,
+        newLiked: plus,
+        notLiked: minus,
+        newAnswer: answer
+    })
+}

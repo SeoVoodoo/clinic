@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-//import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import { store } from './redux/redux-store';
 
+const ScrollTop = () => {
+  const pathname = useLocation();
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: 'instant'
+  //   })
+  // }, [pathname])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
+  return null
+}
 
-// type storeType = {
-//   headerMenu: {
-//     mainMenu: Array<{ancor:string, path:string}>,
-//     sabMenu: Array<{ancor:string, path:string}>
-//   }
-// }
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,6 +28,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollTop />
       <App store={store} />
     </BrowserRouter>
   </React.StrictMode>

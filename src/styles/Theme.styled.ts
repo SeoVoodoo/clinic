@@ -23,8 +23,7 @@ export const myTheme = {
             },            
             default: "white",
             defaultHover: "#1D1F24",
-            firstLinkMenu: "rgba(91, 238, 208, 0.2)",
-            firstLinkMenuHover: "rgba(245, 130, 32, 1)",
+            firstLinkMenu: "rgba(91, 238, 208, 0.2)",            
             swiperPaginationBulletActive: "rgba(245, 130, 32, 1)",
             homePage: {
                 advantages: {
@@ -48,7 +47,12 @@ export const myTheme = {
                 },
                 doctors: "rgba(231, 236, 240, 0.3)",
                 news: "rgba(246, 191, 142, 0.1)",
+                review: "rgba(160, 228, 220, 0.1)",
                 info: "rgba(231, 236, 240, 0.6)" 
+            },
+            pageName: {
+                price: "rgba(242, 245, 247, 1)",
+                reviews: "rgba(242, 245, 247, 1)", 
             }
         },
 
@@ -139,8 +143,7 @@ export const myTheme = {
             },            
             default: "white",
             defaultHover: "rgba(0, 0, 0, .4)",
-            firstLinkMenu: "rgba(0, 0, 0, 1)",
-            firstLinkMenuHover: "#6b6b6b",
+            firstLinkMenu: "rgba(0, 0, 0, 1)",            
             swiperPaginationBulletActive: "rgba(0, 0, 0, 1)",
             homePage: {
                 advantages: {
@@ -164,7 +167,12 @@ export const myTheme = {
                 },
                 doctors: "rgba(255, 255, 255, 1)",
                 news: "rgba(255, 255, 255, 1)",
+                review: "rgba(255, 255, 255, 1)",
                 info: "rgba(255, 255, 255, 1)"
+            },
+            pageName: {
+                price: "rgba(255, 255, 255, 1)",
+                reviews: "rgba(255, 255, 255, 1)"
             }
         },
 
@@ -254,8 +262,7 @@ export const myTheme = {
             },            
             default: "black",
             defaultHover: "#6b6b6b",
-            firstLinkMenu: "rgba(255, 255, 255, 1)",
-            firstLinkMenuHover: "rgba(255, 255, 255, .7)",
+            firstLinkMenu: "rgba(255, 255, 255, 1)",            
             swiperPaginationBulletActive: "rgba(0, 0, 0, 1)",
             homePage: {
                 advantages: {
@@ -279,9 +286,13 @@ export const myTheme = {
                 },
                 doctors: "rgba(0, 0, 0, 1)",
                 news: "rgba(0, 0, 0, 1)",
+                review: "rgba(0, 0, 0, 1)",
                 info: "rgba(0, 0, 0, 1)"
-            }
-            
+            },
+            pageName: {
+                price: "rgba(0, 0, 0, 1)",
+                reviews: "rgba(0, 0, 0, 1)"
+            }            
         },
 
         color: {
@@ -369,8 +380,7 @@ export const myTheme = {
             },            
             default: "rgba(157, 209, 255, 1)",
             defaultHover: "rgba(157, 209, 255, .5)",
-            firstLinkMenu: "rgba(157, 209, 255, 1)",
-            firstLinkMenuHover: "rgba(157, 209, 255, .5)",
+            firstLinkMenu: "rgba(157, 209, 255, 1)",            
             swiperPaginationBulletActive: "rgba(6, 52, 98, 1)",
             homePage: {
                 advantages: {
@@ -394,9 +404,13 @@ export const myTheme = {
                 },
                 doctors: "rgba(157, 209, 255, 1)",
                 news: "rgba(157, 209, 255, 1)",
+                review: "rgba(157, 209, 255, 1)",
                 info: "rgba(157, 209, 255, 1)"
-            }
-            
+            },
+            pageName: {
+                price: "rgba(157, 209, 255, 1)",
+                reviews: "rgba(157, 209, 255, 1)"
+            }            
         },
 
         color: {

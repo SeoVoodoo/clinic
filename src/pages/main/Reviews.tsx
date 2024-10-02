@@ -1,85 +1,96 @@
-import React from 'react';
-import { JSX } from 'react/jsx-runtime';
+import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
+import { PageTopPart } from '../../components/PageTopPart';
+import { Container } from '../../components/Container';
+import { updateLastReviewActionCreater } from '../../redux/homeReducer';
 
-export const Reviews = () => {
+type ReviewsPropsType = {
+  windowWidth:number
+  reviewsPage: {
+    pageTopPart: {
+      pageName:string
+      title:string
+      srcDesktop:string           
+      srcMobile:string
+    }
+  }  
+  dispatch:Function
+  hidden?:boolean
+}
 
-  // const markup = renderToStaticMarkup(
-  //   <html>
-  //       <head />
-  //       <body>{}</body>
-  //   </html>
-  // );
+export const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => {
 
-    return (
-      <>Отзывы</>
-        // <div>
-        //   Страница отзывы с сайта Продокторов <br />
-        //   <div id="pd_widget_big"  data-lpu="40755">
-        //     <Title>Отзывы о «Альянс клиник» на Сурова<br />
-        //     <Link1 target="_blank" href="https://prodoctorov.ru/new/rate/lpu/40755/"
-        //     >Оставить отзыв</Link1></Title>
+  
+  useEffect(() => {
 
-        //     <div id="pd_widget_big_content"></div>
+    const script = document.createElement('script');
+    script.src = 'https://prodoctorov.ru/static/js/widget_big.js?v7';
+    script.defer = true;
+    document.body.appendChild(script);    
+    
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, [])
 
-        //     <Link2 target="_blank" href="https://prodoctorov.ru/ulyanovsk/lpu/40755-alyans-klinik-na-surova/#otzivi">Читать все отзывы</Link2>
+ 
+  setTimeout(() => {
+    const reviews__header = document.querySelector('.pd-widget-reviews__header > div') as HTMLElement;      
+    const patient = reviews__header.innerHTML;
 
-        //     <span id="pd_powered_by"><a target="_blank" href="https://prodoctorov.ru"><img  src="https://prodoctorov.ru/static/_v1/pd/logos/logo-pd-widget.png" /></a></span>
-        //     </div>
-        //     <script async defer src="https://prodoctorov.ru/static/js/widget_big.js?v7"></script> 
-        // </div>
-      
-    );
+    const reviews__date = document.querySelector('.pd-widget-reviews__date') as HTMLElement; 
+    const date = reviews__date.innerHTML;
+
+    const reviews__review = document.querySelector('.pd-widget-reviews__review') as HTMLElement;
+    const comments = reviews__review.querySelectorAll('.pd-widget-reviews__comment-text');
+    const history = comments[0].innerHTML;
+    const plus = comments[1].innerHTML;
+    const minus = comments[2] ? comments[2].innerHTML : "";
+
+    const reviews__reply_text = document.querySelector('.pd-widget-reviews__reply-text') as HTMLElement;
+    const answer = reviews__reply_text.innerHTML;
+
+    const action = updateLastReviewActionCreater(patient, date, history, plus, minus, answer);
+    props.dispatch(action);   
+
+  }, 1000);
+
+  
+
+  return (    
+    <StyledReviews hidden={props.hidden}>
+    { !props.hidden && <PageTopPart 
+      pageTopPart={props.reviewsPage.pageTopPart} 
+      windowWidth={props.windowWidth}
+    />}
+    <Container> 
+      <Wrap>
+      <div
+        id="pd_widget_big"
+        data-lpu="40755"
+        dangerouslySetInnerHTML={{ __html: `
+            <div class="pd_rate_header">Отзывы о «Альянс клиник» на Сурова<br>
+            <a target="_blank" class="pd_rate_new" href="https://prodoctorov.ru/new/rate/lpu/40755/">Оставить отзыв</a></div>
+
+            <div id="pd_widget_big_content"></div>
+            <a target="_blank" href="https://prodoctorov.ru/ulyanovsk/lpu/40755-alyans-klinik-na-surova/#otzivi" class="pd_read_all">Читать все отзывы</a>
+
+            <span id="pd_powered_by"><a target="_blank" href="https://prodoctorov.ru"><img class='pd_logo' src="https://prodoctorov.ru/static/_v1/pd/logos/logo-pd-widget.png"></a></span>
+        `}}
+      />  
+      </Wrap>    
+    </Container> 
+    </StyledReviews>
+          
+  );
 };
 
-
-//renderToStaticMarkup
-
-const Title = styled.div`
-  font-size: 18px !important;
-  font-weight: 600 !important;  
+const StyledReviews = styled.div<{hidden?:boolean}>`
+  width: 100%;
+  display: ${props => props.hidden ? "none" : "block"};    
 `
-const Link1 = styled.a`
-  box-sizing: content-box !important;
-  -webkit-user-select: none !important;
-  user-select: none !important;
-  cursor: pointer !important;
-  text-align: center !important;
-  color: #fff !important;
-  background: #1a5dd0 !important;
-  border-radius: 4px !important;
-  padding: 8px !important;
-  font-size: 13px !important;
-  font-style: normal !important;
-  font-weight: 600 !important;
-  line-height: 130% !important;
-  text-decoration: none !important;
-  transition: background-color .2s ease-in-out !important;
-  display: inline-block !important;
-  width: 122px !important;
-  margin-top: 8px !important;
+const Wrap = styled.div`
+  display: flex;
+  justify-content: center;   
 `
-const Link2 = styled.a`
-  box-sizing: content-box !important;
-  -webkit-user-select: none !important;
-  user-select: none !important;
-  cursor: pointer !important;
-  text-align: center !important;
-  color: #fff !important;
-  background: #1a5dd0 !important;
-  border-radius: 4px !important;
-  padding: 8px !important;
-  font-size: 13px !important;
-  font-style: normal !important;
-  font-weight: 600 !important;
-  line-height: 130% !important;
-  text-decoration: none !important;
-  transition: background-color .2s ease-in-out !important;
-  float: left !important;
-  width: 137px !important;
-  margin-top: 12px !important;
-`
-// function renderToStaticMarkup(arg0: JSX.Element) {
-//   throw new Error('Function not implemented.');
-// }
 

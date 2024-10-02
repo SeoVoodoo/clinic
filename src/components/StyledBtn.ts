@@ -7,6 +7,7 @@ type ButtonPropsType = {
     color?: string
     bgBtnType?: string
     themeName?: string
+    isOpenMenu?: boolean
 }
 
 export const StyledBtn = styled.button<ButtonPropsType>`
@@ -97,6 +98,48 @@ export const StyledGreenLink = styled(Link)`
 
     @media ${({theme}) => theme.media.mobile} {
         padding: 12px 0;
+    }
+`
+
+export const StyledDropdawnBtn = styled.button<ButtonPropsType>`
+    max-width: 456px;
+    width: 100%;
+    height: 50px;
+    padding: 12px 20px;
+    border: 1px solid ${({theme}) => theme.color.primary};
+    //outline: 1px solid ${({theme}) => theme.color.outline};
+    border-radius: 9px;
+    font-size: 1rem;    
+    font-weight: 700; 
+
+    background-color: ${props => props.isOpenMenu 
+        ? ({theme}) => theme.bgCol.btn.primary 
+        :({theme}) => theme.bgCol.default };
+
+    color: ${props => props.isOpenMenu 
+        ? ({theme}) => theme.color.defaultBtn
+        : ({theme}) => theme.color.primary };
+    z-index: 30;
+    /* transition: background-color 0.4s, box-shadow 0.2s 0.1s; */
+
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+        box-shadow: rgba(0, 166, 81, 1) 0px 0px 10px 2px inset;
+    }
+    
+    @media ${({theme}) => theme.media.mobile} {
+        /* left: 50%;
+        transform: translateX(-50%); */
+        max-width: 300px;
+        &:hover {
+            box-shadow: none;
+        }
     }
 `
 

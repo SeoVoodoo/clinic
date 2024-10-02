@@ -4,22 +4,25 @@ import { styled } from 'styled-components';
 
 type CheckboxPropsType = {    
     value?:string
+    checked?: boolean
     agreement?:boolean
+    handleInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void    
+    id?:string
 }
 
 export const Checkbox: React.FC<CheckboxPropsType> = (props: CheckboxPropsType) => {
     return (
         <StyledCheckbox>
             {
-                props.agreement 
+                props.agreement
                 ?                  
                 <label>
                     <input type="checkbox" required/>                            
-                    <span>Я согласен на <Link to={'/#'}>обработку персональных данных</Link></span>
+                    <span style={{textAlign: "left"}}>Я согласен на обработку <Link to={'/#'}>персональных данных</Link></span>
                 </label>  
                 : 
                 <label>
-                    <input type="checkbox" name="period" value={props.value} />                            
+                    <input type="checkbox" name="period" id={props.id} value={props.value} onChange={props.handleInputChange} checked={props.checked} />                            
                     <span>{props.value}</span>
                 </label>
             }                        

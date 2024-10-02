@@ -4,94 +4,88 @@ import { StyledH2 } from '../StyledH2';
 import { StyledCallbackBtn } from '../StyledBtn';
 import { CloseButton } from './CloseButton';
 import { fadeIn } from '../../styles/Animations';
-import { Checkbox } from './Checkbox';
 import bgForm_3ndfl from '../../assets/images/single-img/desctop/bg_form_3ndfl.svg'
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { ValidationSchema } from '../../shared/lib/validate-form/ValidateForm';
+import { Input } from '../../shared/ui/input/Input';
+import { Select } from '../../shared/ui/select/Select';
+import { CheckboxGroup } from '../../shared/ui/checkbox-group/CheckboxGroup';
+import { Checkbox } from '../../shared/ui/checkbox/Checkbox';
+import { sendForm } from '../../shared/lib/send-form/SendForm';
 
 type ModalWindow3ndflPropsType = {
     handleToggleModalWindow: (windowName: string) => void  
-    values: string[] 
+    values: string[]
+    onSuccess: () => void
+    onError: () => void
 }
 
+const mailMapper: any = {
+    username_taxpayer: "ФИО налогоплательщика",
+    inn: "ИНН налогоплательщика",
+    username_patient: "ФИО пациента",
+    forWhom: "За кого возвращаете",
+    phone: "Телефон",
+    period: "Период",
+    branchAddress: "Хочу забрать на"
+}
 
+const formatCheckboxGroupOptions = (values: string[]) => values.map((value) => ({ label: value, value }));
+
+const branchAddressOptions = [
+    { label: 'Сурова, д.4', value: 'Сурова, д.4' },
+    { label: 'Бебеля, д.1А', value: 'Бебеля, д.1А' }
+]
+
+const forWhomOptions = [
+    { label: 'За себя', value: 'За себя' },
+    { label: 'За жену', value: 'За жену' },
+    { label: 'За мужа', value: 'За мужа' },
+    { label: 'За сына', value: 'За сына' },
+    { label: 'За дочь', value: 'За дочь' },
+    { label: 'За мать', value: 'За мать' },
+    { label: 'За отца', value: 'За отца' },
+]
+
+
+const formSchema: ValidationSchema = {
+    username_taxpayer: {
+        required: true,
+        validator: (value: string) => value.length > 2,
+        message: 'ФИО должно быть не меньше 3 символов'
+    },
+    inn: {
+        required: true
+    },
+    username_patient: {
+        required: true,
+        validator: (value: string) => value.length > 2,
+        message: 'ФИО должно быть не меньше 3 символов'
+    },
+    forWhom: {
+        required: true
+    },
+    phone: {
+        required: true,
+        validator: (value) => /^(?:\+7|8)(?:\(\d{3}\)|\d{3})\d{3}-?\d\d-?\d\d$/.test(String(value)),
+        message: 'Номер введен неверно'
+    },
+    period: {
+        required: true
+    },
+    branchAddress: {
+        required: true
+    },
+    agreement: {
+        required: true,
+        // validator: (value) => value === null,
+        // message: 'Подтвердите согласие'
+    }
+}
 
 export const ModalWindow3ndfl: React.FC<ModalWindow3ndflPropsType> = (props: ModalWindow3ndflPropsType) => {
-    const [taxpayerFullName, setTaxpayerFullName] = useState('');
-    const [inn, setInn] = useState('');
-    const [patientFullName, setPatientFullName] = useState('');
-    const [phone, setPhone] = useState('');
-
-    // async function sendForm() {
-        
-	// 	try {            
-	// 	    await axios.post('http://localhost:3000/clinic/server/app', {
-	// 			taxpayerFullName, inn, patientFullName, phone
-	// 		});
-            
-	// 		setTaxpayerFullName('');			
-	// 		setInn('');
-	// 		setPatientFullName('');
-	// 		setPhone('');
-    //         alert("Email sent!");
-	// 	} 
-    //     catch (error) {
-	// 		console.log('Произошла ошибка', error);
-	// 	}
-	// }
-
-    async function sendForm(e: { preventDefault: () => void; }) {
-        e.preventDefault();
-        console.log("Зашли в sendForm");
-        await axios
-          .post("/server/app", {
-            params: {
-                taxpayerFullName,
-                inn,
-                patientFullName,
-                phone
-            },
-          })
-          .then(() => {
-            //success
-            console.log("Успех");
-          })
-          .catch(() => {
-            console.log("Неудача");
-          });
-      };
-
-    
-
-    // const sendForm = async () => {
-       
-    //     const dataSend = {
-    //         taxpayerFullName: taxpayerFullName,
-    //         inn: inn,
-    //         patientFullName: patientFullName,
-    //         phone: phone
-    //     }
-    
-    //     console.log("dataSend", dataSend);
-        
-
-    //     // send email
-    //     const response = await fetch("/api/send-3ndfl", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json"
-    //         },
-    //         body: JSON.stringify(dataSend)
-    //     })
-
-    //     if (response.ok) { // если HTTP-статус в диапазоне 200-299, то получаем тело ответа
-    //         let json = await response.json();
-    //     } 
-    //     else {
-    //         alert("Ошибка HTTP: " + response.status);
-    //     }
-    // }
-
+    const [errors, setErrors] = useState<any>({});     
+    const title = 'Хочу справку для оформления 3НДФЛ';
     return (
         <StyledModalWindow3ndfl>
             <ModalWindow>
@@ -100,78 +94,85 @@ export const ModalWindow3ndfl: React.FC<ModalWindow3ndflPropsType> = (props: Mod
                     <span>Заказать справку об<br />оплате медицинских услуг</span>
                 </StyledH2>
                    
-                <Form onSubmit={sendForm}>   
+                <Form onSubmit={(e) => sendForm(
+                    e, 
+                    title,
+                    mailMapper, 
+                    formSchema, 
+                    setErrors,
+                    props.onSuccess,
+                    props.onError)}
+                >   
                     
-                    <Field 
-                        type="text" 
-                        name="username_taxpayer" 
+                    <Input
+                        error={errors['username_taxpayer']}
+                        type="text"
+                        name="username_taxpayer"
                         placeholder="ФИО налогоплательщика*" 
-                        maxLength={50} 
-                        required 
-                        value={taxpayerFullName}
-                        onChange={(e) => setTaxpayerFullName(e.target.value)}
-                    />                    
-                    <Field 
-                        type="text" 
-                        name="inn" 
+                        maxLength={50}
+                    />
+
+                    <Input
+                        error={errors['inn']}
+                        type="text"
+                        name="inn"
                         placeholder="ИНН налогоплательщика*" 
-                        pattern="[0-9]{10,12}" 
+                        pattern="[0-9]{10,12}"
                         minLength={10} 
                         maxLength={12} 
-                        required 
-                        value={inn}
-                        onChange={(e) => setInn(e.target.value)}
                     />
-                    <Field 
-                        type="text" 
-                        name="username_patient" 
+
+                    <Input
+                        error={errors['username_patient']}
+                        type="text"
+                        name="username_patient"
                         placeholder="ФИО пациента*" 
                         maxLength={50} 
-                        required
-                        value={patientFullName}
-                        onChange={(e) => setPatientFullName(e.target.value)} 
                     />
-                    <Select name="forWhom" required>
-                        <option value="none" hidden>За кого возвращаете*</option>
-                        <option value="myself">За себя</option>
-                        <option value="wife">За жену</option>
-                        <option value="husband">За мужа</option>
-                        <option value="son">За сына</option>
-                        <option value="daughter">За дочь</option>
-                        <option value="mother">За мать</option>
-                        <option value="father">За отца</option>
-                    </Select>
+               
+                    <Select
+                        error={errors['forWhom']}
+                        title="За кого возвращаете*"
+                        name="forWhom"
+                        options={forWhomOptions}
+                    />
 
-                    <Field 
-                        type="tel" 
-                        name="phone" 
+                    <Input
+                        error={errors['phone']}
+                        type="tel"
+                        name="phone"
                         placeholder="Телефон*" 
-                        required
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)} 
                     />
 
-                    <FieldSet>
-                        <legend>Период*</legend>                       
-                        <Checkbox value={props.values[0]} />
-                        <Checkbox value={props.values[1]} />
-                        <Checkbox value={props.values[2]} />
-                    </FieldSet>
+                    <CheckboxGroup
+                        error={errors['period']}
+                        title="Период*"
+                        name="period"
+                        options={formatCheckboxGroupOptions(props.values)}
+                    />
 
-                    <Select name="branchAddress" required>
-                        <option value="none" hidden>Где забрать справку*</option>
-                        <option value="surova">Сурова, д.4</option>
-                        <option value="bebelya">Бебеля, д.1А</option>
-                    </Select>  
+                    <Select
+                        error={errors['branchAddress']}
+                        title="Где забрать справку*"
+                        name="branchAddress"
+                        options={branchAddressOptions}
+                    />
 
-                    <Checkbox agreement />
+                    <Checkbox
+                        error={errors['agreement']}
+                        name="agreement"
+                        label={<span style={{textAlign: "left"}}>Я согласен на обработку <Link to={'#'}>персональных данных</Link></span>}
+                    />
+
                     <StyledCallbackBtn type="submit">Отправить</StyledCallbackBtn>
-                    <span>* - поля обязательные для заполнения</span>
+                    <Note>* - поля обязательные для заполнения</Note>
                 </Form>  
             </ModalWindow>          
         </StyledModalWindow3ndfl>
     );
 };
+
+
 
 const StyledModalWindow3ndfl = styled.div`
     display: flex;
@@ -228,100 +229,47 @@ const Form = styled.form`
     ${StyledCallbackBtn} {
         width: 100%;
         padding: 16px;
-    }
-
-    span:last-of-type {
-        align-self: start;
-        color: ${({theme}) => theme.color.multiСhannel};
-        font-size: calc((100vw - 26rem)/(137 - 26) * (1.29 - 1.14) + 1.14rem);
-    }
+    }    
 `
-
-const Field = styled.input`
-    width: 100%;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.14rem;
-    background-color: ${({theme}) => theme.bgCol.default}; 
-    
-    &::placeholder {
-        color: ${({theme}) => theme.color.multiСhannel};
-    }
-
-    &:focus-visible {
-        outline: 1px solid ${({theme}) => theme.color.multiСhannel};
-    }
-
-    &:not([type="checkbox"]) {
-        padding: 16px 20px;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
-    }
-
-    @media ${({theme}) => theme.media.tablet} {
-        &:not([type="checkbox"]) {
-            padding: 10px 20px;
-        }
-    }
-`
-
-const FieldSet = styled.fieldset`
-    width: 100%;
-    padding: 10px 15px 14px;
-    border: 1px solid ${({theme}) => theme.color.borderFieldSet};
-    border-radius: 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.14rem;    
-    display: flex;
-    
-    legend {
-        text-align: left;
-        margin-left: 4px;
-        color: ${({theme}) => theme.color.multiСhannel};
-    }
-
-    div {
-        margin-right: 30px;  
-    }
-
-    div:first-of-type {
-        margin-left: 5px;
-    }
-
-    @media ${({theme}) => theme.media.mobile} {
-        legend {
-            color: red;
-        }
-    }
-`
-
-const Select = styled.select`
-    width: 100%; 
-    padding: 16px 20px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
-    background-color: transparent;
-
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.14rem;  
-        
+const Note = styled.span`
+    align-self: flex-start;
     color: ${({theme}) => theme.color.multiСhannel};
-
-        
-    option {        
-        background-color: ${({theme}) => theme.bgCol.default};               
-    }
-
-    &:focus-visible {
-        outline: 1px solid ${({theme}) => theme.color.multiСhannel};
-    }
-
-    @media ${({theme}) => theme.media.tablet} {
-        padding: 10px 20px;
-    }              
-    
-    
+    font-size: calc((100vw - 26rem)/(137 - 26) * (1.29 - 1) + 1rem);
 `
+
+
+
+// const FieldSet = styled.fieldset`
+//     width: 100%;
+//     padding: 10px 15px 14px;
+//     border: 1px solid ${({theme}) => theme.color.borderFieldSet};
+//     border-radius: 10px;
+//     font-family: 'Montserrat', sans-serif;
+//     font-size: 1.14rem;    
+//     display: flex;
+    
+//     legend {
+//         text-align: left;
+//         margin-left: 4px;
+//         color: ${({theme}) => theme.color.multiСhannel};
+//     }
+
+//     div {
+//         margin-right: 30px;  
+//     }
+
+//     div:first-of-type {
+//         margin-left: 5px;
+//     }
+
+//     @media ${({theme}) => theme.media.mobile} {
+//         legend {
+//             color: red;
+//         }
+//     }
+// `
+// const ShowError = styled.div`
+//     color: red;
+// `
 
 

@@ -8,6 +8,7 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesPropsType>`
 
     html {
         font-size: ${props => props.fontSize}px;
+        scroll-behavior: smooth;
     }
 
     *,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from '../../components/Container';
 import { MainSlider } from '../../layout/section/homepage/MainSlider';
 import { Advantages } from '../../layout/section/homepage/advantages/Advantages';
@@ -14,6 +14,8 @@ import { Promotions } from '../../layout/section/homepage/promotions/Promotions'
 import { LastNews } from '../../layout/section/homepage/last_news/LastNews';
 import { UsefulInfo } from '../../layout/section/homepage/useful_info/UsefulInfo';
 import { Partners } from '../../layout/section/homepage/partners/Partners';
+import { Review } from '../../layout/section/homepage/review/Review';
+import { Reviews } from './Reviews';
 
 type HomePropsType = {
   homePage: { 
@@ -51,7 +53,7 @@ type HomePropsType = {
       path:string
       frontImg:string
       backImg:string
-    }>,
+    }>,    
     lastNews: Array<{
       id:number
       img:string
@@ -60,6 +62,14 @@ type HomePropsType = {
       prev:string
       path:string
     }>,
+    lastReview: {
+      date:string
+      patient:string
+      history:string
+      liked?:string
+      notLiked?:string
+      сlinicAdministrator:string
+    },
     usefulInfo: Array<{id:number, img:string, title:string, path:string}>,
     partners:Array<{
       id:number, 
@@ -69,10 +79,25 @@ type HomePropsType = {
     }>        
   },
   themeName:string,
-  fontSize:number
+  fontSize:number,
+  dispatch:Function,
+  windowWidth:number
 }
 
 export const Home: React.FC<HomePropsType> = (props: HomePropsType) => {
+
+  useEffect(() => {
+
+    const script = document.createElement('script');
+    script.src = 'https://prodoctorov.ru/static/js/widget_big.js?v7';
+    script.defer = true;
+
+    document.body.appendChild(script);    
+    
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, [])
     
     return (
         <>
@@ -107,6 +132,10 @@ export const Home: React.FC<HomePropsType> = (props: HomePropsType) => {
             </Container>
           </WrapLastNews>
 
+          <Container>
+            <Review lastReview={props.homePage.lastReview} windowWidth={props.windowWidth} />         
+          </Container>
+
           <WrapUsefulInfo>
             <Container>
               <UsefulInfo usefulInfo={props.homePage.usefulInfo} fontSize={props.fontSize}/>         
@@ -116,6 +145,14 @@ export const Home: React.FC<HomePropsType> = (props: HomePropsType) => {
           <Container>
               <Partners partners={props.homePage.partners} />         
           </Container>
+
+          <Reviews
+            reviewsPage={null as any}
+            windowWidth={null as any}
+            dispatch={props.dispatch}
+            //visible={false}
+            hidden
+          />
         </>
     );
 };

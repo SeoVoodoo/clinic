@@ -40,12 +40,11 @@ const StyledTabMenu = styled.nav`
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         justify-content: space-between;
-        gap: 2px;        
-        //margin-bottom: 60px;
+        gap: 2px;
     }    
 `
 const ListItem = styled.li`
-    //flex-grow: 1;
+   
 `
 
 const TabBtn = styled.button<{active:boolean}>` 
@@ -53,31 +52,25 @@ const TabBtn = styled.button<{active:boolean}>`
     height: 70px;
     z-index: -1;
     border: none;
-    outline: 1px solid ${props => props.active ? ({theme}) => theme.color.outline : ({theme}) => theme.color.multiСhannel};
+    border-radius: 24px 24px 0 0;    
     font-size: calc((100vw - 26rem)/(137 - 26) * (1.43 - 1) + 1rem);    
     padding: 22px;
+    border: 1px solid ${props => props.active ? ({theme}) => theme.color.outline : ({theme}) => theme.color.multiСhannel}; 
+    border-bottom: none;      
     
-    border-radius: 24px 24px 0 0;    
-    /* color: ${props => props.active ? ({theme}) => theme.color.defaultBtn : ({theme}) => theme.color.multiСhannel};  
-    background-color:  ${props => props.active ? ({theme}) => theme.bgCol.btn.primary : ({theme}) => theme.bgCol.default};  
-
-    
-     */
-
     color: ${({theme}) => theme.color.multiСhannel};
     background-color: ${({theme}) => theme.bgCol.default};
 
     ${props => !props.active && css`
         &:hover {
+            border: none;
             background: ${({theme}) => theme.bgCol.btn.primaryHover}; 
             color: ${({theme}) => theme.color.defaultBtn};
         }
-    `}
-    
+    `}    
 
     ${props => props.active && css`
         color: ${({theme}) => theme.color.defaultBtn};
         background-color: ${({theme}) => theme.bgCol.btn.primary};        
-    `}
-    
+    `}    
 `

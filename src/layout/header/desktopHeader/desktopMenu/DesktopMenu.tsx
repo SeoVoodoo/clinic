@@ -125,8 +125,8 @@ const DesktopMenuList = styled.ul`
     }
 
     
-    & > li:first-child a:hover {        
-        background-color: ${({theme}) => theme.bgCol.firstLinkMenuHover};
+    & > li:first-child a:hover {
+        box-shadow: ${({theme}) => theme.color.firstLinkMenu} 0px 0px 10px 2px inset;
     }
 
     & > li:nth-child(7) a {        

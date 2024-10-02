@@ -4,6 +4,8 @@ import { headerReducer } from "./headerReducer";
 import { footerReducer } from "./footerReducer";
 import { sidebarReducer } from "./sidebarReducer";
 import { pricesReducer } from "./pricesReducer";
+import { reviewsReducer } from "./reviewsReducer";
+import { timeTableReducer } from "./timeTableReducer";
 
 
 const rootReducer = combineReducers({
@@ -12,6 +14,8 @@ const rootReducer = combineReducers({
     footer: footerReducer,
     sidebar: sidebarReducer,
     pricesPage: pricesReducer,
+    reviewsPage: reviewsReducer,
+    timeTablePage: timeTableReducer
 })
 
 type rootReducerType = typeof rootReducer;
