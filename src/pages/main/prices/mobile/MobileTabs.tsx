@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { styled, useTheme } from 'styled-components';
 import { TabContent } from '../TabContent';
 import { tabNameType } from '../../../../redux/pricesReducer';
 import { Icon } from '../../../../components/icon/Icon';
 
 type MobileTabsPropsType = {
-    tabs: Array<{title:string, status:string}>
-    active:string
-    handleTabClick: (status:string) => void
+    tabs: Array<{title:string, status:string}>    
     navigation: {
         surova: Array<{name:string, href:string}>
         bebelya: Array<{name:string, href:string}>      
@@ -40,18 +38,17 @@ type MobileTabsPropsType = {
       }
 }
 
-export const MobileTabs: React.FC<MobileTabsPropsType> = (props: MobileTabsPropsType) => {
+export const MobileTabs: React.FC<MobileTabsPropsType> = memo((props: MobileTabsPropsType) => {
     const theme = useTheme();
-    const [openTab, setOpenTab] = useState("");
+    const [activeBtn, setActiveBtn] = useState("");
 
-    const handlClick = (status: string) => {
-        if(status === openTab){
-            setOpenTab("");  
+    const handleBtnClick = (status: string) => {
+        if(status === activeBtn){
+            setActiveBtn("");  
         }
         else {
-            setOpenTab(status);
+            setActiveBtn(status);
         }        
-        props.handleTabClick(status);
     }
     return (
         <StyledMobileTabs>
@@ -60,28 +57,25 @@ export const MobileTabs: React.FC<MobileTabsPropsType> = (props: MobileTabsProps
                     props.tabs.map((obj, index) => {                        
                         return (
                             <ListItem key={index} >
-                                <TabBtn 
-                                    //active={props.active === obj.status}
-                                    //onClick={() => props.handleTabClick(obj.status)}
-                                    active={openTab !== "" && props.active === obj.status}
-                                    onClick={() => handlClick(obj.status)}
+                                <TabBtn                                    
+                                    activeBtn={activeBtn === obj.status}
+                                    onClick={() => handleBtnClick(obj.status)}
                                 >
                                     {obj.title}
                                     <Icon
-                                        id={openTab !== "" && props.active === obj.status ? "arrow_up_tab" : "arrow_down_tab"}
+                                        id={activeBtn === obj.status ? "arrow_up_tab" : "arrow_down_tab"}
                                         width="24"
                                         height="24"
                                         viewBox="0 0 24 24" 
-                                        fill={openTab !== "" && props.active === obj.status ? theme.color.defaultBtn : theme.color.multiСhannel}                                       
+                                        fill={activeBtn === obj.status ? theme.color.defaultBtn : theme.color.multiСhannel}                                       
                                     />
                                 </TabBtn>
-                                <TabContent                                    
-                                    active={openTab !== "" ? props.active : ""}
-                                    //active={props.active}
+                                { activeBtn === obj.status && <TabContent                                    
+                                    activeBtn={activeBtn}                                    
                                     currentContent={props.content[obj.status as tabNameType]}
                                     currentNavigation={props.navigation[obj.status as "surova"|"bebelya"]}
-                                    activePanel={obj.status}
-                                />
+                                                                        
+                                />}
                             </ListItem>
                         );
                     })
@@ -89,7 +83,7 @@ export const MobileTabs: React.FC<MobileTabsPropsType> = (props: MobileTabsProps
             </ul>
         </StyledMobileTabs>
     );
-};
+});
 
 const StyledMobileTabs = styled.div`
     margin: 30px 0 60px;
@@ -101,15 +95,15 @@ const StyledMobileTabs = styled.div`
 const ListItem = styled.li`    
 `
 
-const TabBtn = styled.button<{active:boolean}>` 
+const TabBtn = styled.button<{activeBtn:boolean}>` 
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;       
-    border: 1px solid ${props => props.active ? ({theme}) => theme.color.outline : ({theme}) => theme.color.multiСhannel};
+    border: 1px solid ${props => props.activeBtn ? ({theme}) => theme.color.outline : ({theme}) => theme.color.multiСhannel};
     font-size: calc((100vw - 26rem)/(137 - 26) * (1.43 - 1) + 1rem);    
     padding: 22px;       
-    color: ${props => props.active ? ({theme}) => theme.color.defaultBtn : ({theme}) => theme.color.multiСhannel};  
-    background-color:  ${props => props.active ? ({theme}) => theme.bgCol.btn.primary : ({theme}) => theme.bgCol.default};
+    color: ${props => props.activeBtn ? ({theme}) => theme.color.defaultBtn : ({theme}) => theme.color.multiСhannel};  
+    background-color:  ${props => props.activeBtn ? ({theme}) => theme.bgCol.btn.primary : ({theme}) => theme.bgCol.default};
     margin-top: -1px;
 `

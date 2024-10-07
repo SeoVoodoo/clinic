@@ -4,7 +4,7 @@ import { StyledDropdawnBtn } from './StyledBtn';
 import { Icon } from './icon/Icon';
 
 type DropdownPropsType = {
-    currentNavigation: Array<{name:string, href:string}>|null
+    currentNavigation: Array<{name:string, href:string}>
 }
 
 export const Dropdown: React.FC<DropdownPropsType> = (props: DropdownPropsType) => {
@@ -34,15 +34,15 @@ export const Dropdown: React.FC<DropdownPropsType> = (props: DropdownPropsType) 
             </StyledDropdawnBtn>
             <DropdownContent isOpenMenu={isOpenMenu}>
                 <ul>
-                    {props.currentNavigation && props.currentNavigation.map((link) => {
+                    {props.currentNavigation.map((link) => {
                         return (
                             <MenuItem key={link.name}>
-                                <Link
+                                <CurrentLink
                                     href={`#${link.href}`} 
                                     onClick={handleClick}                                   
                                 >
                                     {link.name}
-                                </Link>
+                                </CurrentLink>
 
                             </MenuItem>
                         );
@@ -98,10 +98,9 @@ const MenuItem = styled.li`
   margin-bottom: 10px;  
 `
 
-const Link = styled.a`
-  
+const CurrentLink = styled.a`  
   &:hover {
     color: ${({theme}) => theme.color.primary};
     text-decoration: underline;
-  } 
+  }  
 `

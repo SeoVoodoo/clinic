@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { CloseButton } from '../../components/pop-up/CloseButton';
 import { Counter } from '../../components/counter/Counter';
@@ -19,10 +19,10 @@ type MobileMenuPopupPropsType = {
     isActiveId: string | null
     setIsActiveId: Function   
 }
-export const MenuPopup: React.FC<MobileMenuPopupPropsType> = (props: MobileMenuPopupPropsType) => { 
-        
+export const MenuPopup: React.FC<MobileMenuPopupPropsType> = (props: MobileMenuPopupPropsType) => {
+            
     return (
-        <StyledMenuPopup isOpen={props.isOpen}>
+        <StyledMenuPopup isOpen={props.isOpen} isActiveId={props.isActiveId}>
             <CloseButton 
                 handleCloseMobileModalWindowMenu={props.handleCloseModalWindowMenu} 
                 top="-20px"
@@ -38,28 +38,25 @@ export const MenuPopup: React.FC<MobileMenuPopupPropsType> = (props: MobileMenuP
                 isActiveId={props.isActiveId}
                 setIsActiveId={props.setIsActiveId}
                 mobile
+                handleCloseMobileModalWindowMenu={props.handleCloseModalWindowMenu}
             />            
         </StyledMenuPopup>
     );
 };
 
-const StyledMenuPopup = styled.div<{isOpen:boolean}>`  
+const StyledMenuPopup = styled.div<{isOpen:boolean, isActiveId:string|null}>`  
     width: 100%;
-    height: 100%;
+    height: ${props => props.isActiveId ? "auto" : "100vh"};    
     padding: 44px 20px 64px;
-    margin: 0 auto;   
-    
+    margin: 0 auto;    
     background-color: ${({theme}) => theme.bgCol.default};
-    z-index: 100;
-    
+    z-index: 100;    
     position: fixed;
     top: 58px;  
-    left: 0;  
-      
+    left: 0;      
     transform: ${props => props.isOpen ? "translateX(0)" : "translateX(-100%)"};
-    transition: transform 0.6s; 
-
-
+    transition: transform 0.6s;
+    
     @media ${({theme}) => theme.media.lg992}{
         ${StyledBtn} {
             display: none;                   
@@ -79,9 +76,3 @@ const StyledMenuPopup = styled.div<{isOpen:boolean}>`
         }
     }
 `
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { styled } from 'styled-components';
 import { Container } from '../../../components/Container';
 import { DesktopTabs } from './desktop/DesktopTabs';
@@ -51,7 +51,7 @@ type PricesPropsType = {
   }
 }
 
-export const Prices: React.FC<PricesPropsType> = (props: PricesPropsType) => {
+const Prices: React.FC<PricesPropsType> = memo((props: PricesPropsType) => {
   const[curentBtnActive, setCurentBtnActive] = useState("surova");
   const breakpoint = 576;
   const handleTabClick = (status:string) => {
@@ -75,15 +75,13 @@ export const Prices: React.FC<PricesPropsType> = (props: PricesPropsType) => {
         {props.windowWidth > breakpoint 
           ? <DesktopTabs 
               tabs={props.pricesPage.tabs}
-              active={curentBtnActive}
+              activeBtn={curentBtnActive}
               handleTabClick={handleTabClick}
               content={props.pricesPage.content[curentBtnActive as tabNameType]} 
               navigation={props.pricesPage.navigation[curentBtnActive as "surova"|"bebelya"]}                               
             /> 
           : <MobileTabs 
-              tabs={props.pricesPage.tabs}
-              active={curentBtnActive}              
-              handleTabClick={handleTabClick}
+              tabs={props.pricesPage.tabs}              
               content={props.pricesPage.content}
               navigation={props.pricesPage.navigation}
             />
@@ -91,7 +89,9 @@ export const Prices: React.FC<PricesPropsType> = (props: PricesPropsType) => {
       </Container>
     </StyledPrices>
   );
-};
+});
+
+export default Prices;
 
 const StyledPrices = styled.div`
   width: 100%;

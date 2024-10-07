@@ -1,17 +1,18 @@
 import React from 'react';
 import { Container } from '../../components/Container';
 
-export const Tour = () => {
+const Tour: React.FC = () => {
     return (
         <>
-        <Container>          
+        <Container> 
+                
           <iframe
                 src="/virtual_tour/tour.html"
                 frameBorder="0"
                 scrolling="no"
                 style={{ display: 'block', margin: '0 auto' }}
                 width="100%"
-                height="650"
+                height="350"
                 title="Тур"
             ></iframe>
         </Container>
@@ -19,3 +20,5 @@ export const Tour = () => {
         
     );
 };
+
+export default Tour;

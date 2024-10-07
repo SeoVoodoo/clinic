@@ -18,7 +18,7 @@ type ReviewsPropsType = {
   hidden?:boolean
 }
 
-export const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => {
+const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => {
 
   
   useEffect(() => {
@@ -84,6 +84,8 @@ export const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => 
           
   );
 };
+
+export default Reviews;
 
 const StyledReviews = styled.div<{hidden?:boolean}>`
   width: 100%;

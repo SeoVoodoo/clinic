@@ -12,6 +12,7 @@ import { MobileContactPopup } from './mobilePopup/MobileContactPopup';
 import { MenuPopup } from '../MenuPopup';
 import { BurgerButton } from '../../../components/BurgerButton';
 import { Counter } from '../../../components/counter/Counter';
+import { Overlay } from '../../../components/Overlay';
 
 
 type MobileHeaderPropsType = {    
@@ -28,10 +29,7 @@ type MobileHeaderPropsType = {
     socials: Array<{id:string, link:string}>    
     handleToggleTheme: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
     handleFontSize: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
-    themeName: string
-    // setThemeName: Function
-    // initialFontSize: number
-    // setFontSize: Function
+    themeName: string    
     visuallyImpairedPanel: {show:boolean, translateY:string}
     handleVisuallyImpairedPanel: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void    
     handleToggleModalWindow: (windowName:string) => void  
@@ -48,24 +46,15 @@ type MobileHeaderPropsType = {
 
 
 export const MobileHeader: React.FC<MobileHeaderPropsType> = (props: MobileHeaderPropsType) => {
-    const theme = useTheme();
-    // const [isOpenMenu, setIsOpenNenu] = useState(false);
+    const theme = useTheme();    
     const [isOpenContact, setIsOpenContact] = useState(false);
-    //const [isActiveId, setIsActiveId] = useState(null);
-
+    
     const handleContactBtnClick = () => {
         setIsOpenContact(prev => !prev);
     }
-    // const handleBurgerBtnClick = () => {
-    //     setIsOpenNenu(prev => !prev);
-    // }    
-
     const handleCloseMobileModalWindowContact = () => {
         setIsOpenContact(prev => !prev);
-    }
-    // const handleCloseMobileModalWindowMenu = () => {
-    //     props.setIsOpenNenu((prev:boolean) => !prev);        
-    // };
+    }    
     useEffect(() => {
         
         if(isOpenContact) {
@@ -126,7 +115,8 @@ export const MobileHeader: React.FC<MobileHeaderPropsType> = (props: MobileHeade
                     <Logo head />                    
                     {props.windowWidth > 576 && (<Counter counter={props.counter} />)}
                     {props.windowWidth <= 576 && (<BurgerButton handleBurgerBtnClick={props.handleBurgerBtnClick} />)}                                        
-                </Container>                
+                </Container> 
+                {props.isOpenMenu && <Overlay />}               
                  <MenuPopup 
                     isOpen={props.isOpenMenu}
                     handleCloseModalWindowMenu={props.handleCloseModalWindowMenu}
@@ -144,8 +134,7 @@ export const MobileHeader: React.FC<MobileHeaderPropsType> = (props: MobileHeade
 
 const StyledMobileHeader = styled.header` 
     display: flex;
-    flex-direction: column;    
-   
+    flex-direction: column;   
 `
 
 const LevelTop = styled.div` 
@@ -175,6 +164,5 @@ const LevelBottom = styled.div`
         display: flex; 
         justify-content: space-between;       
         align-items: center;        
-    }
-       
+    }       
 `

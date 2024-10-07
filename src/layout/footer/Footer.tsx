@@ -72,14 +72,17 @@ export const Footer: React.FC<FooterPropsType> = (props: FooterPropsType) => {
                     <Line isShow={isShow}>
                     </Line>
                 </Button>               
-                <Container>  
-                    <Bottom>
-                        <span>© 2011-2025. Многопрофильный медицинский центр «Альянс Клиник».</span>
-                        <Link to={'/privacy-policy'}>Политика конфиденциальности</Link>
-                        <span>При использование материлаов сайта, ссылка на сайт обязательна.</span>                    
-                    </Bottom>             
+                <Container>                     
+                        <Bottom>
+                            <span>© 2011-2025. Многопрофильный медицинский центр «Альянс Клиник».</span>
+                            <Link to={'/privacy-policy'}>Политика конфиденциальности</Link>
+                            <span>При использование материлаов сайта, ссылка на сайт обязательна.</span>                    
+                        </Bottom>
                 </Container>
-                <AdditionalBottomFooter>                    
+                <AdditionalBottomFooter>
+                    <Development>
+                         <Seovodoo href="https://seovoodoo.guru">Разработано в SeoVoodoo</Seovodoo>
+                    </Development>
                 </AdditionalBottomFooter>
             </FooterBottom>            
         </StyledFooter>
@@ -100,16 +103,27 @@ const FooterBottom = styled.div`
     position: relative;    
 `
 
+
 const AdditionalBottomFooter = styled.div`
-    position: absolute;
-    z-index: -10;
-    //background-color: #f53245;
-    background-color: ${({theme}) => theme.bgCol.footer};    
-    left: 0;
-    right: 0;
+    position: absolute;     
+    left: 0;    
     bottom: -58px;
+    background-color: ${({theme}) => theme.bgCol.footer};    
     width: 100%;
     height: 58px;
+`
+const Development = styled.span`
+    display: inline-block;
+    padding-top: 20px;
+    padding-left: calc((100vw - 1320px)/2 + 10px);
+    font-size: calc((100vw - 26rem)/(137 - 26) * (1 - 0.86) + 0.86rem);
+
+    @media screen and (max-width: 1319px){
+        padding-left: 20px;
+    }
+`
+const Seovodoo = styled.a`
+    display: block;
 `
 
 const Button = styled.button`
@@ -345,7 +359,7 @@ const Title = styled.h3`
 
 const Bottom = styled.div`
     padding-top: 40px;
-    height: 50px;  
+    height: auto;  
     display: grid;
     grid-template-columns: 50% 50%;    
     gap: 15px;
@@ -376,11 +390,7 @@ const Bottom = styled.div`
     a:hover {
         text-decoration: none; 
     }
-
-    @media ${({theme}) => theme.media.laptop} {
-        height: 62px;
-    }
-
+    
     @media ${({theme}) => theme.media.mobile}{
         grid-template-columns: 100%;
 

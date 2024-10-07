@@ -6,7 +6,7 @@ import { css, styled } from 'styled-components';
 
 type TabMenuPropsType = {
     tabs: Array<{title:string, status:string}>
-    active:string
+    activeBtn:string
     handleTabClick: (status:string) => void
 }
 
@@ -19,7 +19,7 @@ export const TabMenu: React.FC<TabMenuPropsType> = (props: TabMenuPropsType) => 
                         return (
                             <ListItem key={index}>
                                 <TabBtn 
-                                    active={props.active === obj.status}
+                                    active={props.activeBtn === obj.status}
                                     onClick={() => props.handleTabClick(obj.status)}
                                 >
                                     {obj.title}

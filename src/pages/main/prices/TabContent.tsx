@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { css, styled } from 'styled-components';
 import { Dropdown } from '../../../components/Dropdown';
 
@@ -14,13 +14,14 @@ type TabContentPropsType = {
         subSubChapter?:boolean
         title?:boolean
     }>    
-    active:string
-    activePanel?:string     
+    activeBtn:string          
 }
 
-export const TabContent: React.FC<TabContentPropsType> = (props: TabContentPropsType) => {
+export const TabContent: React.FC<TabContentPropsType> = memo((props: TabContentPropsType) => {
+    //console.log("activeBtn", props.activeBtn);
+    //console.log("status", props.status);
     return (
-        <StyledTabContent active={props.active} activePanel={props.activePanel}>                     
+        <StyledTabContent activeBtn={props.activeBtn} >                     
           <TableWrap>
             {props.currentNavigation && 
               <Dropdown currentNavigation={props.currentNavigation}/>
@@ -29,7 +30,7 @@ export const TabContent: React.FC<TabContentPropsType> = (props: TabContentProps
               <Head>
                 <tr>
                   <th>Код по номенклатуре услуг</th>
-                  <th>{props.active === "geneticResearch" || props.activePanel === "geneticResearch" ? "Срок выполнения, раб. дн" : "Код"}</th>
+                  <th>{props.activeBtn === "geneticResearch" ? "Срок выполнения, раб. дн" : "Код"}</th>
                   <th>Наименование услуги</th>
                   <th>Стоимость услуги, руб.</th>
                 </tr>
@@ -58,40 +59,19 @@ export const TabContent: React.FC<TabContentPropsType> = (props: TabContentProps
           </TableWrap>           
         </StyledTabContent>
     );
-};
+});
 
-const StyledTabContent = styled.nav<{active:string, activePanel?:string}>`
-  table {
-    transform: scale(0);
+const StyledTabContent = styled.nav<{activeBtn:string}>`
+  
+  @media ${({theme}) => theme.media.mobile} {  
+    max-height: ${props => props.activeBtn !== "" ? "50000px" : "0"};
+    overflow: ${props => props.activeBtn !== "" ? "visible" : "hidden"};
+    table {
+      transform: ${props => props.activeBtn !== "" ? "scale(1)" : "scale(0)"};
+      transform-origin: 0 0;
+      transition: transform ${props => props.activeBtn !== "" ? "0.75s ease-in-out" : "0.95s ease-in-out"};    
+    }
   }
-
-  ${props => !props.activePanel && props.active && css`       
-      table {            
-      transform: scale(1);
-      transform-origin: 0 0;
-      transition: transform 0.5s ease-in-out 0.25s;
-      -webkit-transition: transform 0.5s ease-in-out 0.25s;
-      -moz-transition: transform 0.5s ease-in-out 0.25s;
-    }
-  `}  
-
-  ${props => props.activePanel && props.active === props.activePanel && css`
-    max-height: 50000px;
-    transition: max-height 2s ease-in-out;
-    table {            
-      transform: scale(1);
-      transform-origin: 0 0;
-      transition: transform 0.5s ease-in-out 0.25s;
-      -webkit-transition: transform 0.5s ease-in-out 0.25s;
-      -moz-transition: transform 0.5s ease-in-out 0.25s;
-    }
-  `}
-
-  ${props => props.activePanel && props.active !== props.activePanel && css`
-    overflow: hidden;
-    max-height: 0;
-    //transition: max-height 0.5s ease-in-out;
-  `}    
 `
 
 const TableWrap = styled.div`

@@ -28,7 +28,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ScrollTop />
+      {/* <ScrollTop /> */}
       <App store={store} />
     </BrowserRouter>
   </React.StrictMode>

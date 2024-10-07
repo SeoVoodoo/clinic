@@ -5,7 +5,7 @@ import { TabContent } from '../TabContent';
 
 type DesktopTabsPropsType = {    
     tabs: Array<{title:string, status:string}>
-    active:string
+    activeBtn:string
     handleTabClick: (status:string) => void
     navigation: Array<{name:string, href:string}>|null    
     content: Array<{
@@ -26,13 +26,13 @@ export const DesktopTabs: React.FC<DesktopTabsPropsType> = (props: DesktopTabsPr
         <StyledDesktopTabs>
             <TabMenu 
               tabs={props.tabs}
-              active={props.active}
+              activeBtn={props.activeBtn}
               handleTabClick={props.handleTabClick}
             />
             <TabContent 
               currentNavigation={props.navigation}
               currentContent={props.content} 
-              active={props.active}              
+              activeBtn={props.activeBtn}              
             />            
         </StyledDesktopTabs>
     );

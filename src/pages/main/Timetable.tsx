@@ -43,7 +43,7 @@ type TimetablePropsType = {
   }
 }
 
-export const Timetable: React.FC<TimetablePropsType> = (props: TimetablePropsType) => {  
+const Timetable: React.FC<TimetablePropsType> = (props: TimetablePropsType) => {  
 
   const { 
       gordeeva_1,  
@@ -115,6 +115,8 @@ export const Timetable: React.FC<TimetablePropsType> = (props: TimetablePropsTyp
         </Container>
       )    
 };
+
+export default Timetable;
 
 const Table = styled.table<{cellspacing:number, cellpadding:number}>`  
   border-collapse: collapse;

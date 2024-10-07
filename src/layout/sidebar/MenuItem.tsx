@@ -10,7 +10,8 @@ type MenuItemPropsType = {
     isActiveId:string | null  
     setIsActiveId:Function
     descktop?:boolean 
-    mobile?:boolean             
+    mobile?:boolean 
+    handleCloseMobileModalWindowMenu?:() => void            
 }
 
 export const MenuItem: React.FC<MenuItemPropsType> = (props: MenuItemPropsType) => {
@@ -39,12 +40,14 @@ export const MenuItem: React.FC<MenuItemPropsType> = (props: MenuItemPropsType) 
             mobile={props.mobile}
         >
             <Wrap>
-                <Link 
-                    to={`/${path}`}
-                    onClick={(e) => handleLinkClick(e, props.id)}
-                >
-                    {title}
-                </Link>
+                { pages 
+                ?   <a                      
+                        onClick={(e) => handleLinkClick(e, props.id)}
+                    >
+                        {title}
+                    </a>
+                :   <Link onClick={props.handleCloseMobileModalWindowMenu} to={`/${path}`}> {title} </Link> //<a href={`/${path}`}> {title} </a> 
+                }
                 { pages && (
                     <Btn isOpen={isOpen} onClick={() => toggleId()}>
                         Свернуть/развернуть
@@ -58,6 +61,7 @@ export const MenuItem: React.FC<MenuItemPropsType> = (props: MenuItemPropsType) 
                     ids={pages}
                     isActiveId={props.isActiveId}
                     setIsActiveId={props.setIsActiveId}
+                    handleCloseMobileModalWindowMenu={props.handleCloseMobileModalWindowMenu}
                 />      
             )}            
         </StyledMenuItem>

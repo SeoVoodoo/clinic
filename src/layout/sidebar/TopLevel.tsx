@@ -10,6 +10,7 @@ type TopLevelPropsType = {
     setIsActiveId: Function
     descktop?:boolean
     mobile?:boolean
+    handleCloseMobileModalWindowMenu?:() => void
 }
 
 export const TopLevel: React.FC<TopLevelPropsType> = (props: TopLevelPropsType) => {
@@ -28,6 +29,7 @@ export const TopLevel: React.FC<TopLevelPropsType> = (props: TopLevelPropsType) 
                         mobile={props.mobile}
                         descktop={props.descktop}
                         //pages={props.sidebar.sidebarMenu.entities.pages}
+                        handleCloseMobileModalWindowMenu={props.handleCloseMobileModalWindowMenu}
                     />
             )}            
         </StyleTopLevel>

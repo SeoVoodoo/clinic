@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { GlobalStyles } from './styles/GlobalStyles';
 import styled, { ThemeProvider } from 'styled-components';
 import { myTheme } from './styles/Theme.styled';
@@ -7,9 +7,10 @@ import { Header } from './layout/header/Header';
 import { useEffect, useState, useContext } from 'react';
 //import { FontSizeContext } from './context/FontSizeContext';
 import { Route, Routes } from 'react-router-dom';
-import { Prices } from './pages/main/prices/Prices';
+//import { Prices } from './pages/main/prices/Prices';
+
 import { AllDoctors } from './pages/main/AllDoctors';
-import { Timetable } from './pages/main/Timetable';
+//import { Timetable } from './pages/main/Timetable';
 import { Eco } from './pages/main/Eco';
 import { Faq } from './pages/main/Faq';
 import { Contacts } from './pages/main/Contacts';
@@ -19,7 +20,7 @@ import { Questionnaire } from './pages/main/Questionnaire';
 import { Documents } from './pages/main/Documents';
 import { Vacancy } from './pages/main/Vacancy';
 import { Reception } from './pages/main/Reception';
-import { Tour } from './pages/main/Tour';
+//import { Tour } from './pages/main/Tour';
 import { PaymentTerms } from './pages/main/PaymentTerms';
 import { StoreType } from './redux/redux-store';
 import { Home } from './pages/main/Home';
@@ -29,11 +30,15 @@ import { Sidebar } from './layout/sidebar/Sidebar';
 import { Overlay } from './components/Overlay';
 import { ModalWindowRecord } from './components/pop-up/ModalWindowRecord';
 import { ModalWindowCallback } from './components/pop-up/ModalWindowCallback';
-import { Reviews } from './pages/main/Reviews';
+//import { Reviews } from './pages/main/Reviews';
 import { WindowSize } from './hooks/WindowSize';
 import { ModalWindowThanks } from './components/pop-up/ModalWindowThanks';
 import { ModalWindow3ndfl } from './components/pop-up/ModalWindow3ndfl';
 
+const Prices = lazy(() => import('./pages/main/prices/Prices'));
+const Reviews = lazy(() => import('./pages/main/Reviews'));
+const Tour = lazy(() => import('./pages/main/Tour'));
+const Timetable = lazy(() => import('./pages/main/Timetable'));
 
 const initialFontSize = 14;
 const initialState = {show: false, translateY: "-58px"}
@@ -266,20 +271,32 @@ function App(props: {store: StoreType}) {
               dispatch={props.store.dispatch}
               windowWidth={windowWidth} />} 
             />
-            <Route path="/prices" element = {<Prices 
-              pricesPage={state.pricesPage}
-              windowWidth={windowWidth} 
-              />} 
+            <Route path="/prices" element = {<Suspense fallback={'Загрузка...'}>
+              <Prices 
+                pricesPage={state.pricesPage}
+                windowWidth={windowWidth} 
+              />
+              </Suspense>} 
             />
-            <Route path="/reviews" element = {<Reviews 
+            <Route path="/reviews" element = {<Suspense fallback={'Загрузка...'}>
+              <Reviews 
                 reviewsPage={state.reviewsPage}
                 windowWidth={windowWidth}
                 dispatch={props.store.dispatch}
-              />} 
+              />
+              </Suspense>} 
             />
 
-            <Route path="/timetable" element = {<Timetable 
-              timeTablePage={state.timeTablePage}/>} 
+            <Route path="/timetable" element = {<Suspense fallback={'Загрузка...'}>
+              <Timetable 
+                timeTablePage={state.timeTablePage}
+              />
+              </Suspense>} 
+            />
+
+            <Route path="/3d-tour" element = {<Suspense fallback={'Загрузка...'}>
+              <Tour />
+              </Suspense>} 
             />
 
             <Route path="/doctors" element = {<AllDoctors />} />            
@@ -293,7 +310,7 @@ function App(props: {store: StoreType}) {
             <Route path="/documents" element = {<Documents />} />
             <Route path="/vacancy" element = {<Vacancy />} />
             <Route path="/reception-of-citizens" element = {<Reception />} />
-            <Route path="/3d-tour" element = {<Tour />} />
+            
             <Route path="/payment-terms" element = {<PaymentTerms />} />
           </Routes>           
         </>

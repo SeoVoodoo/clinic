@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { lazy, memo, Suspense, useEffect } from 'react';
 import { Container } from '../../components/Container';
 import { MainSlider } from '../../layout/section/homepage/MainSlider';
 import { Advantages } from '../../layout/section/homepage/advantages/Advantages';
@@ -15,7 +15,8 @@ import { LastNews } from '../../layout/section/homepage/last_news/LastNews';
 import { UsefulInfo } from '../../layout/section/homepage/useful_info/UsefulInfo';
 import { Partners } from '../../layout/section/homepage/partners/Partners';
 import { Review } from '../../layout/section/homepage/review/Review';
-import { Reviews } from './Reviews';
+//import { Reviews } from './Reviews';
+const Reviews = lazy(() => import('./Reviews'));
 
 type HomePropsType = {
   homePage: { 
@@ -84,7 +85,7 @@ type HomePropsType = {
   windowWidth:number
 }
 
-export const Home: React.FC<HomePropsType> = (props: HomePropsType) => {
+export const Home: React.FC<HomePropsType> = memo((props: HomePropsType) => {
 
   useEffect(() => {
 
@@ -146,16 +147,18 @@ export const Home: React.FC<HomePropsType> = (props: HomePropsType) => {
               <Partners partners={props.homePage.partners} />         
           </Container>
 
-          <Reviews
-            reviewsPage={null as any}
-            windowWidth={null as any}
-            dispatch={props.dispatch}
-            //visible={false}
-            hidden
-          />
+          <Suspense fallback={'Загрузка...'}>
+            <Reviews
+              reviewsPage={null as any}
+              windowWidth={null as any}
+              dispatch={props.dispatch}
+              //visible={false}
+              hidden
+            />
+          </Suspense>
         </>
     );
-};
+});
 
 const WrapAdvantages = styled.div`
   padding-top: 30px;
