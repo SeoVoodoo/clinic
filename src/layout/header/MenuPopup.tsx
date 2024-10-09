@@ -21,6 +21,16 @@ type MobileMenuPopupPropsType = {
 }
 export const MenuPopup: React.FC<MobileMenuPopupPropsType> = (props: MobileMenuPopupPropsType) => {
             
+
+    // useEffect(()=>{
+    //     if(props.isOpen){
+    //         document.body.style.overflow = 'hidden'
+    //     } else {
+    //         document.body.style.overflow = 'auto'
+    //     }
+    // }, [props.isOpen])
+
+
     return (
         <StyledMenuPopup isOpen={props.isOpen} isActiveId={props.isActiveId}>
             <CloseButton 

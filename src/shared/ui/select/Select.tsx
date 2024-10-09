@@ -18,23 +18,21 @@ export const Select = ({ error, title, name, options }: SelectProps) => {
     return (
         <>  
             {error && <Error>{error}</Error>}
-            <SelectStyled
+            <StyledSelect
                 error={error}
                 name={name}
                 value={selectedBranch}
                 onChange={handleSelectChange}
                 defaultValue=""
-            >   
-                
+            >                
                 <option value="" hidden>{title}</option>
                 {
                     options.map((option) => (
                         <option value={option.value}>{option.label}</option>
                     ))
                 }
-            </SelectStyled>
-            <input type="hidden" name={name} value={selectedBranch} />
-            
+            </StyledSelect>
+            <input type="hidden" name={name} value={selectedBranch} />            
         </>
     )
 }
@@ -45,17 +43,18 @@ const Error = styled.span`
  color: red;  
 `
 
-const SelectStyled = styled.select<{error?: string}>`
+const StyledSelect = styled.select<{error?: string}>`
     width: 100%; 
     padding: 16px 20px;
     border: none;
     border-radius: 10px;
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
-    background-color: transparent;
+    background-color: ${({theme}) => theme.bgCol.default}; 
 
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.14rem;  
-        
+    font-size: 1.14rem;
+    -webkit-appearance: none;
+            
     color: ${({theme}) => theme.color.multiСhannel};
     outline: 1px solid ${props => props.error ? "red" : "transparent"};
         

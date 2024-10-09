@@ -42,28 +42,35 @@ type MobileHeaderPropsType = {
     setIsOpenNenu: Function
     handleCloseModalWindowMenu: () => void
     handleBurgerBtnClick: () => void
+    isOpenMobileMenuContact:boolean    
 }
 
 
 export const MobileHeader: React.FC<MobileHeaderPropsType> = (props: MobileHeaderPropsType) => {
-    const theme = useTheme();    
-    const [isOpenContact, setIsOpenContact] = useState(false);
-    
-    const handleContactBtnClick = () => {
-        setIsOpenContact(prev => !prev);
-    }
-    const handleCloseMobileModalWindowContact = () => {
-        setIsOpenContact(prev => !prev);
-    }    
-    useEffect(() => {
-        
-        if(isOpenContact) {
-            document.body.style.overflowY = "hidden";            
-        }
-        return () => {
-            document.body.style.overflowY = "unset";
-        }        
-     }, [isOpenContact]);
+    const theme = useTheme();   
+
+    // const [isOpenContact, setIsOpenContact] = useState(false);    
+    // const handleContactBtnClick = () => {
+    //     setIsOpenContact(prev => !prev);         
+    // }
+    // const handleCloseMobileModalWindowContact = () => {
+    //     setIsOpenContact(prev => !prev);
+    // }    
+
+    // useEffect(() => {        
+    //     if(props.isOpenMobileMenuContact) {
+    //         //document.body.style.overflowY = "hidden"; 
+    //         document.body.style.height = "100vh";  
+    //         document.body.style.width = "100%";
+    //         document.body.style.position = "fixed";          
+    //     }
+    //     return () => {
+    //         //document.body.style.overflowY = "unset";
+    //         document.body.style.height = "unset"; 
+    //         document.body.style.width = "unset";
+    //         document.body.style.position = "unset"; 
+    //     }        
+    //  }, [props.isOpenMobileMenuContact]);
 
 
     return (
@@ -86,10 +93,13 @@ export const MobileHeader: React.FC<MobileHeaderPropsType> = (props: MobileHeade
                     <SocialList 
                         themeName={props.themeName} 
                         socials={props.socials} 
-                        width={props.windowWidth > 576 ? "30" : "24"}
-                        height={props.windowWidth > 576 ? "30" : "24"} 
+                        width={props.windowWidth > 576 ? "30" : "26"}
+                        height={props.windowWidth > 576 ? "30" : "26"} 
                     />
-                    <Button onClick={handleContactBtnClick}>
+                    <Button 
+                        //onClick={handleContactBtnClick}
+                        onClick={() => props.handleToggleModalWindow("onlyMobileContact")}
+                    >
                         <Icon 
                             id="phone"
                             width="18"
@@ -100,9 +110,10 @@ export const MobileHeader: React.FC<MobileHeaderPropsType> = (props: MobileHeade
                     </Button>
                     {props.windowWidth > 576 && (<BurgerButton handleBurgerBtnClick={props.handleBurgerBtnClick} />)}
                     <MobileContactPopup 
-                        isOpen={isOpenContact} 
+                        //isOpen={isOpenContact} 
+                        isOpen={props.isOpenMobileMenuContact}
                         handleToggleModalWindow={props.handleToggleModalWindow}
-                        handleCloseMobileModalWindowContact={handleCloseMobileModalWindowContact}
+                        //handleCloseMobileModalWindowContact={handleCloseMobileModalWindowContact}
                         themeName={props.themeName}
                         contacts={props.contacts}
                         socials={props.socials}

@@ -34,7 +34,9 @@ const StyledCheckbox = styled.div<{error?:string}>`
     label { 
         text-align: left;        
         color: ${({theme}) => theme.color.multiСhannel};
-        font-size: calc((100vw - 26rem)/(137 - 26) * (1.29 - 1) + 1rem);      
+        font-size: calc((100vw - 26rem)/(137 - 26) * (1.29 - 1) + 1rem); 
+        width: 100%;
+        display: inline-block;          
     }
 
     input {        
@@ -45,7 +47,10 @@ const StyledCheckbox = styled.div<{error?:string}>`
     input + span {
         display: inline-block;
         position: relative;
-        padding-left: 30px;                      
+        padding-left: 30px; 
+        white-space: pre-wrap;
+        //word-break: break-all; 
+        //overflow-wrap: break-word;          
     }
 
     input + span::before {
@@ -79,6 +84,10 @@ const StyledCheckbox = styled.div<{error?:string}>`
         color: ${({theme}) => theme.color.multiСhannel};       
         display: inline-block;
         border-bottom: 1px solid ${({theme}) => theme.color.multiСhannel};
+        white-space: pre-wrap;
+        /* word-break: break-all;
+        overflow-wrap: break-word; */
+        
     }
 
     input:checked + span, input:checked + span a {

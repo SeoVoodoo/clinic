@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from '../../components/Container';
 import { styled } from 'styled-components';
 import { timeTableMapper } from '../../redux/timeTableReducer';
+import { ScrollTop } from '../../components/ScrollTop';
 
 interface Data {
   doctor:string
@@ -93,6 +94,8 @@ const Timetable: React.FC<TimetablePropsType> = (props: TimetablePropsType) => {
     
   ];
     return (
+        <>
+        <ScrollTop />        
         <Container>          
           <Table cellspacing={0} cellpadding={0} style={{border:"1px solid black", width:"100%"}}>        
           {
@@ -113,6 +116,7 @@ const Timetable: React.FC<TimetablePropsType> = (props: TimetablePropsType) => {
           }
           </Table>
         </Container>
+        </>
       )    
 };
 

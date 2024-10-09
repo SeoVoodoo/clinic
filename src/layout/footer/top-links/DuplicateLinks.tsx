@@ -33,19 +33,6 @@ export const DuplicateLinks: React.FC<DuplicateLinksPropsType> = (props: Duplica
                   })  
                 }
             </List>
-
-            {/* <List>
-                {
-                  props.duplicateLinks.map((link) => {
-                    return (
-                        <Item key={link.id}>
-                            <Link to={`${link.path}`}>{link.ancor}</Link>
-                        </Item>
-                    );
-                  })  
-                }
-            </List> */}
-            
         </StyledDuplicateLinks>
     );
 };
@@ -86,7 +73,7 @@ const Item = styled.li`
     }
 
     a {        
-        font-size: calc((100vw - 26rem)/(137 - 26) * (1.14 - 0.86) + 0.86rem); 
+        font-size: calc((100vw - 26rem)/(137 - 26) * (1.14 - 0.93) + 0.93rem); 
         font-weight: 700;
         text-decoration: none;
         color: ${({theme}) => theme.color.defaultText};

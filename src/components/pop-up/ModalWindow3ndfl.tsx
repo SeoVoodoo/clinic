@@ -167,12 +167,11 @@ export const ModalWindow3ndfl: React.FC<ModalWindow3ndflPropsType> = (props: Mod
                     <StyledCallbackBtn type="submit">Отправить</StyledCallbackBtn>
                     <Note>* - поля обязательные для заполнения</Note>
                 </Form>  
+                
             </ModalWindow>          
         </StyledModalWindow3ndfl>
     );
 };
-
-
 
 const StyledModalWindow3ndfl = styled.div`
     display: flex;
@@ -184,7 +183,6 @@ const StyledModalWindow3ndfl = styled.div`
     bottom: 0;
     left: 0;
     z-index: 50;    
-    //background-color: rgba(140, 174, 200, 0.8);
     background-color: rgba(217, 217, 217, 0.5);
     backdrop-filter: blur(5px);
     animation-name: ${fadeIn};
@@ -194,27 +192,28 @@ const StyledModalWindow3ndfl = styled.div`
 `
 
 const ModalWindow = styled.div`
-    width: 782px;    
+    width: 782px;  
+    margin: 0 10px;  
     padding: 34px 30px 24px;
     border-radius: 10px;
     background-color: ${({theme}) => theme.bgCol.default};    
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
     text-align: center;
     background-image: url(${bgForm_3ndfl});
-
-    //position: relative;
-
+    
     @media ${({theme}) => theme.media.laptop} {
-        width: 620px;
+        max-width: 620px;
     }
 
     @media ${({theme}) => theme.media.tablet} {
-        width: 514px;
-    }
-
-    /* @media ${({theme}) => theme.media.mobile} {
-        height: 100vh;
-    } */
+        max-width: 514px;        
+    }  
+    
+    @media ${({theme}) => theme.media.mobile} {
+        max-width: 502px;
+        height: 620px;
+        overflow: auto;
+    } 
 `
 
 const Form = styled.form`

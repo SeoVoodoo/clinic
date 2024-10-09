@@ -15,7 +15,7 @@ export const Input = (props: InputProps) => {
     const {error, ...other} = props;
  
     return (
-        <StyledInput >
+        <StyledInput>
             {error && <Error>{error}</Error>}
             <Field
                 error={error}
@@ -38,7 +38,8 @@ const Field = styled.input<{error?:string}>`
     font-family: 'Montserrat', sans-serif;
     font-size: 1.14rem;
     background-color: ${({theme}) => theme.bgCol.default}; 
-    outline: 1px solid ${props => props.error ? "red" : "transparent"};
+    //outline: 1px solid ${props => props.error ? "red" : "transparent"};
+    border: 1px solid ${props => props.error ? "red" : "transparent"};
     
     &::placeholder {
         color: ${({theme}) => theme.color.multiСhannel};
@@ -49,10 +50,13 @@ const Field = styled.input<{error?:string}>`
     }
 
     &:not([type="checkbox"]) {
-        padding: 16px 20px;
-        border: none;
+        padding: 15px 20px;
+        //border: none;
         border-radius: 10px;
+        appearance: none;
         box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+        -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+        -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
     }
 
     @media ${({theme}) => theme.media.tablet} {

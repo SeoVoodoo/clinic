@@ -34,6 +34,7 @@ import { ModalWindowCallback } from './components/pop-up/ModalWindowCallback';
 import { WindowSize } from './hooks/WindowSize';
 import { ModalWindowThanks } from './components/pop-up/ModalWindowThanks';
 import { ModalWindow3ndfl } from './components/pop-up/ModalWindow3ndfl';
+import { Preloader } from './components/Preloader';
 
 const Prices = lazy(() => import('./pages/main/prices/Prices'));
 const Reviews = lazy(() => import('./pages/main/Reviews'));
@@ -149,6 +150,14 @@ function App(props: {store: StoreType}) {
   const [isOpenModalWindowRecord, setIsOpenModalWindowRecord] = useState(false);
   const [isOpenModalWindowCallback, setIsOpenModalWindowCallback] = useState(false);
   const [isOpenModalWindowThanks, setIsOpenModalWindowThanks] = useState(false);
+  const [isOpenMobileMenuContact, setIsOpenMobileMenuContact] = useState(false);
+    
+    // const handleContactBtnClick = () => {
+    //     setIsOpenContact(prev => !prev);
+    // }
+    // const handleCloseMobileModalWindowContact = () => {
+    //   setIsOpenMobileContact(prev => !prev);
+    // } 
   
 
   const handleToggleModalWindow = (windowName?: string) => {    
@@ -165,6 +174,9 @@ function App(props: {store: StoreType}) {
       case "thanks":
         setIsOpenModalWindowThanks(prev => !prev);
         break; 
+        case "onlyMobileContact": 
+        setIsOpenMobileMenuContact(prev => !prev);
+        break;
       default:
         setIsOpenSidebar(prev => !prev);
     }
@@ -180,9 +192,9 @@ function App(props: {store: StoreType}) {
   const handleError = () => {
     alert("Упс, что-то пошло не так..");  
   }
-
+  
   useEffect(() => {
-    if(isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback) {
+    if(isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback || isOpenMobileMenuContact) {
         document.body.style.overflowY = "scroll";
         document.body.style.position = "fixed";
         document.body.style.width= "100%";
@@ -192,7 +204,7 @@ function App(props: {store: StoreType}) {
         document.body.style.position = "unset";
         document.body.style.width= "unset";
     }        
- }, [isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback]);
+ }, [isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback || isOpenMobileMenuContact]);
 
   const windowWidth = WindowSize();
   const state = props.store.getState();
@@ -259,26 +271,32 @@ function App(props: {store: StoreType}) {
           handleToggleSidebar={handleToggleSidebar} 
           handleToggleModalWindow={handleToggleModalWindow} 
           sidebar={state.sidebar}
-          windowWidth={windowWidth}        
+          windowWidth={windowWidth}   
+          isOpenMobileMenuContact={isOpenMobileMenuContact}  
+          //setIsOpenMobileMenuContact={setIsOpenMobileMenuContact}  
         />
         
         <>        
           <Routes>
-            <Route path="/" element = {<Home 
-              homePage={state.homePage} 
-              themeName={themeName} 
-              fontSize={fontSize} 
-              dispatch={props.store.dispatch}
-              windowWidth={windowWidth} />} 
+            <Route path="/" element = {
+              <Suspense fallback={<Preloader />} >
+                <Home 
+                  homePage={state.homePage} 
+                  themeName={themeName} 
+                  fontSize={fontSize} 
+                  dispatch={props.store.dispatch}
+                  windowWidth={windowWidth} 
+                />
+              </Suspense>} 
             />
-            <Route path="/prices" element = {<Suspense fallback={'Загрузка...'}>
+            <Route path="/prices" element = {<Suspense fallback={<Preloader />}>
               <Prices 
                 pricesPage={state.pricesPage}
                 windowWidth={windowWidth} 
               />
               </Suspense>} 
             />
-            <Route path="/reviews" element = {<Suspense fallback={'Загрузка...'}>
+            <Route path="/reviews" element = {<Suspense fallback={<Preloader />}>
               <Reviews 
                 reviewsPage={state.reviewsPage}
                 windowWidth={windowWidth}
@@ -287,14 +305,14 @@ function App(props: {store: StoreType}) {
               </Suspense>} 
             />
 
-            <Route path="/timetable" element = {<Suspense fallback={'Загрузка...'}>
+            <Route path="/timetable" element = {<Suspense fallback={<Preloader />}>
               <Timetable 
                 timeTablePage={state.timeTablePage}
               />
               </Suspense>} 
             />
 
-            <Route path="/3d-tour" element = {<Suspense fallback={'Загрузка...'}>
+            <Route path="/3d-tour" element = {<Suspense fallback={<Preloader />}>
               <Tour />
               </Suspense>} 
             />

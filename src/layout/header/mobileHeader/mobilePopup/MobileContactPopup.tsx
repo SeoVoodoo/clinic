@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { CloseButton } from '../../../../components/pop-up/CloseButton';
 import { StyledBtn, StyledCallbackBtn } from '../../../../components/StyledBtn';
@@ -6,12 +6,10 @@ import { StyledH2 } from '../../../../components/StyledH2';
 import { SocialList } from '../../../../components/social/SocialList';
 import { ContactBox } from '../../../../components/contact_box/ContactBox';
 
-
-
 type MobileContactPopupPropsType = {
     isOpen:boolean
     handleToggleModalWindow: (windowName:string) => void
-    handleCloseMobileModalWindowContact: () => void
+    //handleCloseMobileModalWindowContact: () => void
     themeName: string
     contacts: {
         phone1: string
@@ -20,16 +18,17 @@ type MobileContactPopupPropsType = {
         callback:boolean
     }
     socials: Array<{id:string, link:string}>
-    windowWidth:number
-    
+    windowWidth:number    
 }
 
 export const MobileContactPopup: React.FC<MobileContactPopupPropsType> = (props: MobileContactPopupPropsType) => { 
-        
+
+            
     return (
         <StyledMobileContactPopup isOpen={props.isOpen}>
             <CloseButton 
-                handleCloseMobileModalWindowContact={props.handleCloseMobileModalWindowContact} 
+                //handleCloseMobileModalWindowContact={props.handleCloseMobileModalWindowContact} 
+                handleToggleModalWindow={() => props.handleToggleModalWindow("onlyMobileContact")}
                 top="-20vh"
                 right="0"                       
             />
@@ -63,8 +62,7 @@ const StyledMobileContactPopup= styled.div<{isOpen:boolean}>`
     
     width: 100%;
     height: 100vh;
-    padding: 0 20px;
-       
+    padding: 0 20px;       
     
     background-color: ${({theme}) => theme.bgCol.default};
     z-index: 1000;

@@ -78,7 +78,7 @@ export const ModalWindowCallback: React.FC<ModalWindowCallbackPropsType> = (prop
                     <Checkbox
                         error={errors['agreement']}
                         name="agreement"
-                        label={<span style={{textAlign: "left"}}>Я согласен на обработку <Link to={'#'}>персональных данных</Link></span>}
+                        label={<span>Я согласен на обработку <Link to={'#'}>персональных данных</Link></span>}
                     />
                     <StyledCallbackBtn type="submit">Отправить</StyledCallbackBtn>
                     <Note>* - поля обязательные для заполнения</Note>
@@ -111,7 +111,8 @@ const StyledModalWindowCallback = styled.div<{isOpenModalWindowCallback:boolean}
 `
 
 const ModalWindow = styled.div<{isOpenModalWindowCallback:boolean}>`
-    width: 782px;    
+    width: 782px; 
+    margin: 0 10px;   
     padding: 34px 30px 24px;
     border-radius: 10px;
     background-color: ${({theme}) => theme.bgCol.default};    
@@ -125,12 +126,13 @@ const ModalWindow = styled.div<{isOpenModalWindowCallback:boolean}>`
     //position: relative;
 
     @media ${({theme}) => theme.media.laptop} {
-        width: 620px;
+        max-width: 620px;
     }
 
     @media ${({theme}) => theme.media.tablet} {
-        width: 514px;
+        max-width: 514px;
     }
+    
 `
 
 const Form = styled.form`
@@ -151,6 +153,7 @@ const Note = styled.span`
     align-self: flex-start;
     color: ${({theme}) => theme.color.multiСhannel};
     font-size: calc((100vw - 26rem)/(137 - 26) * (1.29 - 1) + 1rem);
+    
 `
 
 

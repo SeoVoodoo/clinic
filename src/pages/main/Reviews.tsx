@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { PageTopPart } from '../../components/PageTopPart';
 import { Container } from '../../components/Container';
 import { updateLastReviewActionCreater } from '../../redux/homeReducer';
+import { ScrollTop } from '../../components/ScrollTop';
 
 type ReviewsPropsType = {
   windowWidth:number
@@ -59,27 +60,28 @@ const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => {
 
   return (    
     <StyledReviews hidden={props.hidden}>
-    { !props.hidden && <PageTopPart 
-      pageTopPart={props.reviewsPage.pageTopPart} 
-      windowWidth={props.windowWidth}
-    />}
-    <Container> 
-      <Wrap>
-      <div
-        id="pd_widget_big"
-        data-lpu="40755"
-        dangerouslySetInnerHTML={{ __html: `
-            <div class="pd_rate_header">Отзывы о «Альянс клиник» на Сурова<br>
-            <a target="_blank" class="pd_rate_new" href="https://prodoctorov.ru/new/rate/lpu/40755/">Оставить отзыв</a></div>
+      <ScrollTop />
+      { !props.hidden && <PageTopPart 
+        pageTopPart={props.reviewsPage.pageTopPart} 
+        windowWidth={props.windowWidth}
+      />}
+      <Container> 
+        <Wrap>
+        <div
+          id="pd_widget_big"
+          data-lpu="40755"
+          dangerouslySetInnerHTML={{ __html: `
+              <div class="pd_rate_header">Отзывы о «Альянс клиник» на Сурова<br>
+              <a target="_blank" class="pd_rate_new" href="https://prodoctorov.ru/new/rate/lpu/40755/">Оставить отзыв</a></div>
 
-            <div id="pd_widget_big_content"></div>
-            <a target="_blank" href="https://prodoctorov.ru/ulyanovsk/lpu/40755-alyans-klinik-na-surova/#otzivi" class="pd_read_all">Читать все отзывы</a>
+              <div id="pd_widget_big_content"></div>
+              <a target="_blank" href="https://prodoctorov.ru/ulyanovsk/lpu/40755-alyans-klinik-na-surova/#otzivi" class="pd_read_all">Читать все отзывы</a>
 
-            <span id="pd_powered_by"><a target="_blank" href="https://prodoctorov.ru"><img class='pd_logo' src="https://prodoctorov.ru/static/_v1/pd/logos/logo-pd-widget.png"></a></span>
-        `}}
-      />  
-      </Wrap>    
-    </Container> 
+              <span id="pd_powered_by"><a target="_blank" href="https://prodoctorov.ru"><img class='pd_logo' src="https://prodoctorov.ru/static/_v1/pd/logos/logo-pd-widget.png"></a></span>
+          `}}
+        />  
+        </Wrap>    
+      </Container> 
     </StyledReviews>
           
   );
@@ -89,10 +91,13 @@ export default Reviews;
 
 const StyledReviews = styled.div<{hidden?:boolean}>`
   width: 100%;
-  display: ${props => props.hidden ? "none" : "block"};    
+  display: ${props => props.hidden ? "none" : "block"};  
+  background-color: #f3f9ff;    
 `
 const Wrap = styled.div`
   display: flex;
-  justify-content: center;   
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 40px;     
 `
 

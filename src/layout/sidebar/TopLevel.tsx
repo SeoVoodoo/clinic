@@ -14,7 +14,7 @@ type TopLevelPropsType = {
 }
 
 export const TopLevel: React.FC<TopLevelPropsType> = (props: TopLevelPropsType) => {
-    return (
+    return (        
         <StyleTopLevel         
             descktop={props.descktop}
         >
@@ -32,12 +32,14 @@ export const TopLevel: React.FC<TopLevelPropsType> = (props: TopLevelPropsType) 
                         handleCloseMobileModalWindowMenu={props.handleCloseMobileModalWindowMenu}
                     />
             )}            
-        </StyleTopLevel>
+        </StyleTopLevel>        
     );
 };
 
 const StyleTopLevel = styled.ul<{descktop?:boolean}>`
     width: ${props => props.descktop ? "306px" : "100%"}; 
+    //height: 350px;
+    //overflow: auto;
     //transition: height 1.3s ease;  
     /* @media ${({theme}) => theme.media.lg992}{ 
         margin-top: 20px;

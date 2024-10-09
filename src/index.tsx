@@ -4,22 +4,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import { store } from './redux/redux-store';
+import { ScrollTop } from './components/ScrollTop';
 
-const ScrollTop = () => {
-  const pathname = useLocation();
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     left: 0,
-  //     behavior: 'instant'
-  //   })
-  // }, [pathname])
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+// const ScrollTop = () => {
+//   const pathname = useLocation();
+//   // useEffect(() => {
+//   //   window.scrollTo({
+//   //     top: 0,
+//   //     left: 0,
+//   //     behavior: 'instant'
+//   //   })
+//   // }, [pathname])
+//   useEffect(() => {
+//     window.scrollTo(0, 0);
+//   }, [pathname]);
 
-  return null
-}
+//   return null
+// }
 
 
 const root = ReactDOM.createRoot(

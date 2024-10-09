@@ -275,7 +275,7 @@ const Top = styled.div<{fontSize:number}>`
 const License = styled.span<{fontSize:number}>`
     grid-area: license;
     margin-top: 18px;
-    font-size: calc((100vw - 26rem)/(137 - 26) * (1 - 0.86) + 0.86rem);
+    font-size: calc((100vw - 26rem)/(137 - 26) * (1 - 0.93) + 0.93rem);
     max-width: 270px;
     width: 100%;
     height: auto;

@@ -51,7 +51,8 @@ const StyledModalWindowThanks = styled.div<{isOpenModalWindowThanks:boolean}>`
 `
 
 const ModalWindow = styled.div<{isOpenModalWindowThanks:boolean}>`
-    width: 782px;    
+    width: 782px;  
+    margin: 0 10px;  
     padding: 34px 30px 24px;
     border-radius: 10px;
     background-color: ${({theme}) => theme.bgCol.default};    
@@ -70,11 +71,11 @@ const ModalWindow = styled.div<{isOpenModalWindowThanks:boolean}>`
     }
 
     @media ${({theme}) => theme.media.laptop} {
-        width: 620px;
+        max-width: 620px;
     }
 
     @media ${({theme}) => theme.media.tablet} {
-        width: 514px;
+        max-width: 514px;
     }
 `
 const Message = styled.div`

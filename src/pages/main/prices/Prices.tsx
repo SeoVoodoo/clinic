@@ -5,6 +5,7 @@ import { DesktopTabs } from './desktop/DesktopTabs';
 import { MobileTabs } from './mobile/MobileTabs';
 import { tabNameType } from '../../../redux/pricesReducer';
 import { PageTopPart } from '../../../components/PageTopPart';
+import { ScrollTop } from '../../../components/ScrollTop';
 
 
 type PricesPropsType = {
@@ -65,8 +66,9 @@ const Prices: React.FC<PricesPropsType> = memo((props: PricesPropsType) => {
       default: setCurentBtnActive("surova");
     }
   }    
-  return (
+  return (  
     <StyledPrices>
+      <ScrollTop />
       <PageTopPart 
         pageTopPart={props.pricesPage.pageTopPart} 
         windowWidth={props.windowWidth}
@@ -74,20 +76,20 @@ const Prices: React.FC<PricesPropsType> = memo((props: PricesPropsType) => {
       <Container>
         {props.windowWidth > breakpoint 
           ? <DesktopTabs 
-              tabs={props.pricesPage.tabs}
-              activeBtn={curentBtnActive}
-              handleTabClick={handleTabClick}
-              content={props.pricesPage.content[curentBtnActive as tabNameType]} 
-              navigation={props.pricesPage.navigation[curentBtnActive as "surova"|"bebelya"]}                               
-            /> 
+          tabs={props.pricesPage.tabs}
+          activeBtn={curentBtnActive}
+          handleTabClick={handleTabClick}
+          content={props.pricesPage.content[curentBtnActive as tabNameType]} 
+          navigation={props.pricesPage.navigation[curentBtnActive as "surova"|"bebelya"]}                               
+          /> 
           : <MobileTabs 
-              tabs={props.pricesPage.tabs}              
-              content={props.pricesPage.content}
-              navigation={props.pricesPage.navigation}
-            />
+          tabs={props.pricesPage.tabs}              
+          content={props.pricesPage.content}
+          navigation={props.pricesPage.navigation}
+          />
         }            
       </Container>
-    </StyledPrices>
+    </StyledPrices>      
   );
 });
 

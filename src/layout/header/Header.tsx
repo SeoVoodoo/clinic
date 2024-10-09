@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
-
 import { MobileHeader } from './mobileHeader/MobileHeader';
-//import { WindowSize } from '../../hooks/WindowSize';
 import { DesktopHeader } from './desktopHeader/DesktopHeader';
 import { initialStateSidebarType } from '../../redux/sidebarReducer';
-
-
 
 type HeaderPropsType = {
     mainMenu: Array<{ancor:string, path:string}>
@@ -36,13 +32,14 @@ type HeaderPropsType = {
     handleToggleModalWindow: (windowName:string) => void    
     sidebar: initialStateSidebarType
     windowWidth:number
+    isOpenMobileMenuContact:boolean     
 }
 
 
 export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
 
     const breakpoint = 767;
-    //const windowWidth = WindowSize();
+    
     const [isActiveId, setIsActiveId] = useState(null);
     const [isOpenMenu, setIsOpenNenu] = useState(false);    
     const handleCloseModalWindowMenu = () => {
@@ -100,7 +97,8 @@ export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
                 isOpenMenu={isOpenMenu}
                 setIsOpenNenu={setIsOpenNenu}
                 handleCloseModalWindowMenu={handleCloseModalWindowMenu} 
-                handleBurgerBtnClick={handleBurgerBtnClick}  
+                handleBurgerBtnClick={handleBurgerBtnClick}
+                isOpenMobileMenuContact={props.isOpenMobileMenuContact}                
             />}
         </StyledHeader> 
     );
