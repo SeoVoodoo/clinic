@@ -2,6 +2,7 @@ import React from 'react';
 import { css, styled } from 'styled-components';
 import { StyledGreenLink } from '../../../../components/StyledBtn';
 
+
 type DoctorPropsType = {
     doctor: {
         fullName:string
@@ -15,10 +16,11 @@ type DoctorPropsType = {
 
 export const Doctor: React.FC<DoctorPropsType> = (props: DoctorPropsType) => {
     return (
-        <StyledDoctor>
-            <Foto>
-                <img src={props.doctor.foto} />
+        <StyledDoctor>            
+            <Foto>                
+                <img loading="lazy" src={props.doctor.foto} alt={props.doctor.fullName} />                
             </Foto>
+            
             <Info fontSize={props.fontSize}>
                 <FulName>{props.doctor.fullName}</FulName>
                 <Post>{props.doctor.post}</Post>

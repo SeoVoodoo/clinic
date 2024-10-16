@@ -37,7 +37,7 @@ const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => {
  
   setTimeout(() => {
     const reviews__header = document.querySelector('.pd-widget-reviews__header > div') as HTMLElement;      
-    const patient = reviews__header.innerHTML;
+    const patient = reviews__header.innerHTML.replace("Пациент", "");
 
     const reviews__date = document.querySelector('.pd-widget-reviews__date') as HTMLElement; 
     const date = reviews__date.innerHTML;

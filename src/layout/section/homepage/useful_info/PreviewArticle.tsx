@@ -15,9 +15,8 @@ type PreviewArticlePropsType = {
 export const PreviewArticle: React.FC<PreviewArticlePropsType> = (props: PreviewArticlePropsType) => {
     return (
         <StyledPreviewArticle fontSize={props.fontSize}>
-
-            <Picture>
-                <img src={props.article.img} />
+            <Picture>                
+                <img loading="lazy" src={props.article.img} alt="" />                
             </Picture>
             <Info fontSize={props.fontSize}>
                 <Title fontSize={props.fontSize}>{props.article.title}</Title>

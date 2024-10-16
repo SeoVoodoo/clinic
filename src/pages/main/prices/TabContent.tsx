@@ -18,8 +18,7 @@ type TabContentPropsType = {
 }
 
 export const TabContent: React.FC<TabContentPropsType> = memo((props: TabContentPropsType) => {
-    //console.log("activeBtn", props.activeBtn);
-    //console.log("status", props.status);
+    
     return (
         <StyledTabContent activeBtn={props.activeBtn} >                     
           <TableWrap>

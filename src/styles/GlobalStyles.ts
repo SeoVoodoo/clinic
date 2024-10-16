@@ -1,10 +1,21 @@
 import { createGlobalStyle } from "styled-components";
+import MontserratVariableFont from "../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf";
 
 type GlobalStylesPropsType = {
     fontSize:number 
 }
 
+
+
 export const GlobalStyles = createGlobalStyle<GlobalStylesPropsType>`
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(${MontserratVariableFont}) format('truetype supports variations'),
+         url(${MontserratVariableFont}) format('truetype-variations');
+    font-weight: 100 1000;
+    font-stretch: 25% 151%;
+  }
 
     html {
         font-size: ${props => props.fontSize}px;

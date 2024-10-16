@@ -199,9 +199,7 @@ const SabMenu = styled.ul`
         width: 15px;
         height: 15px;
         background-color: ${({theme}) => theme.bgCol.header.bottom};
-        transform: rotate(45deg) translateX(-50%);
-        /* margin: 0 auto; 
-        margin-top: -22px; */
+        transform: rotate(45deg) translateX(-50%);        
     }
 `
 
@@ -219,7 +217,7 @@ const SabMenuItem = styled.li`
     & > a::after {
         content: "";
         display: block;               
-        /* height: 1.25px; */
+        height: 1.25px;
         background-color: ${({theme}) => theme.color.defaultText};
         transform: scale(0);
         transition: transform 0.4s;
@@ -227,70 +225,7 @@ const SabMenuItem = styled.li`
 
     & > a:hover::after {
         transform: scale(1);  
-    }   
-
-`
-
-
-
-// const IconWrap = styled.div`
-//     position: absolute;
-//     width: 24px;
-//     height: 24px;
-//     left: 20px;
-//     top: 50%;
-//     transform: translateY(-50%); 
-//     z-index: 4;  
-// `
-
-
-
-
-// switch (index) {
-//     case 0: (<DesktopMenuItem key={index}>
-//                 <NavLink 
-//                 to={`/${obj.path}`}
-//                 >
-//                     <Icon 
-//                         id="burgermenu"
-//                         width="24" 
-//                         height="24" 
-//                         viewBox="0 0 24 24"
-//                         stroke="white"
-//                     />
-//                     {obj.ancor}
-//                 </NavLink>
-//             </DesktopMenuItem>);
-//             break;
-
-//     case 6: (<DesktopMenuItem key={index}>
-//                 <NavLink 
-//                     to={`/${obj.path}`}
-//                     onMouseEnter={toggleHover} 
-//                     onMouseLeave={toggleHover}
-//                 >
-//                     {obj.ancor}
-//                     {isHover && 
-//                         <SabMenu>
-
-//                         </SabMenu>}
-//                 </NavLink>
-//             </DesktopMenuItem>); 
-//             break;
-//     default: (<DesktopMenuItem key={index}>
-//                 <NavLink 
-//                     to={`/${obj.path}`}
-//                     style={({ isActive, isPending }) => {
-//                         return {                                                      
-//                             color: isActive ? activeLinkMenu : defaultLinkMenu                        
-//                         };
-//                     }}    
-//                 >
-//                     {obj.ancor}
-//                 </NavLink>
-//             </DesktopMenuItem>);       
-//  }}
-
-                    
+    }
+`                   
 
                                  

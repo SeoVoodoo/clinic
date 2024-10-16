@@ -14,6 +14,7 @@ export const StyledBtn = styled.button<ButtonPropsType>`
     border: none;
     outline: 1px solid ${({theme}) => theme.color.outline};
     border-radius: 10px;
+    font-family: 'Montserrat';
     font-size: 1rem;
     line-height: 18px;
     font-weight: 700;    

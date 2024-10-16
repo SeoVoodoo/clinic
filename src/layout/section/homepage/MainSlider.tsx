@@ -6,7 +6,6 @@ import 'swiper/css';
 import "../../../styles/slider/Slider.css";
 import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
 
-
 type MainSliderPropsType = {
     data: Array<{
         srcDesktop:string
@@ -40,16 +39,23 @@ export const MainSlider: React.FC<MainSliderPropsType> =  (props: MainSliderProp
                     delay: 2500,
                     disableOnInteraction: false
                 }}                                
-            >
+            >   
                 {props.data.map((slide, index) =>
-                    <SwiperSlide key={index}> 
-                    <Wrap>
+                    <SwiperSlide key={index}>
+                     
+                    <Wrap>                    
                     <picture>  
                         <source media="(max-width: 360px)" srcSet={slide.srcMobile} />
-                        <source media="(min-width: 768px)" srcSet={slide.srcDesktop} />                    
-                        <img src={slide.srcTablet} alt={slide.imageAlt} />
-                    </picture> 
+                        <source media="(min-width: 768px)" srcSet={slide.srcDesktop} />                   
+                        <img 
+                            fetchpriority={index === 0 ? "high" : "low"} 
+                            loading={index === 0 ? "eager" : "lazy"}
+                            src={slide.srcTablet} 
+                            alt={slide.imageAlt} 
+                        />
+                    </picture>                    
                     </Wrap>
+                    
                         <Info>
                             <Title 
                                 colorTitleType={slide.colorTitleType} 
@@ -84,8 +90,7 @@ export const MainSlider: React.FC<MainSliderPropsType> =  (props: MainSliderProp
                             </Button>
                         </Info>
                     </SwiperSlide>
-                )}
-
+                )}                
             </Swiper>
         </StyledMainSlider>
     );

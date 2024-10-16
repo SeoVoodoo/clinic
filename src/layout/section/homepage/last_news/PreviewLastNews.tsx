@@ -17,8 +17,8 @@ type PreviewLastNewsPropsType = {
 export const PreviewLastNews: React.FC<PreviewLastNewsPropsType> = (props: PreviewLastNewsPropsType) => {
     return (
         <StyledPreviewCard fontSize={props.fontSize}>
-            <Picture>
-                <img src={props.news.img} />
+            <Picture>                
+                <img loading="lazy" src={props.news.img} alt="" />                
             </Picture>
             <Info fontSize={props.fontSize}>
                 <FlexWrap fontSize={props.fontSize}>

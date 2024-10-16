@@ -13,13 +13,13 @@ type PartnerLogoPropsType = {
 
 export const PartnerLogo: React.FC<PartnerLogoPropsType> = (props: PartnerLogoPropsType) => {
     return (
-        <StyledPartnerLogo width={props.partner.width}>
-            <img src={props.partner.img} />            
+        <StyledPartnerLogo width={props.partner.width}>            
+            <img loading="lazy" decoding="async" src={props.partner.img} alt="" />            
         </StyledPartnerLogo>
     );
 };
 
-const StyledPartnerLogo = styled.li<{width: string | undefined}>`
+const StyledPartnerLogo = styled.li<{width?: string}>`
     
    
    max-width: ${props => props.width};

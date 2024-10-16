@@ -53,6 +53,7 @@ const StyledVisuallyImpairedBtn = styled.button`
     border: none;
     outline: 1px solid ${({theme}) => theme.color.outline};
     border-radius: 10px;
+    font-family: 'Montserrat';
     font-size: 1rem;
     line-height: 18px;
     font-weight: 700;
@@ -61,7 +62,7 @@ const StyledVisuallyImpairedBtn = styled.button`
 
     max-width: 280px;
     width: 100%;
-    padding: 17px 20px;
+    padding: 17px 18px;
     
     display: flex;
     align-items: center;

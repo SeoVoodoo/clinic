@@ -39,7 +39,7 @@ import { Preloader } from './components/Preloader';
 const Prices = lazy(() => import('./pages/main/prices/Prices'));
 const Reviews = lazy(() => import('./pages/main/Reviews'));
 const Tour = lazy(() => import('./pages/main/Tour'));
-const Timetable = lazy(() => import('./pages/main/Timetable'));
+const Timetable = lazy(() => import('./pages/main/time-table/Timetable'));
 
 const initialFontSize = 14;
 const initialState = {show: false, translateY: "-58px"}

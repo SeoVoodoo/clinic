@@ -92,7 +92,7 @@ const Item = styled.li`
         transition: transform 0.4s;
     }
 
-    & a:hover::after {
+    a:hover::after {
         transform: scale(1);  
     }
 

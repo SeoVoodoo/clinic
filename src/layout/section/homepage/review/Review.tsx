@@ -98,7 +98,7 @@ const Content = styled.div`
     }
     span:nth-child(2) {
         display: flex;
-        //flex-direction: row-reverse;
+        flex-direction: row-reverse;
         justify-content: space-between;
     }
 

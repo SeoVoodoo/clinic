@@ -55,7 +55,7 @@ export const Footer: React.FC<FooterPropsType> = (props: FooterPropsType) => {
                         </License>
                         <Addresses addresses={props.addresses}/>
                         <ExternalLink href={props.banner.path} fontSize={props.fontSize}>
-                            <img src={props.banner.src}/>
+                            <img loading="lazy" decoding="async" src={props.banner.src}/>
                         </ExternalLink>                    
                     </Top>
                     <Middle isShow={isShow}>

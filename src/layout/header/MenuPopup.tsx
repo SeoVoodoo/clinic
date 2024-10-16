@@ -56,7 +56,8 @@ export const MenuPopup: React.FC<MobileMenuPopupPropsType> = (props: MobileMenuP
 
 const StyledMenuPopup = styled.div<{isOpen:boolean, isActiveId:string|null}>`  
     width: 100%;
-    height: ${props => props.isActiveId ? "auto" : "100vh"};    
+    /* height: ${props => props.isActiveId !== null ? "auto" : "100vh"}; */
+    height: auto;
     padding: 44px 20px 64px;
     margin: 0 auto;    
     background-color: ${({theme}) => theme.bgCol.default};

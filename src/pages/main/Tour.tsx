@@ -9,6 +9,7 @@ const Tour: React.FC = () => {
             <Container>                
             <iframe
                     src="/virtual_tour/tour.html"
+                    loading="lazy"
                     frameBorder="0"
                     scrolling="no"
                     style={{ display: 'block', margin: '0 auto' }}

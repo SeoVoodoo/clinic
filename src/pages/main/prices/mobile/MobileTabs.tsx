@@ -73,8 +73,7 @@ export const MobileTabs: React.FC<MobileTabsPropsType> = memo((props: MobileTabs
                                 { activeBtn === obj.status && <TabContent                                    
                                     activeBtn={activeBtn}                                    
                                     currentContent={props.content[obj.status as tabNameType]}
-                                    currentNavigation={props.navigation[obj.status as "surova"|"bebelya"]}
-                                                                        
+                                    currentNavigation={props.navigation[obj.status as "surova"|"bebelya"]}                                                                        
                                 />}
                             </ListItem>
                         );
