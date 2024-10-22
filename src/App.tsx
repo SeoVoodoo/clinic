@@ -292,7 +292,7 @@ function App(props: {store: StoreType}) {
             <Route path="/prices" element = {<Suspense fallback={<Preloader />}>
               <Prices 
                 pricesPage={state.pricesPage}
-                windowWidth={windowWidth} 
+                windowWidth={windowWidth}                
               />
               </Suspense>} 
             />
@@ -308,6 +308,8 @@ function App(props: {store: StoreType}) {
             <Route path="/timetable" element = {<Suspense fallback={<Preloader />}>
               <Timetable 
                 timeTablePage={state.timeTablePage}
+                windowWidth={windowWidth}
+                fontSize={fontSize}
               />
               </Suspense>} 
             />

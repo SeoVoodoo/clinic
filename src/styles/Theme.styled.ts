@@ -25,6 +25,10 @@ export const myTheme = {
             defaultHover: "#1D1F24",
             firstLinkMenu: "rgba(91, 238, 208, 0.2)",            
             swiperPaginationBulletActive: "rgba(245, 130, 32, 1)",
+            tables: {
+                mainCell: "rgba(243, 252, 250, 1)",
+                vacation: "rgba(246, 191, 142, 0.1)" 
+            },
             homePage: {
                 advantages: {
                     0: "rgba(213, 243, 238, 1)",
@@ -53,6 +57,7 @@ export const myTheme = {
             pageName: {
                 price: "rgba(242, 245, 247, 1)",
                 reviews: "rgba(242, 245, 247, 1)", 
+                timetable: "rgba(0, 166, 81, 0.1)"
             }
         },
 
@@ -145,6 +150,10 @@ export const myTheme = {
             defaultHover: "rgba(0, 0, 0, .4)",
             firstLinkMenu: "rgba(0, 0, 0, 1)",            
             swiperPaginationBulletActive: "rgba(0, 0, 0, 1)",
+            tables: {
+                mainCell: "rgba(255, 255, 255, 1)",
+                vacation: "rgba(255, 255, 255, 1)" 
+            },
             homePage: {
                 advantages: {
                     0: "rgba(255, 255, 255, 1)",
@@ -172,7 +181,8 @@ export const myTheme = {
             },
             pageName: {
                 price: "rgba(255, 255, 255, 1)",
-                reviews: "rgba(255, 255, 255, 1)"
+                reviews: "rgba(255, 255, 255, 1)",
+                timetable: "rgba(255, 255, 255, 1)"
             }
         },
 
@@ -264,6 +274,10 @@ export const myTheme = {
             defaultHover: "#6b6b6b",
             firstLinkMenu: "rgba(255, 255, 255, 1)",            
             swiperPaginationBulletActive: "rgba(0, 0, 0, 1)",
+            tables: {
+                mainCell: "rgba(0, 0, 0, 1)",
+                vacation: "rgba(0, 0, 0, 1)" 
+            },
             homePage: {
                 advantages: {
                     0: "rgba(0, 0, 0, 1)",
@@ -291,7 +305,8 @@ export const myTheme = {
             },
             pageName: {
                 price: "rgba(0, 0, 0, 1)",
-                reviews: "rgba(0, 0, 0, 1)"
+                reviews: "rgba(0, 0, 0, 1)",
+                timetable: "rgba(0, 0, 0, 1)"
             }            
         },
 
@@ -382,6 +397,10 @@ export const myTheme = {
             defaultHover: "rgba(157, 209, 255, .5)",
             firstLinkMenu: "rgba(157, 209, 255, 1)",            
             swiperPaginationBulletActive: "rgba(6, 52, 98, 1)",
+            tables: {
+                mainCell: "rgba(157, 209, 255, 1)",
+                vacation: "rgba(157, 209, 255, 1)" 
+            },
             homePage: {
                 advantages: {
                     0: "rgba(157, 209, 255, 1)",
@@ -409,7 +428,8 @@ export const myTheme = {
             },
             pageName: {
                 price: "rgba(157, 209, 255, 1)",
-                reviews: "rgba(157, 209, 255, 1)"
+                reviews: "rgba(157, 209, 255, 1)",
+                timetable: "rgba(157, 209, 255, 1)"
             }            
         },
 

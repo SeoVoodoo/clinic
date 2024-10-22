@@ -8,6 +8,7 @@ type TabMenuPropsType = {
     tabs: Array<{title:string, status:string}>
     activeBtn:string
     handleTabClick: (status:string) => void
+    fontSize?:number
 }
 
 export const TabMenu: React.FC<TabMenuPropsType> = (props: TabMenuPropsType) => {
@@ -20,6 +21,7 @@ export const TabMenu: React.FC<TabMenuPropsType> = (props: TabMenuPropsType) => 
                             <ListItem key={index}>
                                 <TabBtn 
                                     active={props.activeBtn === obj.status}
+                                    fontSize={props.fontSize}
                                     onClick={() => props.handleTabClick(obj.status)}
                                 >
                                     {obj.title}
@@ -47,10 +49,9 @@ const ListItem = styled.li`
    
 `
 
-const TabBtn = styled.button<{active:boolean}>` 
+const TabBtn = styled.button<{active:boolean,  fontSize?:number}>` 
     width: 100%;
-    height: 70px;
-    z-index: -1;
+    height: 78px;    
     border: none;
     border-radius: 24px 24px 0 0;    
     font-size: calc((100vw - 26rem)/(137 - 26) * (1.43 - 1) + 1rem);    
@@ -72,5 +73,9 @@ const TabBtn = styled.button<{active:boolean}>`
     ${props => props.active && css`
         color: ${({theme}) => theme.color.defaultBtn};
         background-color: ${({theme}) => theme.bgCol.btn.primary};        
-    `}    
+    `} 
+    
+    @media ${({theme}) => theme.media.mobile} {
+        height: ${props => props.fontSize && props.fontSize > 14 ? "180px" : "78px"};
+    }
 `

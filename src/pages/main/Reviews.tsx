@@ -36,6 +36,7 @@ const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => {
 
  
   setTimeout(() => {
+    const regexp = /<img [^<]+>/g;
     const reviews__header = document.querySelector('.pd-widget-reviews__header > div') as HTMLElement;      
     const patient = reviews__header.innerHTML.replace("Пациент", "");
 
@@ -44,7 +45,7 @@ const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => {
 
     const reviews__review = document.querySelector('.pd-widget-reviews__review') as HTMLElement;
     const comments = reviews__review.querySelectorAll('.pd-widget-reviews__comment-text');
-    const history = comments[0].innerHTML;
+    const history = comments[0].innerHTML.replace(regexp, "");
     const plus = comments[1].innerHTML;
     const minus = comments[2] ? comments[2].innerHTML : "";
 

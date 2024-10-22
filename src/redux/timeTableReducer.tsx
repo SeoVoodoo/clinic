@@ -1,8 +1,26 @@
 import React from 'react';
+import Img_desktop from "../assets/images/single-img/desctop/childrens.webp";
+import Img_mobile from "../assets/images/single-img/mobile/children.webp";
 
-const initialState = {    
+const initialState = {   
+    pageTopPart: {
+        pageName: "timetable",
+        srcDesktop: Img_desktop,            
+        srcMobile: Img_mobile,
+        title: "График приема"       
+    }, 
+    tabs: [
+        {
+            title: "Новый город (пр-т Врача Сурова, д.4)",
+            status: "surova"
+        },
+        {
+            title: "Центр (ул. Бебеля, 1А)",
+            status: "bebelya"
+        }        
+    ], 
     calendar: {
-        mapper: {
+        firstColumn: {
             gordeeva_1: {
                 doctor: "Гордеева И. В.",
                 description: "Главный врач, акушер-гинеколог, репродуктолог"
@@ -21,7 +39,7 @@ const initialState = {
             },
             sabirova: {
                 doctor: "Сабирова Г.З.",
-                description: "Акушер-гинеколог"
+                description: "Акушер-гинеколог, репродуктолог"
             },
             serebryakova: {
                 doctor: "Серебрякова Т.А.",
@@ -51,6 +69,42 @@ const initialState = {
                 doctor: "Кожевникова И.В.",
                 description: "гистероскопия/гистерорезектоскопия"
             },
+            aslanova: {
+                doctor: "Асланова М.В.",
+                description: "Акушер-гинеколог, репродуктолог"
+            }, 
+            ilgachev: {
+                doctor: "Ильгачев А.Н.",
+                description: "Врач УЗИ"
+            },
+            malanina: {
+                doctor: "Маланина Е.Н.",
+                description: "Врач УЗИ"
+            },
+            stepanova: {
+                doctor: "Степанова А.В.",
+                description: "Онколог"
+            },
+            gordeev: {
+                doctor: "Гордеев А.В.",
+                description: "Травматолог"
+            },
+            belij: {
+                doctor: "Белый Л.Е.",
+                description: "Уролог-андролог, д.м.н"
+            },
+            konovalova: {
+                doctor: "Коновалова Н.В.",
+                description: "Физиотерапевт (проведение ударно-волновой терапии)"
+            },
+            brigina: {
+                doctor: "Брыгина Н.А.",
+                description: "Эндокринолог"
+            },
+            malyankova: {
+                doctor: "Малянкова Л.Ю",
+                description: "Врач УЗИ"
+            },
             manipulation: {
                 doctor: "Манипуляционная",
                 description: "спермограммы"
@@ -58,7 +112,11 @@ const initialState = {
             procedure: {
                 doctor: "Процедурный",
                 description: "забор материала"
-            }    
+            },
+            diagnostics: {
+                doctor: "Кабинет функциональная диагностика",
+                description: "ЭКГ, холтеровскеое мониторирование"
+            }   
         },
         days: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
         dates: [
@@ -67,8 +125,7 @@ const initialState = {
             ["31.03.2025", "01.04.2025", "02.04.2025", "03.04.2025", "04.04.2025", "05.04.2025", "06.04.2025"],
             ["07.04.2025", "08.04.2025", "09.04.2025", "10.04.2025", "11.04.2025", "12.04.2025", "13.04.2025"],
             ["14.04.2025", "15.04.2025", "16.04.2025", "17.04.2025", "18.04.2025", "19.04.2025", "20.04.2025"]		
-        ],
-        
+        ],        
         surova: [ 
                     [
                         { 
@@ -739,7 +796,793 @@ const initialState = {
                         }  
                     ]
                 ],
-        //bebelya: [],
+        bebelya: [
+                    [
+                        { 
+                            id: "gordeeva_1", 
+                            Monday: 'прием на Бебеля,1А', 
+                            Tuesday: "08:40 - 11:20",
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                        
+                        },
+                        { 
+                            id: "aslanova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },    
+                        { 
+                            id: "sabirova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },
+                        { 
+                            id: "ilgachev", 
+                            Monday: "08:00 - 19:00",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malanina", 
+                            Monday: 'прием на Бебеля,1А',                        
+                            Tuesday: '08:40 - 11:20',
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "stepanova", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "15:30-17:30",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "simanskaya", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "08:30 - 12:00",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "gordeev", 
+                            Monday: 'Отпуск',
+                            colspan: 5,
+                            Saturday: "08:00 - 19:00",
+                            Sunday: "08:40 - 11:20"                         
+                        },
+                        { 
+                            id: "belij", 
+                            Monday: "16:00 - 18:20",                        
+                            Tuesday: "16:00 - 18:20",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "10:00 - 12:00", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "lavrenuk", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "konovalova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "09:00 - 16:00",
+                            Wednesday: "09:00 - 16:00",
+                            Thursday: "14:00 - 16:00",
+                            Friday: '14:00 - 16:00', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "brigina", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "08:00-14:00	",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malyankova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "Отпуск",
+                            colspan: 4, 
+                            Saturday: "09:00 - 16:00",
+                            Sunday: "09:00 - 16:00"                         
+                        },
+                        { 
+                            id: "diagnostics", 
+                            Monday: "16:00 - 18:30",                        
+                            Tuesday: "16:00 - 18:30",
+                            Wednesday: "16:00 - 18:30",
+                            Thursday: "16:00 - 18:30",
+                            Friday: "16:00 - 18:30", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },                
+                        { 
+                            id: "manipulation", 
+                            Monday: "08:00 - 14:00",                        
+                            Tuesday: "08:00 - 14:00",
+                            Wednesday: "08:00 - 14:00",
+                            Thursday: "08:00 - 14:00",
+                            Friday: "08:00 - 14:00", 
+                            Saturday: "08:00 - 14:00",
+                            Sunday: "08:00 - 12:00"                         
+                        },
+                        { 
+                            id: "procedure", 
+                            Monday: "07:30 - 12:00",                        
+                            Tuesday: "07:30 - 12:00",
+                            Wednesday: "07:30 - 12:00",
+                            Thursday: "07:30 - 12:00",
+                            Friday: "07:30 - 12:00", 
+                            Saturday: "07:30 - 12:00",
+                            Sunday: "08:00 - 11:00"                         
+                        }
+                    ],
+                    [
+                        { 
+                            id: "gordeeva_1", 
+                            Monday: 'прием на Бебеля,1А', 
+                            Tuesday: "08:40 - 11:20",
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                        
+                        },
+                        { 
+                            id: "aslanova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },    
+                        { 
+                            id: "sabirova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },
+                        { 
+                            id: "ilgachev", 
+                            Monday: "08:00 - 19:00",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malanina", 
+                            Monday: 'прием на Бебеля,1А',                        
+                            Tuesday: '08:40 - 11:20',
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "stepanova", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "15:30-17:30",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "simanskaya", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "08:30 - 12:00",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "gordeev", 
+                            Monday: 'Отпуск',
+                            colspan: 5,
+                            Saturday: "08:00 - 19:00",
+                            Sunday: "08:40 - 11:20"                         
+                        },
+                        { 
+                            id: "belij", 
+                            Monday: "16:00 - 18:20",                        
+                            Tuesday: "16:00 - 18:20",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "10:00 - 12:00", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "lavrenuk", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "konovalova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "09:00 - 16:00",
+                            Wednesday: "09:00 - 16:00",
+                            Thursday: "14:00 - 16:00",
+                            Friday: '14:00 - 16:00', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "brigina", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "08:00-14:00	",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malyankova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "Отпуск",
+                            colspan: 4, 
+                            Saturday: "09:00 - 16:00",
+                            Sunday: "09:00 - 16:00"                         
+                        },
+                        { 
+                            id: "diagnostics", 
+                            Monday: "16:00 - 18:30",                        
+                            Tuesday: "16:00 - 18:30",
+                            Wednesday: "16:00 - 18:30",
+                            Thursday: "16:00 - 18:30",
+                            Friday: "16:00 - 18:30", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },                
+                        { 
+                            id: "manipulation", 
+                            Monday: "08:00 - 14:00",                        
+                            Tuesday: "08:00 - 14:00",
+                            Wednesday: "08:00 - 14:00",
+                            Thursday: "08:00 - 14:00",
+                            Friday: "08:00 - 14:00", 
+                            Saturday: "08:00 - 14:00",
+                            Sunday: "08:00 - 12:00"                         
+                        },
+                        { 
+                            id: "procedure", 
+                            Monday: "07:30 - 12:00",                        
+                            Tuesday: "07:30 - 12:00",
+                            Wednesday: "07:30 - 12:00",
+                            Thursday: "07:30 - 12:00",
+                            Friday: "07:30 - 12:00", 
+                            Saturday: "07:30 - 12:00",
+                            Sunday: "08:00 - 11:00"                         
+                        }
+                    ],
+                    [
+                        { 
+                            id: "gordeeva_1", 
+                            Monday: 'прием на Бебеля,1А', 
+                            Tuesday: "08:40 - 11:20",
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                        
+                        },
+                        { 
+                            id: "aslanova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },    
+                        { 
+                            id: "sabirova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },
+                        { 
+                            id: "ilgachev", 
+                            Monday: "08:00 - 19:00",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malanina", 
+                            Monday: 'прием на Бебеля,1А',                        
+                            Tuesday: '08:40 - 11:20',
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "stepanova", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "15:30-17:30",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "simanskaya", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "08:30 - 12:00",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "gordeev", 
+                            Monday: 'Отпуск',
+                            colspan: 5,
+                            Saturday: "08:00 - 19:00",
+                            Sunday: "08:40 - 11:20"                         
+                        },
+                        { 
+                            id: "belij", 
+                            Monday: "16:00 - 18:20",                        
+                            Tuesday: "16:00 - 18:20",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "10:00 - 12:00", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "lavrenuk", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "konovalova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "09:00 - 16:00",
+                            Wednesday: "09:00 - 16:00",
+                            Thursday: "14:00 - 16:00",
+                            Friday: '14:00 - 16:00', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "brigina", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "08:00-14:00	",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malyankova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "Отпуск",
+                            colspan: 4, 
+                            Saturday: "09:00 - 16:00",
+                            Sunday: "09:00 - 16:00"                         
+                        },
+                        { 
+                            id: "diagnostics", 
+                            Monday: "16:00 - 18:30",                        
+                            Tuesday: "16:00 - 18:30",
+                            Wednesday: "16:00 - 18:30",
+                            Thursday: "16:00 - 18:30",
+                            Friday: "16:00 - 18:30", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },                
+                        { 
+                            id: "manipulation", 
+                            Monday: "08:00 - 14:00",                        
+                            Tuesday: "08:00 - 14:00",
+                            Wednesday: "08:00 - 14:00",
+                            Thursday: "08:00 - 14:00",
+                            Friday: "08:00 - 14:00", 
+                            Saturday: "08:00 - 14:00",
+                            Sunday: "08:00 - 12:00"                         
+                        },
+                        { 
+                            id: "procedure", 
+                            Monday: "07:30 - 12:00",                        
+                            Tuesday: "07:30 - 12:00",
+                            Wednesday: "07:30 - 12:00",
+                            Thursday: "07:30 - 12:00",
+                            Friday: "07:30 - 12:00", 
+                            Saturday: "07:30 - 12:00",
+                            Sunday: "08:00 - 11:00"                         
+                        }
+                    ],
+                    [
+                        { 
+                            id: "gordeeva_1", 
+                            Monday: 'прием на Бебеля,1А', 
+                            Tuesday: "08:40 - 11:20",
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                        
+                        },
+                        { 
+                            id: "aslanova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },    
+                        { 
+                            id: "sabirova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },
+                        { 
+                            id: "ilgachev", 
+                            Monday: "08:00 - 19:00",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malanina", 
+                            Monday: 'прием на Бебеля,1А',                        
+                            Tuesday: '08:40 - 11:20',
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "stepanova", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "15:30-17:30",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "simanskaya", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "08:30 - 12:00",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "gordeev", 
+                            Monday: 'Отпуск',
+                            colspan: 5,
+                            Saturday: "08:00 - 19:00",
+                            Sunday: "08:40 - 11:20"                         
+                        },
+                        { 
+                            id: "belij", 
+                            Monday: "16:00 - 18:20",                        
+                            Tuesday: "16:00 - 18:20",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "10:00 - 12:00", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "lavrenuk", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "konovalova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "09:00 - 16:00",
+                            Wednesday: "09:00 - 16:00",
+                            Thursday: "14:00 - 16:00",
+                            Friday: '14:00 - 16:00', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "brigina", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "08:00-14:00	",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malyankova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "Отпуск",
+                            colspan: 4, 
+                            Saturday: "09:00 - 16:00",
+                            Sunday: "09:00 - 16:00"                         
+                        },
+                        { 
+                            id: "diagnostics", 
+                            Monday: "16:00 - 18:30",                        
+                            Tuesday: "16:00 - 18:30",
+                            Wednesday: "16:00 - 18:30",
+                            Thursday: "16:00 - 18:30",
+                            Friday: "16:00 - 18:30", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },                
+                        { 
+                            id: "manipulation", 
+                            Monday: "08:00 - 14:00",                        
+                            Tuesday: "08:00 - 14:00",
+                            Wednesday: "08:00 - 14:00",
+                            Thursday: "08:00 - 14:00",
+                            Friday: "08:00 - 14:00", 
+                            Saturday: "08:00 - 14:00",
+                            Sunday: "08:00 - 12:00"                         
+                        },
+                        { 
+                            id: "procedure", 
+                            Monday: "07:30 - 12:00",                        
+                            Tuesday: "07:30 - 12:00",
+                            Wednesday: "07:30 - 12:00",
+                            Thursday: "07:30 - 12:00",
+                            Friday: "07:30 - 12:00", 
+                            Saturday: "07:30 - 12:00",
+                            Sunday: "08:00 - 11:00"                         
+                        }
+                    ],
+                    [
+                        { 
+                            id: "gordeeva_1", 
+                            Monday: 'прием на Бебеля,1А', 
+                            Tuesday: "08:40 - 11:20",
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                        
+                        },
+                        { 
+                            id: "aslanova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },    
+                        { 
+                            id: "sabirova", 
+                            Monday: "", 
+                            Tuesday: "14:40 - 16:00",
+                            Wednesday: "",
+                            Thursday: "", 
+                            Friday: "",
+                            Saturday: "",
+                            Sunday: ""                      
+                        },
+                        { 
+                            id: "ilgachev", 
+                            Monday: "08:00 - 19:00",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malanina", 
+                            Monday: 'прием на Бебеля,1А',                        
+                            Tuesday: '08:40 - 11:20',
+                            Wednesday: "",
+                            Thursday: "08:40 - 11:20",
+                            Friday: 'прием на Бебеля,1А', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "stepanova", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "15:30-17:30",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "simanskaya", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "08:30 - 12:00",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "gordeev", 
+                            Monday: 'Отпуск',
+                            colspan: 5,
+                            Saturday: "08:00 - 19:00",
+                            Sunday: "08:40 - 11:20"                         
+                        },
+                        { 
+                            id: "belij", 
+                            Monday: "16:00 - 18:20",                        
+                            Tuesday: "16:00 - 18:20",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "10:00 - 12:00", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "lavrenuk", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "konovalova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "09:00 - 16:00",
+                            Wednesday: "09:00 - 16:00",
+                            Thursday: "14:00 - 16:00",
+                            Friday: '14:00 - 16:00', 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "brigina", 
+                            Monday: "",                        
+                            Tuesday: "",
+                            Wednesday: "",
+                            Thursday: "",
+                            Friday: "", 
+                            Saturday: "08:00-14:00	",
+                            Sunday: ""                         
+                        },
+                        { 
+                            id: "malyankova", 
+                            Monday: "09:00 - 16:00",                        
+                            Tuesday: "Отпуск",
+                            colspan: 4, 
+                            Saturday: "09:00 - 16:00",
+                            Sunday: "09:00 - 16:00"                         
+                        },
+                        { 
+                            id: "diagnostics", 
+                            Monday: "16:00 - 18:30",                        
+                            Tuesday: "16:00 - 18:30",
+                            Wednesday: "16:00 - 18:30",
+                            Thursday: "16:00 - 18:30",
+                            Friday: "16:00 - 18:30", 
+                            Saturday: "",
+                            Sunday: ""                         
+                        },                
+                        { 
+                            id: "manipulation", 
+                            Monday: "08:00 - 14:00",                        
+                            Tuesday: "08:00 - 14:00",
+                            Wednesday: "08:00 - 14:00",
+                            Thursday: "08:00 - 14:00",
+                            Friday: "08:00 - 14:00", 
+                            Saturday: "08:00 - 14:00",
+                            Sunday: "08:00 - 12:00"                         
+                        },
+                        { 
+                            id: "procedure", 
+                            Monday: "07:30 - 12:00",                        
+                            Tuesday: "07:30 - 12:00",
+                            Wednesday: "07:30 - 12:00",
+                            Thursday: "07:30 - 12:00",
+                            Friday: "07:30 - 12:00", 
+                            Saturday: "07:30 - 12:00",
+                            Sunday: "08:00 - 11:00"                         
+                        }
+                    ]
+                ]
     }
 }
 
@@ -757,7 +1600,17 @@ export type timeTableMapper =
     "salmina" |
     "kogevnikova" |
     "manipulation" |
-    "procedure";
+    "procedure" | 
+    "aslanova" | 
+    "ilgachev" | 
+    "malanina" | 
+    "stepanova" | 
+    "gordeev" | 
+    "belij" | 
+    "konovalova" | 
+    "brigina" | 
+    "malyankova" | 
+    "diagnostics";
 
 export type initialStateType = typeof initialState;
 
