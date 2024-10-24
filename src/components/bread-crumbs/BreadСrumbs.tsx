@@ -5,7 +5,8 @@ import { styled } from 'styled-components';
 const pathMap: any = {    
     prices: "Цены",
     reviews: "Отзывы",
-    timetable: "График приема"
+    timetable: "График приема",
+    faq: "Вопрос-ответ"
 }
 
 export const BreadСrumbs = () => {

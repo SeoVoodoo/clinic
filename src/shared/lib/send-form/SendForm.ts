@@ -36,6 +36,7 @@ export const sendForm = async (e: { preventDefault: () => void; target: any }, t
     for(let [key, value] of formData) {
       formEntries[key] = value.toString();
     }
+    formEntries.answer = "http://localhost:3000/eco";
 
     // npm yarn pnpm
     // vite -> https://vitejs.dev/
@@ -50,7 +51,8 @@ export const sendForm = async (e: { preventDefault: () => void; target: any }, t
     delete formEntries['agreement'];
 
     const message = Object.entries(formEntries).map(([key, value]) => {
-        return `<b>${mailMapper[key] || key}: </b> ${value}<br>`;
+      // return `<b>${mailMapper[key] || key}: </b> ${value}<br>`; - было так
+        return mailMapper[key] ? `<b>${mailMapper[key] || key}: </b> ${value}<br>` : "";
     }).join("")
 
 

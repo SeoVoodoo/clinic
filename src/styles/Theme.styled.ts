@@ -57,7 +57,8 @@ export const myTheme = {
             pageName: {
                 price: "rgba(242, 245, 247, 1)",
                 reviews: "rgba(242, 245, 247, 1)", 
-                timetable: "rgba(0, 166, 81, 0.1)"
+                timetable: "rgba(0, 166, 81, 0.1)",
+                faq: "rgba(242, 245, 247, 1)",
             }
         },
 
@@ -182,7 +183,8 @@ export const myTheme = {
             pageName: {
                 price: "rgba(255, 255, 255, 1)",
                 reviews: "rgba(255, 255, 255, 1)",
-                timetable: "rgba(255, 255, 255, 1)"
+                timetable: "rgba(255, 255, 255, 1)",
+                faq: "rgba(255, 255, 255, 1)"
             }
         },
 
@@ -306,7 +308,8 @@ export const myTheme = {
             pageName: {
                 price: "rgba(0, 0, 0, 1)",
                 reviews: "rgba(0, 0, 0, 1)",
-                timetable: "rgba(0, 0, 0, 1)"
+                timetable: "rgba(0, 0, 0, 1)",
+                faq: "rgba(0, 0, 0, 1)"
             }            
         },
 
@@ -429,7 +432,8 @@ export const myTheme = {
             pageName: {
                 price: "rgba(157, 209, 255, 1)",
                 reviews: "rgba(157, 209, 255, 1)",
-                timetable: "rgba(157, 209, 255, 1)"
+                timetable: "rgba(157, 209, 255, 1)",
+                faq: "rgba(157, 209, 255, 1)"
             }            
         },
 

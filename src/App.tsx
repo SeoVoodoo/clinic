@@ -12,7 +12,7 @@ import { Route, Routes } from 'react-router-dom';
 import { AllDoctors } from './pages/main/AllDoctors';
 //import { Timetable } from './pages/main/Timetable';
 import { Eco } from './pages/main/Eco';
-import { Faq } from './pages/main/Faq';
+//import { Faq } from './pages/main/Faq';
 import { Contacts } from './pages/main/Contacts';
 import { About } from './pages/main/About';
 import { News } from './pages/main/News';
@@ -40,6 +40,7 @@ const Prices = lazy(() => import('./pages/main/prices/Prices'));
 const Reviews = lazy(() => import('./pages/main/Reviews'));
 const Tour = lazy(() => import('./pages/main/Tour'));
 const Timetable = lazy(() => import('./pages/main/time-table/Timetable'));
+const Faq = lazy(() => import('./pages/main/Faq'));
 
 const initialFontSize = 14;
 const initialState = {show: false, translateY: "-58px"}
@@ -298,8 +299,8 @@ function App(props: {store: StoreType}) {
             />
             <Route path="/reviews" element = {<Suspense fallback={<Preloader />}>
               <Reviews 
-                reviewsPage={state.reviewsPage}
-                windowWidth={windowWidth}
+                reviewsPage={state.reviewsPage} 
+                windowWidth={windowWidth}               
                 dispatch={props.store.dispatch}
               />
               </Suspense>} 
@@ -307,8 +308,7 @@ function App(props: {store: StoreType}) {
 
             <Route path="/timetable" element = {<Suspense fallback={<Preloader />}>
               <Timetable 
-                timeTablePage={state.timeTablePage}
-                windowWidth={windowWidth}
+                timeTablePage={state.timeTablePage}                
                 fontSize={fontSize}
               />
               </Suspense>} 
@@ -319,9 +319,15 @@ function App(props: {store: StoreType}) {
               </Suspense>} 
             />
 
+            <Route path="/faq" element = {<Suspense fallback={<Preloader />}>
+              <Faq 
+                faqPage={state.faqPage}                
+              />
+              </Suspense>}            
+            />
+
             <Route path="/doctors" element = {<AllDoctors />} />            
-            <Route path="/eco" element = {<Eco />} />
-            <Route path="/faq" element = {<Faq />} />
+            <Route path="/eco" element = {<Eco />} />            
             <Route path="/contacts" element = {<Contacts />} />
             <Route path="/about" element = {<About />} />            
             <Route path="/news" element = {<News />} />

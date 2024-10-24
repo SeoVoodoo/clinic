@@ -9,14 +9,14 @@ import { ScrollTop } from '../../../components/ScrollTop';
 
 
 type PricesPropsType = {
-  windowWidth:number
-  
+  windowWidth:number  
   pricesPage: {
     tabs: Array<{title:string, status:string}>
     pageTopPart: {
       pageName:string
       title:string
-      srcDesktop:string           
+      srcDesktop:string
+      srcTablet:string           
       srcMobile:string
     }
     navigation: {
@@ -70,8 +70,7 @@ const Prices: React.FC<PricesPropsType> = memo((props: PricesPropsType) => {
     <StyledPrices>
       <ScrollTop />
       <PageTopPart 
-        pageTopPart={props.pricesPage.pageTopPart} 
-        windowWidth={props.windowWidth}
+        pageTopPart={props.pricesPage.pageTopPart}        
       />
       <Container>
         {props.windowWidth > breakpoint 

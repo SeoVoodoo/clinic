@@ -11,7 +11,8 @@ type ReviewsPropsType = {
     pageTopPart: {
       pageName:string
       title:string
-      srcDesktop:string           
+      srcDesktop:string   
+      srcTablet:string        
       srcMobile:string
     }
   }  
@@ -63,8 +64,7 @@ const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => {
     <StyledReviews hidden={props.hidden}>
       <ScrollTop />
       { !props.hidden && <PageTopPart 
-        pageTopPart={props.reviewsPage.pageTopPart} 
-        windowWidth={props.windowWidth}
+        pageTopPart={props.reviewsPage.pageTopPart}        
       />}
       <Container> 
         <Wrap>

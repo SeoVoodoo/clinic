@@ -1,12 +1,14 @@
 import React from 'react';
 import Img_desktop from "../assets/images/single-img/desctop/childrens.webp";
 import Img_mobile from "../assets/images/single-img/mobile/children.webp";
+import Img_tablet from "../assets/images/single-img/tablet/childrens.webp";
 
 const initialState = {   
     pageTopPart: {
         pageName: "timetable",
         srcDesktop: Img_desktop,            
         srcMobile: Img_mobile,
+        srcTablet: Img_tablet,
         title: "График приема"       
     }, 
     tabs: [

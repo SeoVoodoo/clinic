@@ -11,14 +11,14 @@ interface Data {
     description:string
   }
 
-type TimetablePropsType = {
-    windowWidth:number
+type TimetablePropsType = {    
     fontSize:number
     timeTablePage: {
       pageTopPart: {
         pageName:string
         title:string
-        srcDesktop:string           
+        srcDesktop:string 
+        srcTablet:string          
         srcMobile:string
       }
       tabs: Array<{title:string, status:string}>    
@@ -92,8 +92,7 @@ const Timetable: React.FC<TimetablePropsType> = memo((props: TimetablePropsType)
     <StyledTimetable>
       <ScrollTop />
       <PageTopPart 
-        pageTopPart={props.timeTablePage.pageTopPart} 
-        windowWidth={props.windowWidth}
+        pageTopPart={props.timeTablePage.pageTopPart}        
       />
       <Container>        
       

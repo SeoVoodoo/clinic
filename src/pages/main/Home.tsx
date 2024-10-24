@@ -109,38 +109,28 @@ export const Home: React.FC<HomePropsType> = memo((props: HomePropsType) => {
             fontSize={props.fontSize}
           />
           <WrapAdvantages>
-            <Container>
-            {/* <LazyLoad offset={100} once> */}
+            <Container>            
               <Advantages 
                 advantages={props.homePage.advantages} 
                 fontSize={props.fontSize}
-              />
-            {/* </LazyLoad> */}
-              {/* <LazyLoad offset={200} once> */}
-                <Promotions promotions={props.homePage.promotions} fontSize={props.fontSize} />  
-              {/* </LazyLoad>             */}
+              />            
+              <Promotions promotions={props.homePage.promotions} fontSize={props.fontSize} />              
             </Container>
           </WrapAdvantages>
 
-          <Container>
-            {/* <LazyLoad offset={200} once> */}
-              <Services services={props.homePage.services} />
-            {/* </LazyLoad>          */}
+          <Container>            
+              <Services services={props.homePage.services} />            
           </Container>
 
           <WrapDoctors>
-            <Container>
-            {/* <LazyLoad offset={200} once> */}
-              <Doctors doctors={props.homePage.doctors} fontSize={props.fontSize} />
-            {/* </LazyLoad>  */}
+            <Container>            
+              <Doctors doctors={props.homePage.doctors} fontSize={props.fontSize} />            
             </Container>
           </WrapDoctors>
 
           <WrapLastNews>
-            <Container>
-            {/* <LazyLoad offset={200} once> */}
-              <LastNews lastNews={props.homePage.lastNews} fontSize={props.fontSize}/>    
-            {/* </LazyLoad>      */}
+            <Container>            
+              <LastNews lastNews={props.homePage.lastNews} fontSize={props.fontSize}/>            
             </Container>
           </WrapLastNews>
 
@@ -149,17 +139,13 @@ export const Home: React.FC<HomePropsType> = memo((props: HomePropsType) => {
           </Container>
 
           <WrapUsefulInfo>
-            <Container>
-            {/* <LazyLoad offset={200} once> */}
-              <UsefulInfo usefulInfo={props.homePage.usefulInfo} fontSize={props.fontSize}/> 
-            {/* </LazyLoad>         */}
+            <Container>            
+              <UsefulInfo usefulInfo={props.homePage.usefulInfo} fontSize={props.fontSize}/>            
             </Container>
           </WrapUsefulInfo>
 
-          <Container>
-              {/* <LazyLoad offset={200} once> */}
-                <Partners partners={props.homePage.partners} /> 
-              {/* </LazyLoad>          */}
+          <Container>              
+            <Partners partners={props.homePage.partners} />              
           </Container>
 
           <Suspense fallback={'Загрузка...'}>
