@@ -6,6 +6,7 @@ import { Container } from '../../components/Container';
 import { StyledH2 } from '../../components/StyledH2';
 import { StyledCallbackBtn } from '../../components/StyledBtn';
 import { ModalWindowAskQuestion } from '../../components/pop-up/ModalWindowAskQuestion';
+import { Filter } from '../../components/Filter';
 
 type FaqPropsType = {  
   faqPage: {
@@ -16,19 +17,39 @@ type FaqPropsType = {
       srcTablet:string         
       srcMobile:string
     }
+    directions: string[]
     questions: Array<{
       direction:string
-            userName:string
-            question:string
-            doctorName:string
-            answer:string
-            date:string
+      userName:string
+      question:string
+      doctorName:string
+      answer:string
+      date:string
     }>
   }
 }
 
 const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
   const [isOpenModalWindowAskQuestion, setIsOpenModalWindowAskQuestion] = useState(false);
+  const [selectDirection, setSelectDirection] = useState("Все направления");
+  
+  let filteredQuestions = [];
+
+  switch(selectDirection) {
+    case "Лечение бесплодия":
+      filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Лечение бесплодия");
+      break;
+    case "Гинекология":
+      filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Гинекология");
+      break;
+    case "Услуги для беременных":
+      filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Услуги для беременных");
+      break;
+    case "Урологические операции":
+      filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Урологические операции");
+      break;
+    default: filteredQuestions = props.faqPage.questions    
+  }
 
   const handleToggleModalWindowAskQuestion = () => {
     setIsOpenModalWindowAskQuestion(prev => !prev);
@@ -56,54 +77,60 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
         document.body.style.width= "unset";
         //document.body.style.height= "unset";
     }        
- }, [isOpenModalWindowAskQuestion]);
+  }, [isOpenModalWindowAskQuestion]);
 
-    return (
-      <>
-        {isOpenModalWindowAskQuestion && 
-          <ModalWindowAskQuestion 
-            handleToggleModalWindowAskQuestion={handleToggleModalWindowAskQuestion}
-            onError={handleError}
-            onSuccess={handleSuccess}
+  return (    
+    <>
+      {isOpenModalWindowAskQuestion && 
+        <ModalWindowAskQuestion 
+          handleToggleModalWindowAskQuestion={handleToggleModalWindowAskQuestion}
+          onError={handleError}
+          onSuccess={handleSuccess}
+        />
+      }
+      <StyledFaq>
+        <ScrollTop />          
+        <PageTopPart 
+          pageTopPart={props.faqPage.pageTopPart}            
+        />
+        <Container>
+          <AskQuestion>
+            <StyledH2>
+              Есть вопрос?<br />Задайте его нашему врачу
+            </StyledH2>
+            <StyledCallbackBtn onClick={handleToggleModalWindowAskQuestion}>
+              Задать вопрос
+            </StyledCallbackBtn>
+          </AskQuestion>
+          <StyledH2 style={{textAlign: "left"}}>Вопросы пользователей</StyledH2>
+          <Filter  
+            directions={props.faqPage.directions}
+            selectDirection={selectDirection}
+            setSelectDirection={setSelectDirection}
           />
-        }
-        <StyledFaq>
-          <ScrollTop />          
-          <PageTopPart 
-            pageTopPart={props.faqPage.pageTopPart}            
-          />
-          <Container>
-            <AskQuestion>
-              <StyledH2>
-                Есть вопрос?<br />Задайте его нашему врачу
-              </StyledH2>
-              <StyledCallbackBtn onClick={handleToggleModalWindowAskQuestion}>
-                Задать вопрос
-              </StyledCallbackBtn>
-            </AskQuestion>
-            <List>
-              {
-                props.faqPage.questions.map((qa, index) => {
-                  return (
-                    <ListItem>
-                      <ImmutableText1>Направление:</ImmutableText1>
-                      <ImmutableText2>Вопрос:</ImmutableText2>
-                      <ImmutableText3>Ответ:</ImmutableText3>
-                      <Direction>{qa.direction}</Direction>                        
-                      <Data>{qa.date}</Data>                   
-                      <QuestionText>
-                        <UzerName>{qa.userName}:</UzerName> {qa.question}
-                      </QuestionText>
-                      <DoctorName>{qa.doctorName}</DoctorName>
-                      <AnswerText>{qa.answer}</AnswerText>                                          
-                    </ListItem>
-                  );
-              })}
-            </List>
-          </Container>
-        </StyledFaq>
-      </>
-    );
+          <List>
+            {
+              filteredQuestions.map((qa, index) => {
+                return (
+                  <ListItem key={index} index={index}>
+                    <ImmutableText1>Направление:</ImmutableText1>
+                    <ImmutableText2>Вопрос:</ImmutableText2>
+                    <ImmutableText3>Ответ:</ImmutableText3>
+                    <Direction>{qa.direction}</Direction>                        
+                    <Data>{qa.date}</Data>                   
+                    <QuestionText>
+                      <UzerName>{qa.userName}:</UzerName> {qa.question}
+                    </QuestionText>
+                    <DoctorName>{qa.doctorName}</DoctorName>
+                    <AnswerText>{qa.answer}</AnswerText>                                          
+                  </ListItem>
+                );
+            })}
+          </List>
+        </Container>
+      </StyledFaq>
+    </>
+  );
 };
 
 export default Faq;
@@ -135,10 +162,13 @@ const List = styled.ul`
   gap: 20px;
   margin-bottom: 60px;
 `
-const ListItem = styled.li`  
+const ListItem = styled.li<{index:number}>`  
   padding: 20px;
-  background-color:rgba(213, 243, 238, 0.3);
   border-radius: 24px;
+
+  background-color: ${props => props.index % 2 === 0 
+  ? ({theme}) => theme.bgCol.footer 
+  : ({theme}) => theme.bgCol.homePage.doctors};  
 
   display: grid;
   grid-template-columns: auto 1fr auto;
