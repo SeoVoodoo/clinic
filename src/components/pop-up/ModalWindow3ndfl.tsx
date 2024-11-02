@@ -18,6 +18,7 @@ type ModalWindow3ndflPropsType = {
     values: string[]
     onSuccess: () => void
     onError: () => void
+    scroll:number
 }
 
 const mailMapper: any = {
@@ -88,7 +89,7 @@ export const ModalWindow3ndfl: React.FC<ModalWindow3ndflPropsType> = (props: Mod
     const title = 'Хочу справку для оформления 3НДФЛ';
     return (
         <StyledModalWindow3ndfl>
-            <ModalWindow>
+            <ModalWindow scroll={props.scroll}>
                 <CloseButton handleToggleModalWindow={() => props.handleToggleModalWindow("3ndfl")} /> 
                 <StyledH2>
                     <span>Заказать справку об<br />оплате медицинских услуг</span>
@@ -173,16 +174,16 @@ export const ModalWindow3ndfl: React.FC<ModalWindow3ndflPropsType> = (props: Mod
     );
 };
 
-const StyledModalWindow3ndfl = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
+const StyledModalWindow3ndfl = styled.div`    
+    width: 100%;
+    height: 100%; 
+      
+    position:absolute;
+    top: 0;    
     right: 0;
     bottom: 0;
-    left: 0;
-    z-index: 50;    
+    left: 0;    
+    z-index: 150;
     background-color: rgba(217, 217, 217, 0.5);
     backdrop-filter: blur(5px);
     animation-name: ${fadeIn};
@@ -191,7 +192,7 @@ const StyledModalWindow3ndfl = styled.div`
     animation-fill-mode: both;
 `
 
-const ModalWindow = styled.div`
+const ModalWindow = styled.div<{scroll:number}>`
     width: 782px;  
     margin: 0 10px;  
     padding: 34px 30px 24px;
@@ -200,6 +201,11 @@ const ModalWindow = styled.div`
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
     text-align: center;
     background-image: url(${bgForm_3ndfl});
+
+    position: absolute;    
+    left: 50%;
+    top: calc(50vh + ${props => props.scroll + "px"});
+    transform: translate(-50%, -50%);
     
     @media ${({theme}) => theme.media.laptop} {
         max-width: 620px;
@@ -235,40 +241,3 @@ const Note = styled.span`
     color: ${({theme}) => theme.color.multiСhannel};
     font-size: calc((100vw - 26rem)/(137 - 26) * (1.29 - 1) + 1rem);
 `
-
-
-
-// const FieldSet = styled.fieldset`
-//     width: 100%;
-//     padding: 10px 15px 14px;
-//     border: 1px solid ${({theme}) => theme.color.borderFieldSet};
-//     border-radius: 10px;
-//     font-family: 'Montserrat', sans-serif;
-//     font-size: 1.14rem;    
-//     display: flex;
-    
-//     legend {
-//         text-align: left;
-//         margin-left: 4px;
-//         color: ${({theme}) => theme.color.multiСhannel};
-//     }
-
-//     div {
-//         margin-right: 30px;  
-//     }
-
-//     div:first-of-type {
-//         margin-left: 5px;
-//     }
-
-//     @media ${({theme}) => theme.media.mobile} {
-//         legend {
-//             color: red;
-//         }
-//     }
-// `
-// const ShowError = styled.div`
-//     color: red;
-// `
-
-

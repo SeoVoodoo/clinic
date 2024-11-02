@@ -4,9 +4,10 @@ import { ScrollTop } from '../../components/ScrollTop';
 import { PageTopPart } from '../../components/PageTopPart';
 import { Container } from '../../components/Container';
 import { StyledH2 } from '../../components/StyledH2';
-import { StyledCallbackBtn } from '../../components/StyledBtn';
+import { StyledBtn, StyledCallbackBtn, StyledDelQuestionBtn, StyledLoadMoreBtn } from '../../components/StyledBtn';
 import { ModalWindowAskQuestion } from '../../components/pop-up/ModalWindowAskQuestion';
 import { Filter } from '../../components/Filter';
+import { ModalWindowAnswerQuestion } from '../../components/pop-up/ModalWindowAnswerQuestion';
 
 type FaqPropsType = {  
   faqPage: {
@@ -18,6 +19,7 @@ type FaqPropsType = {
       srcMobile:string
     }
     directions: string[]
+    doctors: string[]
     questions: Array<{
       direction:string
       userName:string
@@ -26,12 +28,31 @@ type FaqPropsType = {
       answer:string
       date:string
     }>
+    step:number
+    newQuestions: Array<{      
+      userName:string
+      question:string      
+    }>
   }
+  setIsOpenModalWindowThanks: Function
 }
+
 
 const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
   const [isOpenModalWindowAskQuestion, setIsOpenModalWindowAskQuestion] = useState(false);
+  const [isOpenModalWindowAnswerQuestion, setIsOpenModalWindowAnswerQuestion] = useState(false);
   const [selectDirection, setSelectDirection] = useState("Все направления");
+  const [scroll, setScroll] = useState(0);
+  
+
+  const handleScroll = () => {
+    setScroll(window.scrollY);
+  };
+  
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   
   let filteredQuestions = [];
 
@@ -51,41 +72,70 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
     default: filteredQuestions = props.faqPage.questions    
   }
 
-  const handleToggleModalWindowAskQuestion = () => {
-    setIsOpenModalWindowAskQuestion(prev => !prev);
+  const totalQuestions = filteredQuestions.length;
+
+  const handleOpenModalWindowAskQuestion = (e: {target:any}) => {
+    const name = e.target.innerText;
+    window.localStorage.setItem('nameBtn', `${name}`)
+    setIsOpenModalWindowAskQuestion(true);    
+  }
+  const handleOpenModalWindowAnswerQuestion = (username:string, question:string) => {
+    window.localStorage.setItem('username', `${username}`);
+    window.localStorage.setItem('question', `${question}`);
+    setIsOpenModalWindowAnswerQuestion(true);
   }
 
   const handleSuccess = () => {
-    setIsOpenModalWindowAskQuestion(false);    
-    //setIsOpenModalWindowThanks(true);
+    setIsOpenModalWindowAskQuestion(false);        
+    props.setIsOpenModalWindowThanks(true);
   }
 
   const handleError = () => {
     alert("Упс, что-то пошло не так..");  
   }
+  const [count, setCount] = useState(props.faqPage.step);
+  
+  const handleLoadMore = () => {
+    setCount(prev => prev += props.faqPage.step);  
+  }
+  
   
   useEffect(() => {
-    if(isOpenModalWindowAskQuestion) {
-        document.body.style.overflowY = "scroll";
-        document.body.style.position = "fixed";
-        document.body.style.width= "100%";
-        //document.body.style.height= "auto";
-    }
-    return () => {
-        document.body.style.overflowY = "unset";
-        document.body.style.position = "unset";
-        document.body.style.width= "unset";
-        //document.body.style.height= "unset";
-    }        
-  }, [isOpenModalWindowAskQuestion]);
 
+    const clientWidthStart = document.body.clientWidth;       
+      
+    if(isOpenModalWindowAskQuestion || isOpenModalWindowAnswerQuestion) {
+        document.body.style.width= "100%";
+        document.body.style.overflowY = "hidden";
+        const delta = document.body.clientWidth - clientWidthStart;        
+        document.body.style.paddingRight = `${delta}px`;
+      }
+    return () => {
+        document.body.style.width= "";
+        document.body.style.overflowY = "";
+        document.body.style.paddingRight = "";       
+    }        
+  }, [isOpenModalWindowAskQuestion || isOpenModalWindowAnswerQuestion]);
+
+  
   return (    
     <>
       {isOpenModalWindowAskQuestion && 
-        <ModalWindowAskQuestion 
-          handleToggleModalWindowAskQuestion={handleToggleModalWindowAskQuestion}
+        <ModalWindowAskQuestion          
+          setIsOpenModalWindowAskQuestion={setIsOpenModalWindowAskQuestion}
+          onError={handleError}
+          onSuccess={handleSuccess}           
+          scroll={scroll}       
+        />
+      }
+      {isOpenModalWindowAnswerQuestion && 
+        <ModalWindowAnswerQuestion 
+          setIsOpenModalWindowAnswerQuestion={setIsOpenModalWindowAnswerQuestion}
           onError={handleError}
           onSuccess={handleSuccess}
+          directions={props.faqPage.directions}
+          doctors={props.faqPage.doctors}
+          scroll={scroll}
         />
       }
       <StyledFaq>
@@ -98,19 +148,42 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
             <StyledH2>
               Есть вопрос?<br />Задайте его нашему врачу
             </StyledH2>
-            <StyledCallbackBtn onClick={handleToggleModalWindowAskQuestion}>
-              Задать вопрос
-            </StyledCallbackBtn>
+            <WrapBtn>
+              <StyledCallbackBtn onClick={(e) => handleOpenModalWindowAskQuestion(e)}>
+                Задать вопрос
+              </StyledCallbackBtn>
+            </WrapBtn>
           </AskQuestion>
+
+          <StyledH2 style={{textAlign: "left"}}><span>Новые вопросы</span></StyledH2>
+          <List>
+            {props.faqPage.newQuestions.map((q, index) => {
+              return (
+                <Question key={index}>
+                    <QuestionText>
+                      <UzerName>{q.userName}:</UzerName> {q.question}
+                    </QuestionText>                    
+                    <StyledBtn onClick={() => handleOpenModalWindowAnswerQuestion(q.userName, q.question)}>
+                      Ответить
+                    </StyledBtn>
+                    <StyledDelQuestionBtn>
+                      Удалить вопрос
+                    </StyledDelQuestionBtn>                                                             
+                </Question>
+              );
+            })}
+          </List>
           <StyledH2 style={{textAlign: "left"}}>Вопросы пользователей</StyledH2>
           <Filter  
             directions={props.faqPage.directions}
             selectDirection={selectDirection}
             setSelectDirection={setSelectDirection}
+            setCount={setCount}
+            step={props.faqPage.step}
           />
           <List>
             {
-              filteredQuestions.map((qa, index) => {
+              filteredQuestions.slice(0, count).map((qa, index) => {
                 return (
                   <ListItem key={index} index={index}>
                     <ImmutableText1>Направление:</ImmutableText1>
@@ -127,6 +200,11 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
                 );
             })}
           </List>
+          <WrapBtn>
+            <StyledLoadMoreBtn onClick={handleLoadMore} disabled={totalQuestions <= count}>
+                {totalQuestions <= count ? "Показали всё что было" : "Показать еще"}
+            </StyledLoadMoreBtn>
+          </WrapBtn>
         </Container>
       </StyledFaq>
     </>
@@ -136,6 +214,7 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
 export default Faq;
 
 const StyledFaq = styled.div`  
+  padding-bottom: 50px;
 `
 
 const AskQuestion = styled.div`  
@@ -148,9 +227,13 @@ const AskQuestion = styled.div`
 
   ${StyledH2} {
     color: ${({theme}) => theme.color.defaultTextHover}
-  }
+  }  
+`
+const WrapBtn = styled.div` 
+  width: 100%;
+  text-align: center;
 
-  ${StyledCallbackBtn} {
+  ${StyledCallbackBtn}, ${StyledLoadMoreBtn} {
     max-width: 628px;
     width: 100%;
     padding: 16px;
@@ -160,12 +243,41 @@ const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
+`
+const Question = styled.li`
+  padding: 20px;
+  border-radius: 24px;
+  background-color: ${({theme}) => theme.bgCol.btn.newQuestion};
+  outline: 1px solid ${({theme}) => theme.color.outline};
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  grid-template-areas: 
+  "question question"  
+  "btn1 btn2"; 
+
+  & > span span:first-child {
+    color: ${({theme}) => theme.color.multiСhannel};
+  }
+
+  ${StyledBtn} {
+    max-width: 300px;
+    width: 100%;
+    padding: 16px;
+  }
+  @media ${({theme}) => theme.media.mobile}{
+    grid-template-columns: 1fr;    
+    grid-template-areas: 
+    "question"
+    "btn1"  
+    "btn2";
+  }
 `
 const ListItem = styled.li<{index:number}>`  
   padding: 20px;
   border-radius: 24px;
-
+  outline: 1px solid ${({theme}) => theme.color.outline};
   background-color: ${props => props.index % 2 === 0 
   ? ({theme}) => theme.bgCol.footer 
   : ({theme}) => theme.bgCol.homePage.doctors};  

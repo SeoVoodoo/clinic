@@ -50,6 +50,16 @@ function App(props: {store: StoreType}) {
   const [themeName, setThemeName] = useState<string>("default");
   const [fontSize, setFontSize] = useState<number>(initialFontSize);
   const [visuallyImpairedPanel, setVisuallyImpairedPanel] = useState(initialState); 
+  const [scroll, setScroll] = useState(0);
+
+  const handleScroll = () => {
+    setScroll(window.scrollY);
+  };
+  
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   //window.localStorage.clear();
   
@@ -174,8 +184,9 @@ function App(props: {store: StoreType}) {
         break;
       case "thanks":
         setIsOpenModalWindowThanks(prev => !prev);
+        delete window.localStorage.nameBtn;
         break; 
-        case "onlyMobileContact": 
+      case "onlyMobileContact": 
         setIsOpenMobileMenuContact(prev => !prev);
         break;
       default:
@@ -195,17 +206,19 @@ function App(props: {store: StoreType}) {
   }
   
   useEffect(() => {
-    if(isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback || isOpenMobileMenuContact) {
-        document.body.style.overflowY = "scroll";
-        document.body.style.position = "fixed";
+    const clientWidthStart = document.body.clientWidth;
+    if(isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback || isOpenMobileMenuContact || isOpenModalWindowThanks) {        
         document.body.style.width= "100%";
+        document.body.style.overflowY = "hidden";
+        const delta = document.body.clientWidth - clientWidthStart;        
+        document.body.style.paddingRight = `${delta}px`;
     }
-    return () => {
-        document.body.style.overflowY = "unset";
-        document.body.style.position = "unset";
-        document.body.style.width= "unset";
+    return () => {        
+        document.body.style.width= "";
+        document.body.style.overflowY = "";
+        document.body.style.paddingRight = "";
     }        
- }, [isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback || isOpenMobileMenuContact]);
+ }, [isOpenModalWindow3ndfl || isOpenModalWindowRecord || isOpenModalWindowCallback || isOpenMobileMenuContact || isOpenModalWindowThanks]);
 
   const windowWidth = WindowSize();
   const state = props.store.getState();
@@ -231,12 +244,14 @@ function App(props: {store: StoreType}) {
           values={state.header.forms.ndfl.values}          
           onSuccess={handleSuccess}
           onError={handleError}
+          scroll={scroll}
         />}
       {isOpenModalWindowRecord && 
         <ModalWindowRecord 
           handleToggleModalWindow={handleToggleModalWindow}
           onSuccess={handleSuccess}
           onError={handleError} 
+          scroll={scroll}
         />
       }
       {isOpenModalWindowCallback && 
@@ -245,11 +260,13 @@ function App(props: {store: StoreType}) {
           handleToggleModalWindow={handleToggleModalWindow} 
           onSuccess={handleSuccess}
           onError={handleError}
+          scroll={scroll}
         />
       }
       <ModalWindowThanks 
         isOpenModalWindowThanks={isOpenModalWindowThanks}
         handleToggleModalWindow={handleToggleModalWindow}
+        scroll={scroll}
       />
       
       <Wrap offset={visuallyImpairedPanel.translateY}>
@@ -274,7 +291,7 @@ function App(props: {store: StoreType}) {
           sidebar={state.sidebar}
           windowWidth={windowWidth}   
           isOpenMobileMenuContact={isOpenMobileMenuContact}  
-          //setIsOpenMobileMenuContact={setIsOpenMobileMenuContact}  
+          //setIsOpenMobileMenuContact={setIsOpenMobileMenuContact}          
         />
         
         <>        
@@ -321,7 +338,8 @@ function App(props: {store: StoreType}) {
 
             <Route path="/faq" element = {<Suspense fallback={<Preloader />}>
               <Faq 
-                faqPage={state.faqPage}                
+                faqPage={state.faqPage} 
+                setIsOpenModalWindowThanks={setIsOpenModalWindowThanks}               
               />
               </Suspense>}            
             />

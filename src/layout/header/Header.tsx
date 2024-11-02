@@ -32,7 +32,7 @@ type HeaderPropsType = {
     handleToggleModalWindow: (windowName:string) => void    
     sidebar: initialStateSidebarType
     windowWidth:number
-    isOpenMobileMenuContact:boolean     
+    isOpenMobileMenuContact:boolean       
 }
 
 
@@ -77,7 +77,7 @@ export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
                 isOpenMenu={isOpenMenu}
                 setIsOpenNenu={setIsOpenNenu}
                 handleCloseModalWindowMenu={handleCloseModalWindowMenu} 
-                handleBurgerBtnClick={handleBurgerBtnClick}            
+                handleBurgerBtnClick={handleBurgerBtnClick}                           
             /> 
             : <MobileHeader 
                 counter={props.counter}
@@ -98,7 +98,7 @@ export const Header: React.FC<HeaderPropsType> = (props: HeaderPropsType) => {
                 setIsOpenNenu={setIsOpenNenu}
                 handleCloseModalWindowMenu={handleCloseModalWindowMenu} 
                 handleBurgerBtnClick={handleBurgerBtnClick}
-                isOpenMobileMenuContact={props.isOpenMobileMenuContact}                
+                isOpenMobileMenuContact={props.isOpenMobileMenuContact}                              
             />}
         </StyledHeader> 
     );

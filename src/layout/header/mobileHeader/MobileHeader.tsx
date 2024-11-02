@@ -42,7 +42,7 @@ type MobileHeaderPropsType = {
     setIsOpenNenu: Function
     handleCloseModalWindowMenu: () => void
     handleBurgerBtnClick: () => void
-    isOpenMobileMenuContact:boolean    
+    isOpenMobileMenuContact:boolean       
 }
 
 

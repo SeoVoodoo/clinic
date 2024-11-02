@@ -19,7 +19,8 @@ export const myTheme = {
                 secondaryHover: "linear-gradient(225.00deg, rgb(245, 130, 32) 49.939%,rgb(255, 216, 183) 100%)",
                 footerSpoiler: "rgba(243, 252, 250, 1)",
                 close: "rgba(151, 151, 151, 1)",
-                mobileFhone: "rgba(245, 130, 32, 1)"
+                mobileFhone: "rgba(245, 130, 32, 1)",
+                newQuestion: "rgba(247, 192, 143, 0.5)"
             },            
             default: "white",
             defaultHover: "#1D1F24",
@@ -145,7 +146,8 @@ export const myTheme = {
                 secondaryHover: "rgba(0, 0, 0, .4)",
                 footerSpoiler: "rgba(255, 255, 255, 1)",
                 close: "rgba(0, 0, 0, 1)",
-                mobileFhone: "rgba(0, 0, 0, 1)"
+                mobileFhone: "rgba(0, 0, 0, 1)",
+                newQuestion: "rgba(0, 0, 0, 0.5)"
             },            
             default: "white",
             defaultHover: "rgba(0, 0, 0, .4)",
@@ -270,7 +272,8 @@ export const myTheme = {
                 secondaryHover: "rgba(255, 255, 255, .2)",
                 footerSpoiler: "rgba(0, 0, 0, 1)",
                 close: "rgba(255, 255, 255, 1)",
-                mobileFhone: "rgba(255, 255, 255, 1)"
+                mobileFhone: "rgba(255, 255, 255, 1)",
+                newQuestion: "rgba(255, 255, 255, 0.5)"
             },            
             default: "black",
             defaultHover: "#6b6b6b",
@@ -394,7 +397,8 @@ export const myTheme = {
                 secondaryHover: "rgba(255, 255, 255, .2)",
                 footerSpoiler: "rgba(157, 209, 255, 1)",
                 close: "#063462",
-                mobileFhone: "#063462"
+                mobileFhone: "#063462",
+                newQuestion: "rgba(157, 209, 255, 0.5)"
             },            
             default: "rgba(157, 209, 255, 1)",
             defaultHover: "rgba(157, 209, 255, .5)",

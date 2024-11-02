@@ -12,10 +12,11 @@ import { sendForm } from '../../shared/lib/send-form/SendForm';
 import { ValidationSchema } from '../../shared/lib/validate-form/ValidateForm';
 import { TextArea } from '../../shared/ui/textarea/TextArea';
 
-type ModalWindowAskQuestionPropsType = {
-    handleToggleModalWindowAskQuestion: () => void 
+type ModalWindowAskQuestionPropsType = {     
+    setIsOpenModalWindowAskQuestion: Function
     onSuccess: () => void
-    onError: () => void   
+    onError: () => void    
+    scroll:number   
 }
 
 const mailMapper = {
@@ -33,8 +34,8 @@ const formSchema: ValidationSchema = {
     },    
     question: {
         required: true,
-        validator: (value: string) => value.length <= 500,
-        message: 'Вопрос должен быть не более 500 символов'
+        validator: (value: string) => value.length <= 1000,
+        message: 'Вопрос должен быть не более 1000 символов'
     },
     email: {
         required: true,
@@ -46,13 +47,20 @@ const formSchema: ValidationSchema = {
     }
 }
 
+
 export const ModalWindowAskQuestion: React.FC<ModalWindowAskQuestionPropsType> = (props: ModalWindowAskQuestionPropsType) => {
     const[errors, setErrors] = useState<any>({});
     const title = 'Новый вопрос';
+    
+    const handleCloseModalWindowAskQuestion = () => {
+        delete window.localStorage.nameBtn;
+        props.setIsOpenModalWindowAskQuestion(false);
+    }
+    
     return (
         <StyledModalWindowAskQuestion>
-            <ModalWindow>
-                <CloseButton handleToggleModalWindow={() => props.handleToggleModalWindowAskQuestion()} /> 
+            <ModalWindow scroll={props.scroll}>
+                <CloseButton handleCloseModalWindowAskQuestion={handleCloseModalWindowAskQuestion} /> 
                 <StyledH2>
                     <span>Задать вопрос</span>
                 </StyledH2>
@@ -103,18 +111,17 @@ export const ModalWindowAskQuestion: React.FC<ModalWindowAskQuestionPropsType> =
     );
 };
 
-const StyledModalWindowAskQuestion = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: -50%;
+const StyledModalWindowAskQuestion = styled.div`    
+    width: 100%;
+    height: 100%; 
+      
+    position:absolute;
+    top: 0;    
     right: 0;
     bottom: 0;
-    left: 0;
-    
+    left: 0;    
     z-index: 150;    
-    //background-color: rgba(140, 174, 200, 0.8);
+    
     background-color: rgba(217, 217, 217, 0.5);
     backdrop-filter: blur(5px);
     animation-name: ${fadeIn};
@@ -123,7 +130,7 @@ const StyledModalWindowAskQuestion = styled.div`
     animation-fill-mode: both;
 `
 
-const ModalWindow = styled.div`
+const ModalWindow = styled.div<{scroll:number}>`
     width: 782px;  
     margin: 0 10px;  
     padding: 34px 30px 24px;
@@ -132,7 +139,12 @@ const ModalWindow = styled.div`
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
     text-align: center;
     background-image: url(${bgForm_3ndfl});
-    //transform: translateY(25%);
+    
+    position: absolute;    
+    left: 50%;
+    top: calc(50vh + ${props => props.scroll + "px"});
+    transform: translate(-50%, -50%);
+        
     
     @media ${({theme}) => theme.media.laptop} {
         max-width: 620px;
@@ -163,7 +175,3 @@ const Note = styled.span`
     color: ${({theme}) => theme.color.multiСhannel};
     font-size: calc((100vw - 26rem)/(137 - 26) * (1.29 - 1) + 1rem);
 `
-
-
-
-

@@ -6,21 +6,28 @@ import { fadeIn, modalIn, modalOut } from '../../styles/Animations';
 
 import bgForm_3ndfl from '../../assets/images/single-img/desctop/bg_form_3ndfl.svg'
 import { StyledCallbackBtn } from '../StyledBtn';
+import { useLocation } from 'react-router-dom';
 
 type ModalWindowThanksPropsType = {
     handleToggleModalWindow: (windowName:string) => void   
     isOpenModalWindowThanks:boolean 
+    scroll:number
 }
 
 export const ModalWindowThanks: React.FC<ModalWindowThanksPropsType> = (props: ModalWindowThanksPropsType) => {
+    const url = useLocation().pathname;    
+    //console.log("Тип", typeof url.pathname);
     return (
         <StyledModalWindowThanks isOpenModalWindowThanks={props.isOpenModalWindowThanks}>
-            <ModalWindow isOpenModalWindowThanks={props.isOpenModalWindowThanks}>
+            <ModalWindow isOpenModalWindowThanks={props.isOpenModalWindowThanks} scroll={props.scroll}>
                 <CloseButton handleToggleModalWindow={() => props.handleToggleModalWindow("thanks")} /> 
                 <StyledH2>
-                    <span>Спасибо за вашу заявку!</span>
-                </StyledH2>     
-                <Message>Мы свяжемся с Вами<br />в ближайшее время</Message> 
+                    <span>{window.localStorage.nameBtn === "Задать вопрос" ? "Спасибо за вопрос!" : "Спасибо за вашу заявку!"}</span>
+                </StyledH2> 
+                {window.localStorage.nameBtn === "Задать вопрос"
+                    ? <Message> В ближайшее время ответ появится <br />на этой странице</Message>  
+                    : <Message> Мы свяжемся с Вами<br />в ближайшее время </Message>
+                }
                 <StyledCallbackBtn onClick={() => props.handleToggleModalWindow("thanks")}>
                     Понятно
                 </StyledCallbackBtn>        
@@ -30,16 +37,17 @@ export const ModalWindowThanks: React.FC<ModalWindowThanksPropsType> = (props: M
 };
 
 const StyledModalWindowThanks = styled.div<{isOpenModalWindowThanks:boolean}>`
-    display: ${props => props.isOpenModalWindowThanks ? "flex" : "none"};
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
+    display: ${props => props.isOpenModalWindowThanks ? "block" : "none"};
+    
+    width: 100%;
+    height: 100%; 
+      
+    position:absolute;
+    top: 0;    
     right: 0;
     bottom: 0;
-    left: 0;
-    z-index: 50;    
-    //background-color: rgba(140, 174, 200, 0.8);
+    left: 0;    
+    z-index: 150;
     background-color: rgba(217, 217, 217, 0.5);
     backdrop-filter: blur(5px);
     animation-name: ${fadeIn};
@@ -50,7 +58,7 @@ const StyledModalWindowThanks = styled.div<{isOpenModalWindowThanks:boolean}>`
     transition: opacity 5s ease 2s;     */
 `
 
-const ModalWindow = styled.div<{isOpenModalWindowThanks:boolean}>`
+const ModalWindow = styled.div<{isOpenModalWindowThanks:boolean; scroll:number}>`
     width: 782px;  
     margin: 0 10px;  
     padding: 34px 30px 24px;
@@ -64,6 +72,11 @@ const ModalWindow = styled.div<{isOpenModalWindowThanks:boolean}>`
     animation-timing-function: ${props => props.isOpenModalWindowThanks ? "ease-out" : "ease-in"};
     animation-delay: 1s; */
     //position: relative;
+
+    position: absolute;    
+    left: 50%;
+    top: calc(50vh + ${props => props.scroll + "px"});
+    transform: translate(-50%, -50%);
 
     ${StyledCallbackBtn} {
         width: 100%;

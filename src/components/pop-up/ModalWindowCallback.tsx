@@ -17,6 +17,7 @@ type ModalWindowCallbackPropsType = {
     isOpenModalWindowCallback:boolean 
     onSuccess: () => void
     onError: () => void
+    scroll:number
 }
 
 const mailMapper: any = {
@@ -46,7 +47,7 @@ export const ModalWindowCallback: React.FC<ModalWindowCallbackPropsType> = (prop
 
     return (
         <StyledModalWindowCallback isOpenModalWindowCallback={props.isOpenModalWindowCallback}>
-            <ModalWindow isOpenModalWindowCallback={props.isOpenModalWindowCallback}>
+            <ModalWindow isOpenModalWindowCallback={props.isOpenModalWindowCallback} scroll={props.scroll}>
                 <CloseButton handleToggleModalWindow={() => props.handleToggleModalWindow("callback")} /> 
                 <StyledH2>
                     <span>Заказать обратный звонок</span>
@@ -90,16 +91,16 @@ export const ModalWindowCallback: React.FC<ModalWindowCallbackPropsType> = (prop
 };
 
 const StyledModalWindowCallback = styled.div<{isOpenModalWindowCallback:boolean}>`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
+    
+    width: 100%;
+    height: 100%; 
+      
+    position:absolute;
+    top: 0;    
     right: 0;
     bottom: 0;
-    left: 0;
-    z-index: 50;    
-    //background-color: rgba(140, 174, 200, 0.8);
+    left: 0;    
+    z-index: 150;
     background-color: rgba(217, 217, 217, 0.5);
     backdrop-filter: blur(5px);
     animation-name: ${fadeIn};
@@ -110,7 +111,7 @@ const StyledModalWindowCallback = styled.div<{isOpenModalWindowCallback:boolean}
     transition: opacity 5s ease 2s;     */
 `
 
-const ModalWindow = styled.div<{isOpenModalWindowCallback:boolean}>`
+const ModalWindow = styled.div<{isOpenModalWindowCallback:boolean, scroll:number}>`
     width: 782px; 
     margin: 0 10px;   
     padding: 34px 30px 24px;
@@ -124,6 +125,11 @@ const ModalWindow = styled.div<{isOpenModalWindowCallback:boolean}>`
     animation-timing-function: ${props => props.isOpenModalWindowCallback ? "ease-out" : "ease-in"};
     animation-delay: 1s; */
     //position: relative;
+
+    position: absolute;    
+    left: 50%;
+    top: calc(50vh + ${props => props.scroll + "px"});
+    transform: translate(-50%, -50%);
 
     @media ${({theme}) => theme.media.laptop} {
         max-width: 620px;

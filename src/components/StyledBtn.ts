@@ -8,6 +8,7 @@ type ButtonPropsType = {
     bgBtnType?: string
     themeName?: string
     isOpenMenu?: boolean
+    disabled?:boolean
 }
 
 export const StyledBtn = styled.button<ButtonPropsType>`
@@ -38,6 +39,27 @@ export const StyledCallbackBtn = styled(StyledBtn)`
 
     &:hover { 
         background: ${({theme}) => theme.bgCol.btn.secondaryHover};
+        box-shadow: none;       
+    }
+`
+export const StyledLoadMoreBtn = styled(StyledCallbackBtn)<{disabled:boolean}>`
+    background-color: ${props => props.disabled ? "#9fa5aa"  : ({theme}) => theme.bgCol.btn.secondary};
+    color: ${props => props.disabled ? "rgba(255, 255, 255)"  : ({theme}) => theme.color.defaultBtn};
+    cursor: ${props => props.disabled ? "not-allowed"  : "allowed"};
+
+    &[disabled]:hover {
+        background: #9fa5aa;
+    }
+`
+export const StyledDelQuestionBtn = styled(StyledBtn)`
+    background-color: transparent;
+    color: ${({theme}) => theme.color.primary}; 
+    outline: 1px solid ${({theme}) => theme.color.primary};
+     
+
+    &:hover { 
+        background: ${({theme}) => theme.bgCol.btn.primary};
+        color: ${({theme}) => theme.color.defaultBtn};
         box-shadow: none;       
     }
 `

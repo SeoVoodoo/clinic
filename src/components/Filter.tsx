@@ -7,6 +7,8 @@ type FilterPropsType = {
     directions: Array<string>
     selectDirection:string
     setSelectDirection: (value:string) => void
+    setCount: (value:number) => void
+    step:number
 }
 
 export const Filter: React.FC<FilterPropsType> = (props: FilterPropsType) => {
@@ -20,6 +22,7 @@ export const Filter: React.FC<FilterPropsType> = (props: FilterPropsType) => {
         e.preventDefault();
         props.setSelectDirection(e.target.innerText);
         setIsOpenMenu(prev => !prev);
+        props.setCount(props.step);
     }
     const theme = useTheme();
 

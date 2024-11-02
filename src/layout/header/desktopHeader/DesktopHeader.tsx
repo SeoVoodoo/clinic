@@ -56,7 +56,7 @@ type DesktopHeaderPropsType = {
     isOpenMenu:boolean
     setIsOpenNenu: Function
     handleCloseModalWindowMenu: () => void
-    handleBurgerBtnClick: () => void  
+    handleBurgerBtnClick: () => void      
 }
 
 //const initialState = {show: false, translateY: "-58px"}

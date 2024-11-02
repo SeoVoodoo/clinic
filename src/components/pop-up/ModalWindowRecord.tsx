@@ -14,7 +14,8 @@ import { ValidationSchema } from '../../shared/lib/validate-form/ValidateForm';
 type ModalWindowRecordPropsType = {
     handleToggleModalWindow: (windowName:string) => void 
     onSuccess: () => void
-    onError: () => void   
+    onError: () => void 
+    scroll:number  
 }
 
 const mailMapper = {
@@ -49,7 +50,7 @@ export const ModalWindowRecord: React.FC<ModalWindowRecordPropsType> = (props: M
     const title = 'Хочу записаться на прием';
     return (
         <StyledModalWindowRecord>
-            <ModalWindow>
+            <ModalWindow scroll={props.scroll}>
                 <CloseButton handleToggleModalWindow={() => props.handleToggleModalWindow("record")} /> 
                 <StyledH2>
                     <span>Записаться на прием</span>
@@ -101,17 +102,16 @@ export const ModalWindowRecord: React.FC<ModalWindowRecordPropsType> = (props: M
     );
 };
 
-const StyledModalWindowRecord = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
+const StyledModalWindowRecord = styled.div`    
+    width: 100%;
+    height: 100%; 
+      
+    position:absolute;
+    top: 0;    
     right: 0;
     bottom: 0;
-    left: 0;
-    z-index: 50;    
-    //background-color: rgba(140, 174, 200, 0.8);
+    left: 0;    
+    z-index: 150;
     background-color: rgba(217, 217, 217, 0.5);
     backdrop-filter: blur(5px);
     animation-name: ${fadeIn};
@@ -120,7 +120,7 @@ const StyledModalWindowRecord = styled.div`
     animation-fill-mode: both;
 `
 
-const ModalWindow = styled.div`
+const ModalWindow = styled.div<{scroll:number}>`
     width: 782px;  
     margin: 0 10px;  
     padding: 34px 30px 24px;
@@ -130,7 +130,10 @@ const ModalWindow = styled.div`
     text-align: center;
     background-image: url(${bgForm_3ndfl});
 
-    //position: relative;
+    position: absolute;    
+    left: 50%;
+    top: calc(50vh + ${props => props.scroll + "px"});
+    transform: translate(-50%, -50%);
 
     @media ${({theme}) => theme.media.laptop} {
         max-width: 620px;
@@ -161,34 +164,3 @@ const Note = styled.span`
     color: ${({theme}) => theme.color.multiСhannel};
     font-size: calc((100vw - 26rem)/(137 - 26) * (1.29 - 1) + 1rem);
 `
-
-// const Field = styled.input`
-//     width: 100%;
-//     font-family: 'Montserrat', sans-serif;
-//     font-size: 1.14rem;
-//     background-color: ${({theme}) => theme.bgCol.default}; 
-    
-//     &::placeholder {
-//         color: ${({theme}) => theme.color.multiСhannel};
-//     }
-
-//     &:focus-visible {
-//         outline: 1px solid ${({theme}) => theme.color.multiСhannel};
-//     }
-
-//     &:not([type="checkbox"]) {
-//         padding: 16px 20px;
-//         border: none;
-//         border-radius: 10px;
-//         box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
-//     }
-
-//     @media ${({theme}) => theme.media.tablet} {
-//         &:not([type="checkbox"]) {
-//             padding: 10px 20px;
-//         }
-//     }
-// `
-
-
-
