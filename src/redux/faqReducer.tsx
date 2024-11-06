@@ -2,6 +2,11 @@ import React from 'react';
 import Img_desktop from "../assets/images/single-img/desctop/childrens.webp";
 import Img_mobile from "../assets/images/single-img/mobile/children_faq.webp";
 import Img_tablet from "../assets/images/single-img/tablet/childrens.webp";
+import volkova_avatar from "../assets/images/single-img/desctop/doctors/volk2_avatar.jpg"
+import simanskaya_avatar from "../assets/images/single-img/desctop/doctors/sim2_avatar.jpg"
+import serebryakova_avatar from "../assets/images/single-img/desctop/doctors/se_avatar.jpg"
+
+const REMOVE_NEW_QUESTION = "REMOVE_NEW_QUESTION";
 
 const initialState = {   
     pageTopPart: {
@@ -51,10 +56,13 @@ const initialState = {
         "Белый Л.Е.",
         "Коновалова Н.В.",
         "Брыгина Н.А.",
-        "Малянкова Л.Ю",
-        
+        "Малянкова Л.Ю",        
     ],
-
+    avatars: {
+        "Волкова Татьяна Евгеньевна": volkova_avatar,
+        "Серебрякова Татьяна Анатольевна": serebryakova_avatar,
+        "Симанская Светлана Юрьевна": simanskaya_avatar
+    },
     questions: [
         {
             direction: "Лечение бесплодия",
@@ -118,18 +126,43 @@ const initialState = {
     newQuestions: [
         {
             userName: "Анна",
-            question: "Здравствуйте! Скажите пожалуйста, можно ли у вас пройти УЗИ и консультацию гинеколога (не по беременности,по поводу кист эндометриоидных)И сколько будет стоить. Заранее спасибо."
+            question: "Здравствуйте! Скажите пожалуйста, можно ли у вас пройти УЗИ и консультацию гинеколога (не по беременности,по поводу кист эндометриоидных)И сколько будет стоить. Заранее спасибо.",
+            id: 1
         },
         {
             userName: "Анна2",
-            question: "Добрый день! Скажите пожалуйста, можно ли у вас пройти УЗИ и консультацию гинеколога (не по беременности,по поводу кист эндометриоидных)И сколько будет стоить. Заранее спасибо."
+            question: "Добрый день! Скажите пожалуйста, можно ли у вас пройти УЗИ и консультацию гинеколога (не по беременности,по поводу кист эндометриоидных)И сколько будет стоить. Заранее спасибо.",
+            id: 2
         }
     ]
 }
 
+// export type avatarsType = {
+//     "Волкова Татьяна Евгеньевна": string,
+//     "Серебрякова Татьяна Анатольевна": string,
+//     "Симанская Светлана Юрьевна": string
+// } 
 
 export type initialStateType = typeof initialState;
 
 export const faqReducer = (state = initialState, action: any):initialStateType => {
-    return state;
+
+    switch(action.type) {
+        case REMOVE_NEW_QUESTION:
+            console.log("state.newQuestions", state.newQuestions);
+            return {
+                ...state,
+                newQuestions: [...state.newQuestions.filter(q => q.id !== action.id)]
+            }
+        default: 
+            return state; 
+    }
+    
 };
+
+export const removeNewQuestionActionCreator = (id:number) => {
+    return {
+        type: REMOVE_NEW_QUESTION,
+        id
+    }
+}

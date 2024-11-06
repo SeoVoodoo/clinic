@@ -6,7 +6,9 @@ const pathMap: any = {
     prices: "Цены",
     reviews: "Отзывы",
     timetable: "График приема",
-    faq: "Вопрос-ответ"
+    faq: "Вопрос-ответ",
+    gordeeva: "Гордеева Ирина Викторовна",
+    doctors: "Наши врачи"
 }
 
 export const BreadСrumbs = () => {

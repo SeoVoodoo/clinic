@@ -307,7 +307,7 @@ const initialState = {
             post: "Главный врач клиники репродуктивного здоровья с лабораторией ЭКО ООО «Альянс Клиник»",
             workExperience: "с 2003 года",
             foto: Gordeeva,
-            path: "#"
+            path: "/doctors/gordeeva"
         },
         {
             fullName: "Симанская Светлана Юрьевна",

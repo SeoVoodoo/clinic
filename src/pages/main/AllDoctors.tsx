@@ -1,9 +1,18 @@
 import React from 'react';
+import { styled } from 'styled-components';
+import { Container } from '../../components/Container';
 
-export const AllDoctors = () => {
+const AllDoctors = () => {
     return (
-        <div>
-          Страница врачей 
-        </div>
+        <StyledAllDoctors>
+          <Container>
+            Страница всех врачей
+          </Container>           
+        </StyledAllDoctors>
     );
 };
+
+const StyledAllDoctors = styled.div`
+  
+`
+export default AllDoctors;

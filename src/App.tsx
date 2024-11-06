@@ -9,7 +9,7 @@ import { useEffect, useState, useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 //import { Prices } from './pages/main/prices/Prices';
 
-import { AllDoctors } from './pages/main/AllDoctors';
+//import { AllDoctors } from './pages/main/AllDoctors';
 //import { Timetable } from './pages/main/Timetable';
 import { Eco } from './pages/main/Eco';
 //import { Faq } from './pages/main/Faq';
@@ -35,12 +35,15 @@ import { WindowSize } from './hooks/WindowSize';
 import { ModalWindowThanks } from './components/pop-up/ModalWindowThanks';
 import { ModalWindow3ndfl } from './components/pop-up/ModalWindow3ndfl';
 import { Preloader } from './components/Preloader';
+//import Gordeeva from './pages/main/doctors/Gordeeva';
 
 const Prices = lazy(() => import('./pages/main/prices/Prices'));
 const Reviews = lazy(() => import('./pages/main/Reviews'));
 const Tour = lazy(() => import('./pages/main/Tour'));
 const Timetable = lazy(() => import('./pages/main/time-table/Timetable'));
 const Faq = lazy(() => import('./pages/main/Faq'));
+const AllDoctors = lazy(() => import('./pages/main/AllDoctors'));
+const Gordeeva = lazy(() => import('./pages/main/doctors/Gordeeva'));
 
 const initialFontSize = 14;
 const initialState = {show: false, translateY: "-58px"}
@@ -339,10 +342,31 @@ function App(props: {store: StoreType}) {
             <Route path="/faq" element = {<Suspense fallback={<Preloader />}>
               <Faq 
                 faqPage={state.faqPage} 
-                setIsOpenModalWindowThanks={setIsOpenModalWindowThanks}               
+                setIsOpenModalWindowThanks={setIsOpenModalWindowThanks} 
+                dispatch={props.store.dispatch}              
               />
               </Suspense>}            
             />
+
+            {/* <Route path="/alldoctors/gordeeva" element = {<Suspense fallback={<Preloader />}>
+              <Gordeeva
+                gordeevaPage={state.gordeevaPage}             
+              />
+              </Suspense>} 
+            /> */}
+
+            <Route path="/doctors">
+              <Route index element = {<Suspense fallback={<Preloader />}>
+                <AllDoctors />
+              </Suspense>} />
+              
+              <Route path="gordeeva" element = {<Suspense fallback={<Preloader />}> 
+                <Gordeeva
+                  gordeevaPage={state.gordeevaPage}             
+                />
+              </Suspense>} />
+
+            </Route>
 
             <Route path="/doctors" element = {<AllDoctors />} />            
             <Route path="/eco" element = {<Eco />} />            

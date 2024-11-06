@@ -8,6 +8,7 @@ import { StyledBtn, StyledCallbackBtn, StyledDelQuestionBtn, StyledLoadMoreBtn }
 import { ModalWindowAskQuestion } from '../../components/pop-up/ModalWindowAskQuestion';
 import { Filter } from '../../components/Filter';
 import { ModalWindowAnswerQuestion } from '../../components/pop-up/ModalWindowAnswerQuestion';
+import { removeNewQuestionActionCreator } from '../../redux/faqReducer';
 
 type FaqPropsType = {  
   faqPage: {
@@ -20,6 +21,7 @@ type FaqPropsType = {
     }
     directions: string[]
     doctors: string[]
+    avatars: any
     questions: Array<{
       direction:string
       userName:string
@@ -31,10 +33,12 @@ type FaqPropsType = {
     step:number
     newQuestions: Array<{      
       userName:string
-      question:string      
+      question:string 
+      id:number     
     }>
   }
-  setIsOpenModalWindowThanks: Function
+  setIsOpenModalWindowThanks:Function
+  dispatch:Function
 }
 
 
@@ -117,6 +121,10 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
     }        
   }, [isOpenModalWindowAskQuestion || isOpenModalWindowAnswerQuestion]);
 
+  const handleRemoveQuestion = (id:number) => {    
+    const action = removeNewQuestionActionCreator(id);
+    props.dispatch(action);
+  }
   
   return (    
     <>
@@ -156,23 +164,27 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
           </AskQuestion>
 
           <StyledH2 style={{textAlign: "left"}}><span>Новые вопросы</span></StyledH2>
-          <List>
-            {props.faqPage.newQuestions.map((q, index) => {
-              return (
-                <Question key={index}>
-                    <QuestionText>
-                      <UzerName>{q.userName}:</UzerName> {q.question}
-                    </QuestionText>                    
-                    <StyledBtn onClick={() => handleOpenModalWindowAnswerQuestion(q.userName, q.question)}>
-                      Ответить
-                    </StyledBtn>
-                    <StyledDelQuestionBtn>
-                      Удалить вопрос
-                    </StyledDelQuestionBtn>                                                             
-                </Question>
-              );
-            })}
-          </List>
+          {props.faqPage.newQuestions.length > 0 
+            ?
+              <List>
+                {props.faqPage.newQuestions.map((q, index) => {
+                  return (
+                    <Question key={index}>
+                        <QuestionText>
+                          <UzerName>{q.userName}:</UzerName> {q.question}
+                        </QuestionText>                    
+                        <StyledBtn onClick={() => handleOpenModalWindowAnswerQuestion(q.userName, q.question)}>
+                          Ответить
+                        </StyledBtn>
+                        <StyledDelQuestionBtn onClick={() => handleRemoveQuestion(q.id)}>
+                          Удалить вопрос
+                        </StyledDelQuestionBtn>                                                             
+                    </Question>
+                  );
+                })}
+              </List>
+            : <span>Нет новых вопросов</span>
+          }
           <StyledH2 style={{textAlign: "left"}}>Вопросы пользователей</StyledH2>
           <Filter  
             directions={props.faqPage.directions}
@@ -189,6 +201,7 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
                     <ImmutableText1>Направление:</ImmutableText1>
                     <ImmutableText2>Вопрос:</ImmutableText2>
                     <ImmutableText3>Ответ:</ImmutableText3>
+                    <Avatar><img src={props.faqPage.avatars[qa.doctorName]} alt="" /></Avatar>
                     <Direction>{qa.direction}</Direction>                        
                     <Data>{qa.date}</Data>                   
                     <QuestionText>
@@ -289,7 +302,7 @@ const ListItem = styled.li<{index:number}>`
   "immutableText1 direction data"
   "immutableText2 question question"
   "immutableText3 doctor doctor"
-  ". answer answer";  
+  "avatar answer answer";  
   
   span:nth-child(6) {
     margin-bottom: 30px;
@@ -332,6 +345,11 @@ const ImmutableText3 = styled.span`
   font-weight: 500;
   font-size: 1rem;  
   color: ${({theme}) => theme.color.multiСhannel}; 
+`
+const Avatar = styled.div`
+  /* border-radius: 100%;
+  overflow: hidden;   */
+  img {border-radius: 100%;}
 `
 const Direction = styled.span`
   grid-area: direction;
