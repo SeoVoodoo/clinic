@@ -2,9 +2,9 @@ import React from 'react';
 import Img_desktop from "../assets/images/single-img/desctop/childrens.webp";
 import Img_mobile from "../assets/images/single-img/mobile/children_faq.webp";
 import Img_tablet from "../assets/images/single-img/tablet/childrens.webp";
-import volkova_avatar from "../assets/images/single-img/desctop/doctors/volk2_avatar.jpg"
-import simanskaya_avatar from "../assets/images/single-img/desctop/doctors/sim2_avatar.jpg"
-import serebryakova_avatar from "../assets/images/single-img/desctop/doctors/se_avatar.jpg"
+import volkova_avatar from "../assets/images/single-img/desctop/doctors/volk2_avatar.webp";
+import simanskaya_avatar from "../assets/images/single-img/desctop/doctors/sim2_avatar.webp";
+import serebryakova_avatar from "../assets/images/single-img/desctop/doctors/se_avatar.webp";
 
 const REMOVE_NEW_QUESTION = "REMOVE_NEW_QUESTION";
 

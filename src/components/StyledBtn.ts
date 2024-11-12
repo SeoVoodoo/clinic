@@ -47,6 +47,7 @@ export const StyledReviewBtn = styled(StyledBtn)`
     outline: 1px solid ${({theme}) => theme.color.primary};
     background-color: transparent;
     color: ${({theme}) => theme.color.primary};
+    
 
     &:hover {
         box-shadow: rgba(0, 166, 81, 1) 0px 0px 10px 2px inset;

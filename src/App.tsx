@@ -249,13 +249,17 @@ function App(props: {store: StoreType}) {
           onError={handleError}
           scroll={scroll}
         />}
-      {isOpenModalWindowRecord && 
+      {/* {isOpenModalWindowRecord && <Overlay />}   */}
+      {isOpenModalWindowRecord &&
+        <>
+        <Overlay />
         <ModalWindowRecord 
           handleToggleModalWindow={handleToggleModalWindow}
           onSuccess={handleSuccess}
           onError={handleError} 
           scroll={scroll}
         />
+        </>
       }
       {isOpenModalWindowCallback && 
         <ModalWindowCallback 
@@ -346,23 +350,19 @@ function App(props: {store: StoreType}) {
                 dispatch={props.store.dispatch}              
               />
               </Suspense>}            
-            />
-
-            {/* <Route path="/alldoctors/gordeeva" element = {<Suspense fallback={<Preloader />}>
-              <Gordeeva
-                gordeevaPage={state.gordeevaPage}             
-              />
-              </Suspense>} 
-            /> */}
+            />            
 
             <Route path="/doctors">
+
               <Route index element = {<Suspense fallback={<Preloader />}>
                 <AllDoctors />
               </Suspense>} />
               
               <Route path="gordeeva" element = {<Suspense fallback={<Preloader />}> 
                 <Gordeeva
-                  gordeevaPage={state.gordeevaPage}             
+                  gordeevaPage={state.gordeevaPage}
+                  handleToggleModalWindow={handleToggleModalWindow}
+                  windowWidth={windowWidth}             
                 />
               </Suspense>} />
 
