@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { timeTableMapper } from '../../../redux/timeTableReducer';
+import { timeTableMapper, weekDay, weekDayType } from '../../../redux/timeTableReducer';
 import { ScrollTop } from '../../../components/ScrollTop';
 import { StyledH2 } from '../../../components/StyledH2';
 
@@ -109,9 +109,7 @@ export const Tables: React.FC<TablesPropsType> = (props: TablesPropsType) => {
     diagnostics: <span><b>{diagnostics.doctor}</b><br />{diagnostics.description}</span>
   }
   
-  const weekDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  type weekDayType = "Monday"|"Tuesday"|"Wednesday"|"Thursday"|"Friday"|"Saturday"|"Sunday" 
-
+  
     return (
         <StyledTables>
         <ScrollTop />        

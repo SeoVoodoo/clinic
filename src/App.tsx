@@ -362,7 +362,8 @@ function App(props: {store: StoreType}) {
                 <Gordeeva
                   gordeevaPage={state.gordeevaPage}
                   handleToggleModalWindow={handleToggleModalWindow}
-                  windowWidth={windowWidth}             
+                  windowWidth={windowWidth}    
+                  fontSize={fontSize}         
                 />
               </Suspense>} />
 

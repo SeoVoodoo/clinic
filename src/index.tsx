@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import { store } from './redux/redux-store';
 import { ScrollTop } from './components/ScrollTop';
+import { Provider } from 'react-redux';
 
 // const ScrollTop = () => {
 //   const pathname = useLocation();
@@ -29,8 +30,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <ScrollTop /> */}
-      <App store={store} />
+      <Provider store={store}>      
+        <App store={store} />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

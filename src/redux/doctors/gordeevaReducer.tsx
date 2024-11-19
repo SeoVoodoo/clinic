@@ -6,7 +6,7 @@ import mobileFoto from '../../assets/images/single-img/mobile/doctors/gordeeva.w
 
 
 const initialState = {  
-    
+    id: "gordeeva_1",
     about: {
         name: "Гордеева Ирина Викторовна",
         srcdesktop: desktopFoto,
@@ -32,11 +32,11 @@ const initialState = {
         professionalSkills:`<h3>Профессиональные навыки</h3><p>Прием супружеской пары по бесплодию</p><p>Оценка овариального резерва</p><p>Назначение обследований при бесплодии</p><p>Определение стратегии лечения пары при бесплодии</p><p>Разработка индивидуальных программ ЭКО</p><p>Назначение схемы стимуляции</p><p>Назначение поддерживающей терапии после переноса</p>`,
 
         professionalAchievements:`<h3>Профессиональные достижения</h3><p>Принимает активное участие в международных и межрегиональных конгрессах, конференциях.</p><p>Постоянно повышает свой профессиональный уровень в рамках непрерывного медицинского образования.</p><p>Член Российской Академии репродукции человека (РАРЧ), член Европейского общества по репродукции человека и эмбриологии (European Society for Human Reproduction and Embryology (ESHRE)).</p><p>Член Российского общества акушеров-гинекологов (РОАГ).</p>`                
-    }  
+    }      
 }
 
 export type initialStateType = typeof initialState;
 
-export const gordeevaReducer = (state = initialState, action:any):initialStateType => {  
-    return state;    
+export const gordeevaReducer = (state = initialState, action:any):initialStateType => {    
+    return state;  
 };

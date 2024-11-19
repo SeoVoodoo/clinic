@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { styled } from 'styled-components';
 import { ScrollTop } from '../../../components/ScrollTop';
 import { BreadСrumbs } from '../../../components/bread-crumbs/BreadСrumbs';
 import { Container } from '../../../components/Container';
 import { StyledH1 } from '../../../components/StyledH1';
 import { StyledBtn, StyledReviewBtn } from '../../../components/StyledBtn';
-import { Tile } from './Tile';
+import { DoctorSchedule } from './DoctorSchedule';
 
 type GordeevaPropsType = {
     gordeevaPage: {
+        id:string
         about: {
             name:string,
             srcdesktop: string,
@@ -29,10 +30,13 @@ type GordeevaPropsType = {
     }
     handleToggleModalWindow: (windowName:string) => void 
     windowWidth:number
+    fontSize:number
 }
 
 const Gordeeva: React.FC<GordeevaPropsType> = (props: GordeevaPropsType) => {
+
     const htmlstring = props.gordeevaPage.about.description;
+    
     return (
         <StyledGordeeva>
             <ScrollTop />            
@@ -60,7 +64,13 @@ const Gordeeva: React.FC<GordeevaPropsType> = (props: GordeevaPropsType) => {
                             <StyledReviewBtn as="a" href={props.gordeevaPage.about.externalLink}>Оставить отзыв</StyledReviewBtn>
                         </Wrap2>   
                     </Buttons>                 
-                </About>                
+                </About>    
+
+                <DoctorSchedule                    
+                    id={props.gordeevaPage.id}
+                    fontSize={props.fontSize}
+                />   
+
             </Container>  
             <TileLayout>
                 <Container>
@@ -101,7 +111,7 @@ const StyledGordeeva = styled.div`
     
 `
 
-const About = styled.div`
+const About = styled.div`    
     display: grid;
     grid-template-columns: 50% auto auto;
     grid-template-areas:

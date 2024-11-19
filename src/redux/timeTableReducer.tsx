@@ -131,7 +131,7 @@ const initialState = {
         surova: [ 
                     [
                         { 
-                            id: "gordeeva_1", 
+                            id: "gordeeva_1",                            
                             Monday: 'прием на Бебеля,1А', 
                             Tuesday: "08:40 - 11:20",
                             Wednesday: "",
@@ -141,7 +141,7 @@ const initialState = {
                             Sunday: ""                        
                         },
                         { 
-                            id: "gordeeva_2", 
+                            id: "gordeeva_2",                            
                             Monday: "", 
                             Tuesday: "14:40 - 16:00",
                             Wednesday: "",
@@ -802,11 +802,11 @@ const initialState = {
                     [
                         { 
                             id: "gordeeva_1", 
-                            Monday: 'прием на Бебеля,1А', 
-                            Tuesday: "08:40 - 11:20",
+                            Monday: '08:40 - 11:20', 
+                            Tuesday: "",
                             Wednesday: "",
-                            Thursday: "08:40 - 11:20",
-                            Friday: 'прием на Бебеля,1А', 
+                            Thursday: "",
+                            Friday: '08:40 - 11:20', 
                             Saturday: "",
                             Sunday: ""                        
                         },
@@ -959,11 +959,11 @@ const initialState = {
                     [
                         { 
                             id: "gordeeva_1", 
-                            Monday: 'прием на Бебеля,1А', 
-                            Tuesday: "08:40 - 11:20",
+                            Monday: '08:40 - 11:20', 
+                            Tuesday: "",
                             Wednesday: "",
-                            Thursday: "08:40 - 11:20",
-                            Friday: 'прием на Бебеля,1А', 
+                            Thursday: "",
+                            Friday: '08:40 - 11:20', 
                             Saturday: "",
                             Sunday: ""                        
                         },
@@ -1116,11 +1116,11 @@ const initialState = {
                     [
                         { 
                             id: "gordeeva_1", 
-                            Monday: 'прием на Бебеля,1А', 
-                            Tuesday: "08:40 - 11:20",
+                            Monday: '08:40 - 11:20', 
+                            Tuesday: "",
                             Wednesday: "",
-                            Thursday: "08:40 - 11:20",
-                            Friday: 'прием на Бебеля,1А', 
+                            Thursday: "",
+                            Friday: '08:40 - 11:20', 
                             Saturday: "",
                             Sunday: ""                        
                         },
@@ -1273,11 +1273,11 @@ const initialState = {
                     [
                         { 
                             id: "gordeeva_1", 
-                            Monday: 'прием на Бебеля,1А', 
-                            Tuesday: "08:40 - 11:20",
+                            Monday: '08:40 - 11:20', 
+                            Tuesday: "",
                             Wednesday: "",
-                            Thursday: "08:40 - 11:20",
-                            Friday: 'прием на Бебеля,1А', 
+                            Thursday: "",
+                            Friday: '08:40 - 11:20', 
                             Saturday: "",
                             Sunday: ""                        
                         },
@@ -1430,11 +1430,11 @@ const initialState = {
                     [
                         { 
                             id: "gordeeva_1", 
-                            Monday: 'прием на Бебеля,1А', 
-                            Tuesday: "08:40 - 11:20",
+                            Monday: '08:40 - 11:20', 
+                            Tuesday: "",
                             Wednesday: "",
-                            Thursday: "08:40 - 11:20",
-                            Friday: 'прием на Бебеля,1А', 
+                            Thursday: "",
+                            Friday: '08:40 - 11:20', 
                             Saturday: "",
                             Sunday: ""                        
                         },
@@ -1587,6 +1587,9 @@ const initialState = {
                 ]
     }
 }
+
+export const weekDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+export type weekDayType = "Monday"|"Tuesday"|"Wednesday"|"Thursday"|"Friday"|"Saturday"|"Sunday"; 
 
 export type timeTableMapper = 
     "gordeeva_1" | 
