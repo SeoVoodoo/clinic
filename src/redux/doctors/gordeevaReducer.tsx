@@ -6,7 +6,7 @@ import mobileFoto from '../../assets/images/single-img/mobile/doctors/gordeeva.w
 
 
 const initialState = {  
-    id: "gordeeva_1",
+    id: "gordeeva_1",// serebryakova gordeeva_1 volkova belij malanina
     about: {
         name: "Гордеева Ирина Викторовна",
         srcdesktop: desktopFoto,

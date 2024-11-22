@@ -46,7 +46,7 @@ const StyledTabMenu = styled.nav`
     }    
 `
 const ListItem = styled.li`
-   
+    
 `
 
 const TabBtn = styled.button<{active:boolean,  fontSize?:number}>` 

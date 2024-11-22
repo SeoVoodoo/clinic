@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { weekDay, weekDayType } from '../../../redux/timeTableReducer';
+import { weekDay, weekDayType } from '../../../../redux/timeTableReducer';
 
 interface schedule {
     id: string,
@@ -14,19 +14,20 @@ interface schedule {
     colspan?: number
 }
 
-type СurrentWeekSchedulePropsType = {
+type DesktopСurrentWeekSchedulePropsType = {
     currentWeekSurovaSchedule: schedule
     currentWeekBebelyaSchedule: schedule
     days: string[]
     dates: string[]
     fontSize:number
+    activeBtn?:string
 }
 
-export const СurrentWeekSchedule: React.FC<СurrentWeekSchedulePropsType> = (props:СurrentWeekSchedulePropsType) => {
+export const DesktopСurrentWeekSchedule: React.FC<DesktopСurrentWeekSchedulePropsType> = (props:DesktopСurrentWeekSchedulePropsType) => {
     const surova = props.currentWeekSurovaSchedule;
     const bebelya = props.currentWeekBebelyaSchedule; 
     return (
-        <StyledСurrentWeekSchedule>
+        <StyledDesktopСurrentWeekSchedule>
             <TableWrap>
                 <Table cellspacing={0} cellpadding={0} fontSize={props.fontSize}> 
                     <Head>
@@ -77,11 +78,11 @@ export const СurrentWeekSchedule: React.FC<СurrentWeekSchedulePropsType> = (pr
                     </Body>
                 </Table> 
             </TableWrap>            
-        </StyledСurrentWeekSchedule>
+        </StyledDesktopСurrentWeekSchedule>
     );
 };
 
-const  StyledСurrentWeekSchedule = styled.div`
+const  StyledDesktopСurrentWeekSchedule = styled.div`
     
 `
 
@@ -93,12 +94,14 @@ const TableWrap = styled.div`
 const Table = styled.table<{cellspacing:number, cellpadding:number, fontSize:number}>`  
   border-collapse: collapse;
   margin: 0 auto 5px;
-  max-width: 1200px;
+  max-width: 1279px;
   width: 100%;
   overflow: hidden; 
   display: ${props => props.fontSize > 18 ? "table" : "block"};
   border: 1px solid ${({theme}) => theme.color.multiСhannel};
-  border-radius: 16px; 
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px; 
+  font-size: calc((100vw - 26rem)/(137 - 26) * (1.43 - 0.93) + 0.93rem); 
   
   @media ${({theme}) => theme.media.laptop} {
     display: table;
@@ -118,7 +121,7 @@ const Head = styled.thead`
   } 
 
   tr > td:first-child{
-    font-weight: 700;    
+    font-weight: 700;       
   }
 `
 const Body = styled.tbody` 
@@ -127,9 +130,11 @@ const Body = styled.tbody`
   } 
 
   tr > td:first-child  {    
-    text-align: left;
-    padding: 8px 10px;
-    background-color: ${({theme}) => theme.bgCol.tables.mainCell};   
+    text-align: center;
+    font-weight: 700;
+    padding: 22px 10px;
+    background-color: ${({theme}) => theme.bgCol.tables.mainCell};  
+    font-size: calc((100vw - 26rem)/(137 - 26) * (1.29 - 0.93) + 0.93rem);  
   }
 `
 
@@ -137,12 +142,12 @@ const Row = styled.tr`
 
   td:first-child {
     border-left: none;
-    width: 190px;
+    width: 280px;
     max-width: 320px;
   }
 
   td:not(:first-child) {
-    width: 148px;
+    width: 140px;
     max-width: 172px;    
   }
 

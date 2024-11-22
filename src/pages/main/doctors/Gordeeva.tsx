@@ -6,6 +6,7 @@ import { Container } from '../../../components/Container';
 import { StyledH1 } from '../../../components/StyledH1';
 import { StyledBtn, StyledReviewBtn } from '../../../components/StyledBtn';
 import { DoctorSchedule } from './DoctorSchedule';
+import { StyledH2 } from '../../../components/StyledH2';
 
 type GordeevaPropsType = {
     gordeevaPage: {
@@ -65,11 +66,13 @@ const Gordeeva: React.FC<GordeevaPropsType> = (props: GordeevaPropsType) => {
                         </Wrap2>   
                     </Buttons>                 
                 </About>    
-
+                <StyledH2>Место и время приема</StyledH2>               
+                    
                 <DoctorSchedule                    
                     id={props.gordeevaPage.id}
                     fontSize={props.fontSize}
-                />   
+                    windowWidth={props.windowWidth}
+                />              
 
             </Container>  
             <TileLayout>
@@ -108,7 +111,9 @@ const Gordeeva: React.FC<GordeevaPropsType> = (props: GordeevaPropsType) => {
 export default Gordeeva;
 
 const StyledGordeeva = styled.div`
-    
+    ${StyledH2}{
+        text-align: left;
+    }    
 `
 
 const About = styled.div`    
@@ -121,6 +126,7 @@ const About = styled.div`
      "foto info info"
      "foto buttons buttons";
     gap: 20px; 
+    margin-bottom: 60px;
 
     ${StyledBtn}, ${StyledReviewBtn} {
         padding: 16px;

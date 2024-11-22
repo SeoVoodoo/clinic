@@ -343,7 +343,7 @@ function App(props: {store: StoreType}) {
               </Suspense>} 
             />
 
-            <Route path="/faq" element = {<Suspense fallback={<Preloader />}>
+            {/* <Route path="/faq" element = {<Suspense fallback={<Preloader />}>
               <Faq 
                 faqPage={state.faqPage} 
                 setIsOpenModalWindowThanks={setIsOpenModalWindowThanks} 
@@ -367,7 +367,7 @@ function App(props: {store: StoreType}) {
                 />
               </Suspense>} />
 
-            </Route>
+            </Route> */}
 
             <Route path="/doctors" element = {<AllDoctors />} />            
             <Route path="/eco" element = {<Eco />} />            

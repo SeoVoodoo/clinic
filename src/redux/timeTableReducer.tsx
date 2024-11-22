@@ -152,13 +152,10 @@ const initialState = {
                         },    
                         { 
                             id: "volkova", 
-                            Monday: "08:00 - 19:00",                        
-                            Tuesday: "08:00 - 19:00",
-                            Wednesday: "",
-                            Thursday: "",
-                            Friday: "08:00 - 19:00", 
-                            Saturday: "08:00 - 17:00",
-                            Sunday: ""                         
+                            Monday: 'Отпуск',
+                            colspan: 5,
+                            Saturday: "08:00 - 19:00",
+                            Sunday: "08:40 - 11:20"                          
                         },
                         { 
                             id: "ladyagina", 
@@ -809,6 +806,13 @@ const initialState = {
                             Friday: '08:40 - 11:20', 
                             Saturday: "",
                             Sunday: ""                        
+                        },
+                        { 
+                            id: "volkova", 
+                            Monday: 'Отпуск',
+                            colspan: 5,
+                            Saturday: "08:00 - 19:00",
+                            Sunday: "08:40 - 11:20"                          
                         },
                         { 
                             id: "aslanova", 
