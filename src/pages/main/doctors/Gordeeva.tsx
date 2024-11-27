@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { ScrollTop } from '../../../components/ScrollTop';
 import { BreadСrumbs } from '../../../components/bread-crumbs/BreadСrumbs';
@@ -7,6 +7,7 @@ import { StyledH1 } from '../../../components/StyledH1';
 import { StyledBtn, StyledReviewBtn } from '../../../components/StyledBtn';
 import { DoctorSchedule } from './DoctorSchedule';
 import { StyledH2 } from '../../../components/StyledH2';
+import { Certificates } from './Certificates';
 
 type GordeevaPropsType = {
     gordeevaPage: {
@@ -28,6 +29,7 @@ type GordeevaPropsType = {
             professionalSkills:string,
             professionalAchievements:string            
         }
+        certificates:string[]
     }
     handleToggleModalWindow: (windowName:string) => void 
     windowWidth:number
@@ -37,12 +39,14 @@ type GordeevaPropsType = {
 const Gordeeva: React.FC<GordeevaPropsType> = (props: GordeevaPropsType) => {
 
     const htmlstring = props.gordeevaPage.about.description;
+
+    
     
     return (
         <StyledGordeeva>
             <ScrollTop />            
             <Container>
-            <BreadСrumbs /> 
+                <BreadСrumbs /> 
                 <About>                                           
                     <Picture>
                         <source media="(max-width: 576px)" srcSet={props.gordeevaPage.about.srcmobile} />
@@ -103,7 +107,8 @@ const Gordeeva: React.FC<GordeevaPropsType> = (props: GordeevaPropsType) => {
                         );
                     })} */}
                 </Container>
-            </TileLayout>             
+            </TileLayout> 
+            <Certificates certificates={props.gordeevaPage.certificates} />          
         </StyledGordeeva>
     );
 };
@@ -113,7 +118,22 @@ export default Gordeeva;
 const StyledGordeeva = styled.div`
     ${StyledH2}{
         text-align: left;
-    }    
+    }
+    ${Container} {
+       padding-top: 36px; 
+    }
+    
+    @media ${({theme}) => theme.media.tablet}{
+        ${Container} {
+            padding-top: 22px; 
+        }
+    }
+
+    @media ${({theme}) => theme.media.mobile}{
+        ${Container} {
+            padding-top: 8px; 
+        }
+    }
 `
 
 const About = styled.div`    
@@ -126,7 +146,7 @@ const About = styled.div`
      "foto info info"
      "foto buttons buttons";
     gap: 20px; 
-    margin-bottom: 60px;
+    margin: 40px 0 60px;
 
     ${StyledBtn}, ${StyledReviewBtn} {
         padding: 16px;
@@ -143,6 +163,10 @@ const About = styled.div`
         gap: 10px;       
     } 
 
+    @media ${({theme}) => theme.media.tablet}{
+        margin-top: 30px;
+    }
+
     @media ${({theme}) => theme.media.mobile}{
         grid-template-columns: auto;
         grid-template-areas:
@@ -154,6 +178,7 @@ const About = styled.div`
         "buttons";        
         justify-items: center;
         gap: 20px;
+        margin-top: 20px;
 
         /* ${StyledBtn}, ${StyledReviewBtn} {           
             width: 320px;           
@@ -273,13 +298,14 @@ const ActionCall = styled.span`
 const TileLayout = styled.div`
     background-color: ${({theme}) => theme.bgCol.homePage.doctors};
     padding: 50px 0;
+    margin-bottom: 30px;
     font-size: calc((100vw - 26rem)/(137 - 26) * (1.14 - 1) + 1rem); 
     font-weight: 500;
     line-height: calc((100vw - 26rem)/(137 - 26) * (1.57 - 1.43) + 1.43rem); 
 
     ${Container} {
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 1fr 1fr;
         gap: 20px;
         grid-template-areas:
         "education specialization"
@@ -289,6 +315,16 @@ const TileLayout = styled.div`
         div {
             padding: 20px 24px;
             border-radius: 24px;
+        }
+        @media ${({theme}) => theme.media.mobile} {
+            grid-template-columns: 1fr;   
+            grid-template-areas:
+            "education"
+            "specialization"
+            "advancedEducation"
+            "professionalSkills"
+            "professionalAchievements"
+            "professionalAchievements" 
         }
     }
     h3 {

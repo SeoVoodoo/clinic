@@ -2,6 +2,19 @@ import React from 'react';
 import desktopFoto from '../../assets/images/single-img/desctop/doctors/gordeeva.webp';
 import tabletFoto from '../../assets/images/single-img/tablet/doctors/gordeeva.webp';
 import mobileFoto from '../../assets/images/single-img/mobile/doctors/gordeeva.webp';
+import sert1 from '../../assets/images/single-img/desctop/sertificates/gordeeva/1.webp';
+import sert2 from '../../assets/images/single-img/desctop/sertificates/gordeeva/2.webp';
+import sert3 from '../../assets/images/single-img/desctop/sertificates/gordeeva/3.webp';
+import sert4 from '../../assets/images/single-img/desctop/sertificates/gordeeva/4.webp';
+import sert5 from '../../assets/images/single-img/desctop/sertificates/gordeeva/5.webp';
+import sert6 from '../../assets/images/single-img/desctop/sertificates/gordeeva/6.webp';
+import sert7 from '../../assets/images/single-img/desctop/sertificates/gordeeva/7.webp';
+import sert8 from '../../assets/images/single-img/desctop/sertificates/gordeeva/8.webp';
+import sert9 from '../../assets/images/single-img/desctop/sertificates/gordeeva/9.webp';
+import sert10 from '../../assets/images/single-img/desctop/sertificates/gordeeva/10.webp';
+import sert11 from '../../assets/images/single-img/desctop/sertificates/gordeeva/11.webp';
+import sert12 from '../../assets/images/single-img/desctop/sertificates/gordeeva/12.webp';
+
 
 
 
@@ -32,7 +45,9 @@ const initialState = {
         professionalSkills:`<h3>Профессиональные навыки</h3><p>Прием супружеской пары по бесплодию</p><p>Оценка овариального резерва</p><p>Назначение обследований при бесплодии</p><p>Определение стратегии лечения пары при бесплодии</p><p>Разработка индивидуальных программ ЭКО</p><p>Назначение схемы стимуляции</p><p>Назначение поддерживающей терапии после переноса</p>`,
 
         professionalAchievements:`<h3>Профессиональные достижения</h3><p>Принимает активное участие в международных и межрегиональных конгрессах, конференциях.</p><p>Постоянно повышает свой профессиональный уровень в рамках непрерывного медицинского образования.</p><p>Член Российской Академии репродукции человека (РАРЧ), член Европейского общества по репродукции человека и эмбриологии (European Society for Human Reproduction and Embryology (ESHRE)).</p><p>Член Российского общества акушеров-гинекологов (РОАГ).</p>`                
-    }      
+    },
+    certificates: [sert1, sert2, sert3, sert4, sert5, sert6, sert7, sert8, sert9, sert10, sert11, sert12]
+
 }
 
 export type initialStateType = typeof initialState;
