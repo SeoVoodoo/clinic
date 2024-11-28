@@ -355,7 +355,10 @@ function App(props: {store: StoreType}) {
             <Route path="/doctors">
 
               <Route index element = {<Suspense fallback={<Preloader />}>
-                <AllDoctors />
+                <AllDoctors 
+                  allDoctorsPage={state.allDoctorsPage}
+                  fontSize={fontSize} 
+                />
               </Suspense>} />
               
               <Route path="gordeeva" element = {<Suspense fallback={<Preloader />}> 
@@ -369,7 +372,10 @@ function App(props: {store: StoreType}) {
 
             </Route>
 
-            <Route path="/doctors" element = {<AllDoctors />} />            
+            {/* <Route path="/doctors"  element = {<Suspense fallback={<Preloader />}> 
+              <AllDoctors />   
+            </Route> */}
+
             <Route path="/eco" element = {<Eco />} />            
             <Route path="/contacts" element = {<Contacts />} />
             <Route path="/about" element = {<About />} />            

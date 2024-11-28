@@ -8,6 +8,7 @@ import { reviewsReducer } from "./reviewsReducer";
 import { timeTableReducer } from "./timeTableReducer";
 import { faqReducer } from "./faqReducer";
 import { gordeevaReducer } from "./doctors/gordeevaReducer";
+import { allDoctorsReducer } from "./allDoctorsReducer";
 
 
 const rootReducer = combineReducers({
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     reviewsPage: reviewsReducer,
     timeTablePage: timeTableReducer,
     faqPage: faqReducer,
-    gordeevaPage: gordeevaReducer
+    gordeevaPage: gordeevaReducer,
+    allDoctorsPage: allDoctorsReducer
 })
 
 type rootReducerType = typeof rootReducer;

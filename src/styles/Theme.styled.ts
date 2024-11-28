@@ -60,6 +60,7 @@ export const myTheme = {
                 reviews: "rgba(242, 245, 247, 1)", 
                 timetable: "rgba(0, 166, 81, 0.1)",
                 faq: "rgba(242, 245, 247, 1)",
+                doctors: "rgba(242, 245, 247, 1)",
             }
         },
 
@@ -186,7 +187,8 @@ export const myTheme = {
                 price: "rgba(255, 255, 255, 1)",
                 reviews: "rgba(255, 255, 255, 1)",
                 timetable: "rgba(255, 255, 255, 1)",
-                faq: "rgba(255, 255, 255, 1)"
+                faq: "rgba(255, 255, 255, 1)",
+                doctors: "rgba(255, 255, 255, 1)",
             }
         },
 
@@ -312,7 +314,8 @@ export const myTheme = {
                 price: "rgba(0, 0, 0, 1)",
                 reviews: "rgba(0, 0, 0, 1)",
                 timetable: "rgba(0, 0, 0, 1)",
-                faq: "rgba(0, 0, 0, 1)"
+                faq: "rgba(0, 0, 0, 1)",
+                doctors: "rgba(0, 0, 0, 1)",
             }            
         },
 
@@ -437,7 +440,8 @@ export const myTheme = {
                 price: "rgba(157, 209, 255, 1)",
                 reviews: "rgba(157, 209, 255, 1)",
                 timetable: "rgba(157, 209, 255, 1)",
-                faq: "rgba(157, 209, 255, 1)"
+                faq: "rgba(157, 209, 255, 1)",
+                doctors: "rgba(157, 209, 255, 1)",
             }            
         },
 

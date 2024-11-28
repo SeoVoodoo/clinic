@@ -40,6 +40,9 @@ const StyledDoctor = styled.li`
 `
 
 const Foto = styled.div`
+    border-top-right-radius: 24px;
+    border-top-left-radius: 24px;
+    overflow: hidden;
     img {
         max-width: 100%;    
         height: auto;
