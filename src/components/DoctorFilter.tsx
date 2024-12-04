@@ -3,15 +3,16 @@ import { styled, useTheme } from 'styled-components';
 import { StyledDropdawnBtn } from './StyledBtn';
 import { Icon } from './icon/Icon';
 
-type FilterPropsType = {
-    currentOptionList: Array<string>    
-    selectOption:string
-    setSelectOption: (value:string) => void
+type DoctorFilterPropsType = {
+    directions: Array<string>
+    groupFilter: {branch:string, direction:string}
+    selectDirection:string
+    setGroupFilter: Function
     setCount: (value:number) => void
     step:number
 }
 
-export const Filter: React.FC<FilterPropsType> = (props: FilterPropsType) => {
+export const DoctorFilter: React.FC<DoctorFilterPropsType> = (props: DoctorFilterPropsType) => {
 
     const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -20,21 +21,20 @@ export const Filter: React.FC<FilterPropsType> = (props: FilterPropsType) => {
     }
     const handleFilter = (e:any) => {        
         e.preventDefault();
-        props.setSelectOption(e.target.innerText);
+        props.setGroupFilter({...props.groupFilter, [props.selectDirection]: e.target.innerText});
         setIsOpenMenu(prev => !prev);
         props.setCount(props.step);
     }
     const theme = useTheme();
 
     return (
-        <StyledFilter isOpenMenu={isOpenMenu}>
-            
+        <StyledDoctorFilter isOpenMenu={isOpenMenu}>            
             <StyledDropdawnBtn 
                 as="a"                
                 onClick={handleClick}
                 isOpenMenu={isOpenMenu}
             >
-                {props.selectOption}
+                {props.groupFilter[props.selectDirection as "branch" | "direction"]}
                 <Icon 
                     id="dropdawn_arrow"
                     width="14"
@@ -45,24 +45,25 @@ export const Filter: React.FC<FilterPropsType> = (props: FilterPropsType) => {
             </StyledDropdawnBtn>
             <DropdownContent isOpenMenu={isOpenMenu}>
                 <ul>
-                    {props.currentOptionList.map((option, index) => {
+                    {props.directions.map((direction, index) => {
                         return (
                             <MenuItem key={index}>
                                 <CurrentLink onClick={(e) => handleFilter(e)}>
-                                    {option}
+                                    {direction}
                                 </CurrentLink>
                             </MenuItem>
                         );
                     })}
                 </ul>
             </DropdownContent>   
-        </StyledFilter>
+        </StyledDoctorFilter>
     );
 };
 
-const StyledFilter = styled.div<{isOpenMenu:boolean}>`
+const StyledDoctorFilter = styled.div<{isOpenMenu:boolean}>`
     position: relative;
-    width: 100%;    
+    width: 100%;
+    //display: inline-block;
     height: 50px;
     margin-bottom: 30px;    
     

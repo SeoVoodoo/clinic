@@ -57,24 +57,27 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
-  let filteredQuestions = [];
 
-  switch(selectDirection) {
-    case "Лечение бесплодия":
-      filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Лечение бесплодия");
-      break;
-    case "Гинекология":
-      filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Гинекология");
-      break;
-    case "Услуги для беременных":
-      filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Услуги для беременных");
-      break;
-    case "Урологические операции":
-      filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Урологические операции");
-      break;
-    default: filteredQuestions = props.faqPage.questions    
-  }
+  const filteredQuestions = props.faqPage.questions
+    .filter(question => selectDirection === "Все направления" ? true : question.direction.includes(selectDirection))
+  
+  // let filteredQuestions = [];
+
+  // switch(selectDirection) {
+  //   case "Лечение бесплодия":
+  //     filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Лечение бесплодия");
+  //     break;
+  //   case "Гинекология":
+  //     filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Гинекология");
+  //     break;
+  //   case "Услуги для беременных":
+  //     filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Услуги для беременных");
+  //     break;
+  //   case "Урологические операции":
+  //     filteredQuestions = props.faqPage.questions.filter(question => question.direction === "Урологические операции");
+  //     break;
+  //   default: filteredQuestions = props.faqPage.questions    
+  // }
 
   const totalQuestions = filteredQuestions.length;
 
@@ -187,9 +190,9 @@ const Faq: React.FC<FaqPropsType> = (props: FaqPropsType) => {
           }
           <StyledH2 style={{textAlign: "left"}}>Вопросы пользователей</StyledH2>
           <Filter  
-            directions={props.faqPage.directions}
-            selectDirection={selectDirection}
-            setSelectDirection={setSelectDirection}
+            currentOptionList={props.faqPage.directions}
+            selectOption={selectDirection}
+            setSelectOption={setSelectDirection}
             setCount={setCount}
             step={props.faqPage.step}
           />

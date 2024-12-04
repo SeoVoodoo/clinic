@@ -5,6 +5,8 @@ import { ScrollTop } from '../../components/ScrollTop';
 import { PageTopPart } from '../../components/PageTopPart';
 import { Doctor } from '../../layout/section/homepage/doctors/Doctor';
 import { StyledLoadMoreBtn } from '../../components/StyledBtn';
+//import { DoctorFilter } from '../../components/DoctorFilter';
+import { Filter } from '../../components/Filter';
 
 type AllDoctorsPropsType = {
     allDoctorsPage: {
@@ -15,6 +17,8 @@ type AllDoctorsPropsType = {
         srcMobile:string
         title:string
       },
+      specializations:string[]
+      branches:string[]
       doctors: Array<{
         fullName: string,
         post: string,
@@ -31,32 +35,21 @@ type AllDoctorsPropsType = {
 
 const AllDoctors: React.FC<AllDoctorsPropsType> = (props: AllDoctorsPropsType) => {
 
-  let filteredDoctors = [];
+  const [count, setCount] = useState(props.allDoctorsPage.step);  
+  const [selectBranch, setSelectBranch] = useState("Все филиалы");
+  const [selectSpecialization, setSelectSpecialization] = useState("Все врачи");  
 
-  // switch(selectDirection) {
-  //   case "акушер-гинеколог":
-  //     filteredDoctors = props.allDoctorsPage.doctors.filter(doctor => doctor.status.includes("акушер-гинеколог"));
-  //     break;
-  //   case "репродуктолог":
-  //     filteredDoctors = props.allDoctorsPage.doctors.filter(doctor => doctor.status.includes("репродуктолог"));
-  //     break;
-  //   case "терапевт":
-  //     filteredDoctors = props.allDoctorsPage.doctors.filter(doctor => doctor.status.includes("терапевт"));
-  //     break;
-  //   case "врач ультразвуковой диагностики":
-  //     filteredDoctors = props.allDoctorsPage.doctors.filter(doctor => doctor.status.includes("врач ультразвуковой диагностики"));
-  //     break;
-  //   default: filteredDoctors = props.allDoctorsPage.doctors    
-  // }
+  const filteredDoctors = props.allDoctorsPage.doctors
+    .filter(doctor => selectBranch === "Все филиалы" ? true : doctor.branches.includes(selectBranch))
+    .filter(doctor => selectSpecialization === "Все врачи" ? true : doctor.status.includes(selectSpecialization));  
 
-  const totalDoctors = filteredDoctors.length;
-
-  const [count, setCount] = useState(props.allDoctorsPage.step);
+  const totalDoctors = filteredDoctors.length;  
 
   const handleLoadMore = () => {
     setCount(prev => prev += props.allDoctorsPage.step);  
   }
 
+  
   return (
       <StyledAllDoctors>
         <ScrollTop />          
@@ -64,9 +57,29 @@ const AllDoctors: React.FC<AllDoctorsPropsType> = (props: AllDoctorsPropsType) =
           pageTopPart={props.allDoctorsPage.pageTopPart}            
         />
         <Container>
+        <Filters>
+          <div style={{width: "220px"}}>
+            <Filter  
+              currentOptionList={props.allDoctorsPage.branches}              
+              selectOption={selectBranch}
+              setSelectOption={setSelectBranch}
+              setCount={setCount}
+              step={props.allDoctorsPage.step}
+            />          
+          </div>
+          <div style={{width: "324px"}}>
+            <Filter  
+              currentOptionList={props.allDoctorsPage.specializations}              
+              selectOption={selectSpecialization}
+              setSelectOption={setSelectSpecialization}
+              setCount={setCount}
+              step={props.allDoctorsPage.step}
+            />  
+          </div>
+        </Filters>        
           <DoctorList>
                 {
-                  props.allDoctorsPage.doctors.map((doctor, index) => {
+                  filteredDoctors.slice(0, count).map((doctor, index) => {
                       return (
                           <Doctor 
                             key={index}
@@ -81,7 +94,7 @@ const AllDoctors: React.FC<AllDoctorsPropsType> = (props: AllDoctorsPropsType) =
             <StyledLoadMoreBtn onClick={handleLoadMore} disabled={totalDoctors <= count}>
                 {totalDoctors <= count ? "Показали всё что было" : "Показать еще"}
             </StyledLoadMoreBtn>
-        </WrapBtn>
+          </WrapBtn>
         </Container>           
       </StyledAllDoctors>
   );
@@ -90,7 +103,10 @@ const AllDoctors: React.FC<AllDoctorsPropsType> = (props: AllDoctorsPropsType) =
 const StyledAllDoctors = styled.div`  
 `
 
-
+const Filters = styled.div`
+  display: flex;  
+  gap: 20px;
+`
 const DoctorList = styled.ul`
     display: flex;
     flex-wrap: wrap;
@@ -108,6 +124,5 @@ const WrapBtn = styled.div`
     padding: 16px;
   }
 `
-
 
 export default AllDoctors;

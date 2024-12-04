@@ -18,7 +18,7 @@ import Klemendeev from "../assets/images/single-img/doctorsPage/preview/klemende
 import Predtechenskaya from "../assets/images/single-img/doctorsPage/preview/predtechenskaya.webp";
 import Shanina from "../assets/images/single-img/doctorsPage/preview/shanina.webp";
 import Zajnullova from "../assets/images/single-img/doctorsPage/preview/zajnullova.webp";
-import Chernysh from "../assets/images/single-img/doctorsPage/preview/304.webp";
+import Chernysh from "../assets/images/single-img/doctorsPage/preview/chernysh.webp";
 import Aslanova from "../assets/images/single-img/doctorsPage/preview/aslanova.webp";
 import Sabirova from "../assets/images/single-img/doctorsPage/preview/sabirova.webp";
 import Ilgachev from "../assets/images/single-img/doctorsPage/preview/ilgachev.webp";
@@ -44,47 +44,27 @@ const initialState = {
         title: "Наши врачи"       
     }, 
 
-    // directions: [
-    //     "Все направления",
-    //     "Диагностика бесплодия",
-    //     "Лечение бесплодия",
-    //     "Гинекология",
-    //     "Гинекологические операции",
-    //     "Услуги для беременных",
-    //     "Урология-андрология",
-    //     "Урологические операции",
-    //     "Травматология и ортопедия",
-    //     "Травматолог-ортопед",
-    //     "Артроскопия коленного сустава",  
-    //     "Ультразвуковые исследования",
-    //     "Ударно-волновая терапия",
-    //     "Функциональная диагностика",
-    //     "Генетические тесты",
-    //     "Терапия",  
-    //     "Эндокринология"    
-    // ],
-    // doctors2: [
-    //     "Гордеева И. В.",
-    //     "Волкова Т.Е.",
-    //     "Ладягина Е.В.",
-    //     "Сабирова Г.З.",
-    //     "Серебрякова Т.А.",
-    //     "Шабаршина М.С.",
-    //     "Симанская С.Ю.",
-    //     "Лавренюк С.А.",
-    //     "Клемендеев А.П",
-    //     "Салмина Н.В",
-    //     "Кожевникова И.В.",
-    //     "Асланова М.В.",
-    //     "Ильгачев А.Н.",
-    //     "Маланина Е.Н.",
-    //     "Степанова А.В.",
-    //     "Гордеев А.В.",
-    //     "Белый Л.Е.",
-    //     "Коновалова Н.В.",
-    //     "Брыгина Н.А.",
-    //     "Малянкова Л.Ю",        
-    // ],
+    specializations: [
+        "Все врачи",
+        "акушер-гинеколог",
+        "анестезиолог-реаниматолог",
+        "врач ультразвуковой диагностики",
+        "маммолог",
+        "онколог",
+        "репродуктолог",
+        "терапевт",
+        "травматолог-ортопед",
+        "уролог-андролог",
+        "физиотерапевт",
+        "эмбриолог",        
+        "эндокринолог"
+    ],
+    branches: [
+        "Все филиалы",
+        "пр-т Врача Сурова, 4",
+        "ул. Бебеля, 1А",
+        "ул. Рябикова, 96"           
+    ],
     doctors: [
         {
             fullName: "Гордеева Ирина Викторовна",
@@ -93,7 +73,7 @@ const initialState = {
             foto: Gordeeva,
             path: "/doctors/gordeeva",
             status: ["акушер-гинеколог", "репродуктолог"],
-            branches: ["Сурова", "Бебеля"]
+            branches: ["пр-т Врача Сурова, 4", "ул. Бебеля, 1А"]
         },
         {
             fullName: "Симанская Светлана Юрьевна",
@@ -102,7 +82,7 @@ const initialState = {
             foto: Simanskaya,
             path: "#",
             status: ["терапевт"],
-            branches: ["Сурова", "Бебеля"]
+            branches: ["пр-т Врача Сурова, 4", "ул. Бебеля, 1А"]
         },
         {
             fullName: "Волкова Татьяна Евгеньевна",
@@ -111,7 +91,7 @@ const initialState = {
             foto: Volkova,
             path: "#",
             status: ["акушер-гинеколог", "репродуктолог", "врач ультразвуковой диагностики"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
             fullName: "Ладягина Елена Викторовна",
@@ -120,7 +100,7 @@ const initialState = {
             foto: Ladyagina,
             path: "#",
             status: ["акушер-гинеколог", "репродуктолог", "врач ультразвуковой диагностики"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
             fullName: "Серебрякова Татьяна Анатольевна",
@@ -129,7 +109,7 @@ const initialState = {
             foto: Serebryakova,
             path: "#",
             status: ["акушер-гинеколог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
             fullName: "Шабаршина Мария Сергеевна",
@@ -137,8 +117,8 @@ const initialState = {
             workExperience: "с 2004 года",
             foto: Shabarshina,
             path: "#",
-            status: ["акушер-гинеколог", "врач ультразвуковой диагностики"],
-            branches: ["Сурова"]
+            status: ["врач ультразвуковой диагностики"],
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
             fullName: "Лавренюк Сергей Александрович",
@@ -147,79 +127,79 @@ const initialState = {
             foto: Lavrenuk,
             path: "#",
             status: ["уролог-андролог", "врач ультразвуковой диагностики"],
-            branches: ["Сурова", "Бебеля"]
+            branches: ["пр-т Врача Сурова, 4", "ул. Бебеля, 1А"]
         },
         {
-            fullName: "САЛМИНА НАТАЛЬЯ ВИКТОРОВНА",
+            fullName: "Салмина Наталья Викторовна",
             post: "Врач акушер-гинеколог",
             workExperience: "с 2004 года",
             foto: Salmina,
             path: "#",
             status: ["акушер-гинеколог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
-            fullName: "КОЖЕВНИКОВА ИРИНА ВЛАДИМИРОВНА",
+            fullName: "Кожевникова Ирина Владимировна",
             post: "Врач акушер-гинеколог",
             workExperience: "с 2004 года",
             foto: Kogevnikova,
             path: "#",
             status: ["акушер-гинеколог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
-            fullName: "БОРИСОВ НИКОЛАЙ ВИТАЛЬЕВИЧ",
+            fullName: "Борисов Николай Витальевич",
             post: "Врач анестезиолог-реаниматолог",
             workExperience: "с 2004 года",
             foto: Borisov,
             path: "#",
             status: ["анестезиолог-реаниматолог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
-            fullName: "ШВЕДОВ АЛЕКСАНДР СЕРГЕЕВИЧ",
+            fullName: "Шведов Александр Сергеевич",
             post: "Врач анестезиолог-реаниматолог",
             workExperience: "с 2004 года",
             foto: Shvedov,
             path: "#",
             status: ["анестезиолог-реаниматолог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
-            fullName: "КЛЕМЕНДЕЕВ АНТОН ПЕТРОВИЧ",
+            fullName: "Клемендеев Антон Петрович",
             post: "Врач травматолог-ортопед",
             workExperience: "с 2004 года",
             foto: Klemendeev,
             path: "#",
             status: ["травматолог-ортопед"],
-            branches: ["Сурова", "Бебеля"]
+            branches: ["пр-т Врача Сурова, 4", "ул. Бебеля, 1А"]
         },
         {
-            fullName: "ПРЕДТЕЧЕНСКАЯ АЛЁНА ЕВГЕНЬЕВНА",
+            fullName: "Предтеченская Алена Евгеньевна",
             post: "Старший эмбриолог",
             workExperience: "с 2004 года",
             foto: Predtechenskaya,
             path: "#",
             status: ["эмбриолог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
-            fullName: "ШАНИНА СВЕТЛАНА КОНСТАНТИНОВНА",
+            fullName: "Шанина Светлана Константиновна",
             post: "Старший эмбриолог",
             workExperience: "с 2004 года",
             foto: Shanina,
             path: "#",
             status: ["эмбриолог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
-            fullName: "ЗАЙНУЛЛОВА ГЕЛЬНАЗ РАМИЛЕВНА",
+            fullName: "Зайнуллова Гельназ Рамилевна",
             post: "Эмбриолог",
             workExperience: "с 2004 года",
             foto: Zajnullova,
             path: "#",
             status: ["эмбриолог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
             fullName: "Черныш Ольга Михайловна",
@@ -228,25 +208,25 @@ const initialState = {
             foto: Chernysh,
             path: "#",
             status: ["эмбриолог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
-            fullName: "АСЛАНОВА МАРИНА ВЛАДИМИРОВНА",
+            fullName: "Асланова Марина Владимировна",
             post: "Врач акушер-гинеколог, репродуктолог, врач ультразвуковой диагностики.",
             workExperience: "с 2004 года",
             foto: Aslanova,
             path: "#",
             status: ["акушер-гинеколог", "репродуктолог", "врач ультразвуковой диагностики"],
-            branches: ["Рябикова", "Бебеля"]
+            branches: ["ул. Рябикова, 96", "ул. Бебеля, 1А"]
         },
         {
             fullName: "САБИРОВА ГУЛИЯ ЗАВДЯТОВНА",
-            post: "Врач-акушер-гинеколог, репродуктолог, врач ультразвуковой диагностики.",
+            post: "Врач акушер-гинеколог, репродуктолог, врач ультразвуковой диагностики.",
             workExperience: "с 2004 года",
             foto: Sabirova,
             path: "#",
             status: ["акушер-гинеколог", "репродуктолог", "врач ультразвуковой диагностики"],
-            branches: ["Сурова", "Бебеля"]
+            branches: ["пр-т Врача Сурова, 4", "ул. Бебеля, 1А"]
         },
         {
             fullName: "ИЛЬГАЧЕВ АЛЕКСЕЙ НИКОЛАЕВИЧ",
@@ -255,7 +235,7 @@ const initialState = {
             foto: Ilgachev,
             path: "#",
             status: ["врач ультразвуковой диагностики"],
-            branches: ["Бебеля"]
+            branches: ["ул. Бебеля, 1А"]
         },
         {
             fullName: "МАЛЯНКОВА ЛАРИСА ЮРЬЕВНА",
@@ -264,7 +244,7 @@ const initialState = {
             foto: Malyankova,
             path: "#",
             status: ["врач ультразвуковой диагностики"],
-            branches: ["Бебеля"]
+            branches: ["ул. Бебеля, 1А"]
         },
         {
             fullName: "Маланина Екатерина Николаевна",
@@ -273,7 +253,7 @@ const initialState = {
             foto: Malanina,
             path: "#",
             status: ["врач ультразвуковой диагностики"],
-            branches: ["Бебеля"]
+            branches: ["ул. Бебеля, 1А"]
         },
         {
             fullName: "БЕЛЫЙ ЛЕВ ЕВГЕНЬЕВИЧ",
@@ -282,7 +262,7 @@ const initialState = {
             foto: Belij,
             path: "#",
             status: ["уролог-андролог"],
-            branches: ["Бебеля"]
+            branches: ["ул. Бебеля, 1А"]
         },
         {
             fullName: "БРЫГИНА НАТАЛЬЯ АЛЕКСЕЕВНА",
@@ -291,7 +271,7 @@ const initialState = {
             foto: Brygina,
             path: "#",
             status: ["эндокринолог"],
-            branches: ["Бебеля"]
+            branches: ["ул. Бебеля, 1А"]
         },
         {
             fullName: "КОНОВАЛОВА НАТАЛИЯ ВЛАДИМИРОВНА",
@@ -300,7 +280,7 @@ const initialState = {
             foto: Konovalova,
             path: "#",
             status: ["физиотерапевт"],
-            branches: ["Бебеля"]
+            branches: ["ул. Бебеля, 1А"]
         },
         {
             fullName: "ГОРДЕЕВ АЛЕКСЕЙ ВАЛЕНТИНОВИЧ",
@@ -309,7 +289,7 @@ const initialState = {
             foto: Gordeev,
             path: "#",
             status: ["травматолог-ортопед"],
-            branches: ["Сурова", "Бебеля"]
+            branches: ["пр-т Врача Сурова, 4", "ул. Бебеля, 1А"]
         },
         {
             fullName: "СТЕПАНОВА АНАСТАСИЯ ВЛАДИМИРОВНА",
@@ -318,7 +298,7 @@ const initialState = {
             foto: Stepanova,
             path: "#",
             status: ["онколог", "маммолог"],
-            branches: ["Бебеля"]
+            branches: ["ул. Бебеля, 1А"]
         },
         {
             fullName: "МУХАММЕТЖАНОВ РАДИК КАМИЛЬЕВИЧ",
@@ -327,7 +307,7 @@ const initialState = {
             foto: Muhammetganov,
             path: "#",
             status: ["травматолог-ортопед"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         },
         {
             fullName: "Онищенко Светлана Любомировна",
@@ -336,7 +316,7 @@ const initialState = {
             foto: Onischenko,
             path: "#",
             status: ["уролог-андролог", "врач ультразвуковой диагностики"],
-            branches: ["Бебеля"]
+            branches: ["ул. Бебеля, 1А"]
         },
         {
             fullName: "Кулагина Ирина Олеговна",
@@ -345,7 +325,7 @@ const initialState = {
             foto: Kulagina,
             path: "#",
             status: ["эндокринолог"],
-            branches: ["Сурова"]
+            branches: ["пр-т Врача Сурова, 4"]
         }
     ],
     step: 8    
